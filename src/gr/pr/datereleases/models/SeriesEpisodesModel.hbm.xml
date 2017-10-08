@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="gr.pr.datereleases.models.SeriesEpisodesModel" table="series_episodes" schema="test_db">
+        <id name="seriesEpisodesId">
+            <column name="series_episodes_id" sql-type="int(11)"/>
+        </id>
+        <property name="season">
+            <column name="season" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="episode">
+            <column name="episode" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="releaseDate">
+            <column name="release_date" sql-type="date" not-null="true"/>
+        </property>
+        <many-to-one name="seriesBySeriesId" class="gr.pr.datereleases.models.SeriesModel">
+            <column name="series_id" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="gr.pr.datereleases.models.UsersModel" table="users" schema="test_db">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="userName">
+            <column name="user_name" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(45)" length="45"/>
+        </property>
+    </class>
+</hibernate-mapping>
