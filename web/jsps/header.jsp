@@ -27,6 +27,15 @@
 <h1 align="center">
     Date Releases
 </h1>
-<div>
-    <h5 class="col-lg-3 col-lg-offset-10">Welcome <%=user%>, <a href="/jsps/logout.jsp">sign out?</a></h5>
+<div class="row page-header">
+    <div class="col-lg-10">
+        <div class="col-lg-5">
+            <h5><a href="/jsps/mainMenu.jsp">Main Menu</a></h5>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="col-lg-offset-5">
+            <h5>Welcome <%=user%>, <a href="/jsps/logout.jsp">sign out?</a></h5>
+        </div>
+    </div>
 </div>

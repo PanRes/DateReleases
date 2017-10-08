@@ -33,7 +33,7 @@
             %>
         </header>
         <article>
-            <%
+            <%--<%
                 String message = request.getParameter("wrongUser");
                 if (message != null && message.equals("true")){
             %>
@@ -43,7 +43,7 @@
             </div>
             <%
                 }
-            %>
+            %>--%>
             <h2 class="page-header" align="center">Please Login</h2>
             <form class="form-horizontal" action="/Authenticate" name="loginForm" method="post">
                 <div align="center">
