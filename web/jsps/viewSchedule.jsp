@@ -18,23 +18,23 @@
     </header>
     <article>
         <table class="table table-striped table-hover">
-             <tr class="bg-primary ">
-                <th>Name</th>
-                <th>Day</th>
-                <th>Seen</th>
-                <th>Episode</th>
-                <th>Date</th>
+             <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Day</th>
+                <th class="text-center">Seen</th>
+                <th class="text-center">Episode</th>
+                <th class="text-center">Date</th>
              </tr>
             <%
                 int seriesId = Integer.valueOf((String) request.getParameter("seriesId"));
-                for (SeriesEpisodesModel seriesEpisodesModel : SeriesEpisodesTools.getSeriesById(Integer.valueOf(seriesId))) {
+                for (SeriesEpisodesModel seriesEpisodesModel : SeriesEpisodesTools.getSeriesById(seriesId)) {
     //                out.println(seriesEpisodesModel + "<br>");
                     String seriesEpisodes = seriesEpisodesModel.toString();
                     String[] seriesEpisodesSplit = seriesEpisodes.split("  ");
                     out.print("<tr>");
                     for (String s : seriesEpisodesSplit){
             %>
-                <td>
+                <td class="text-center">
                     <%=s%>
                 </td>
             <%
