@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmr" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools" %>
 <%@ page import="java.sql.Date" %>
-<%@ page import="java.util.Calendar" %><%--
+<%@ page import="java.util.Calendar" %>
+<%--
   Created by IntelliJ IDEA.
   User: pressos
   Date: 6/10/2017
@@ -29,14 +30,11 @@
              </tr>
             <%
                 int seriesId = Integer.valueOf((String) request.getParameter("seriesId"));
+                Calendar now = Calendar.getInstance();
+                now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
+                                                       *I sub one day from now for released label
+                                                       * */
             %>
-         <%--       for (SeriesEpisodesModel seriesEpisodesModel : SeriesEpisodesTools.getSeriesById(seriesId)) {
-    //                out.println(seriesEpisodesModel + "<br>");
-                    String seriesEpisodes = seriesEpisodesModel.toString();
-                    String[] seriesEpisodesSplit = seriesEpisodes.split("  ");
-                    out.print("<tr>");
-                    for (String s : seriesEpisodesSplit){
---%>
             <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesById(seriesId)%>">
                 <tr>
                     <td class="text-center">${seriesLine.seriesBySeriesId.name}</td>
@@ -44,13 +42,6 @@
                     <td class="text-center">${seriesLine.viewDay()}</td>
                     <td class="text-center">${seriesLine.seasonEpisode()}</td>
                     <td class="text-center">
-                        <%
-                            Calendar now = Calendar.getInstance();
-                            now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
-                                                       *I sub one day from now for released label
-                                                       * */
-
-                        %>
                         <c:set var="now" value="<%=new Date(now.getTimeInMillis())%>"/>
                         <c:choose>
                             <c:when test="${seriesLine.releaseDate == null}">
@@ -60,17 +51,12 @@
                                 Released
                             </c:when>
                             <c:otherwise>
-                                <fmr:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
+                                <fmt:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
                             </c:otherwise>
                         </c:choose>
                     </td>
                 </tr>
             </c:forEach>
-            <%--<%
-                    }
-                    out.print("</tr>");
-                }
-            %>--%>
         </table>
     </article>
 </body>
