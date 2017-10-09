@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -29,8 +30,10 @@
 </h1>
 <div class="row page-header">
     <div class="col-lg-10">
-        <div class="col-lg-5">
+        <div class="col-lg-5 d-inline">
             <h5><a href="/jsps/mainMenu.jsp">Main Menu</a></h5>
+            <c:out value=" | "/>
+            <h5><a href="/jsps/addDate.jsp">Add Date</a></h5>
         </div>
     </div>
     <div class="col-lg-2">

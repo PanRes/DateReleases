@@ -15,4 +15,9 @@ public class SeriesTools {
         return allSeries;
     }
 
+    public static SeriesModel getSeriesById(int seriesId){
+        Session session = HibernateTools.getSession();
+        return session.get(SeriesModel.class,seriesId);
+    }
+
 }
