@@ -11,10 +11,10 @@ import java.util.Locale;
 public class SeriesEpisodesModel {
 
     private int seriesEpisodesId;
+    private SeriesModel seriesBySeriesId;
     private Integer season;
     private Integer episode;
     private Date releaseDate;
-    private SeriesModel seriesBySeriesId;
 
     @Id
     @Column(name = "series_episodes_id", nullable = false)
@@ -24,6 +24,16 @@ public class SeriesEpisodesModel {
 
     public void setSeriesEpisodesId(int seriesEpisodesId) {
         this.seriesEpisodesId = seriesEpisodesId;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "series_id", referencedColumnName = "series_id")
+    public SeriesModel getSeriesBySeriesId() {
+        return seriesBySeriesId;
+    }
+
+    public void setSeriesBySeriesId(SeriesModel seriesBySeriesId) {
+        this.seriesBySeriesId = seriesBySeriesId;
     }
 
     @Basic
@@ -56,6 +66,55 @@ public class SeriesEpisodesModel {
         this.releaseDate = releaseDate;
     }
 
+    public String releaseDay(){
+        String releaseDay = null;
+        if (releaseDate == null){
+            releaseDay = "TBD";
+        }
+        else{
+            GregorianCalendar gc = new GregorianCalendar();
+            gc.setTime(releaseDate);
+            releaseDay = gc.getDisplayName(Calendar.DAY_OF_WEEK,Calendar.LONG_FORMAT, Locale.US);
+        }
+
+        return releaseDay;
+    }
+
+    public String viewDay(){
+        String releaseDay = null;
+        if (releaseDate == null){
+            releaseDay = "TBD";
+        }
+        else{
+            GregorianCalendar gc = new GregorianCalendar();
+            gc.setTime(releaseDate);
+            gc.add(Calendar.DATE,1);
+            releaseDay = gc.getDisplayName(Calendar.DAY_OF_WEEK,Calendar.LONG_FORMAT, Locale.US);
+        }
+
+        return releaseDay;
+    }
+
+    public String seasonEpisode(){
+        String seasonEpisode = null;
+
+        if(season < 9){
+            seasonEpisode = "S0" + season;
+        }
+        else{
+            seasonEpisode = "S" + season;
+        }
+
+        if(episode < 9){
+            seasonEpisode += "E0" + episode + "  ";
+        }
+        else{
+            seasonEpisode += "E" + episode + "  ";
+        }
+
+        return seasonEpisode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,46 +139,9 @@ public class SeriesEpisodesModel {
         return result;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "series_id", referencedColumnName = "series_id")
-    public SeriesModel getSeriesBySeriesId() {
-        return seriesBySeriesId;
-    }
-
-    public void setSeriesBySeriesId(SeriesModel seriesBySeriesId) {
-        this.seriesBySeriesId = seriesBySeriesId;
-    }
-
     @Override
     public String toString() {
-        String print = seriesBySeriesId.getName() + "  ";
-
-        if (releaseDate == null){
-            print += "TBD  TBD  ";
-        }
-        else{
-            GregorianCalendar gc = new GregorianCalendar();
-            gc.setTime(releaseDate);
-            String releaseDay = gc.getDisplayName(Calendar.DAY_OF_WEEK,Calendar.LONG_FORMAT, Locale.US);
-            gc.add(Calendar.DATE,1);
-            String viewDay = gc.getDisplayName(Calendar.DAY_OF_WEEK,Calendar.LONG_FORMAT, Locale.US);
-
-            print += releaseDay + "  " + viewDay + "  ";
-        }
-
-        if(season < 9){
-            print += "S0" + season;
-        }
-        else{
-            print += "S" + season;
-        }
-
-        if(episode < 9){
-            print += "E0" + episode + "  ";
-        }
-        else{
-            print += "E" + episode + "  ";
-        }
+        String print = seriesBySeriesId.getName() + "  " + releaseDay() + "  " + viewDay() + "  " + seasonEpisode();
 
         if (releaseDate == null){
             print += "TBA";
