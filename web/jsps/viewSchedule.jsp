@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmr" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="java.util.List" %>
-<%@ page import="gr.pr.datereleases.models.SeriesEpisodesModel" %>
-<%@ page import="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools" %><%--
+<%@ page import="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.Calendar" %><%--
   Created by IntelliJ IDEA.
   User: pressos
   Date: 6/10/2017
@@ -44,9 +44,20 @@
                     <td class="text-center">${seriesLine.viewDay()}</td>
                     <td class="text-center">${seriesLine.seasonEpisode()}</td>
                     <td class="text-center">
+                        <%
+                            Calendar now = Calendar.getInstance();
+                            now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
+                                                       *I sub one day from now for released label
+                                                       * */
+
+                        %>
+                        <c:set var="now" value="<%=new Date(now.getTimeInMillis())%>"/>
                         <c:choose>
                             <c:when test="${seriesLine.releaseDate == null}">
                                 TBA
+                            </c:when>
+                            <c:when test="${seriesLine.releaseDate < now}">
+                                Released
                             </c:when>
                             <c:otherwise>
                                 <fmr:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
