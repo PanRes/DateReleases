@@ -11,7 +11,6 @@ public class SeriesTools {
     public static List<SeriesModel> getAllSeries(){
         Session session = HibernateTools.getSession();
         List<SeriesModel> allSeries = session.createCriteria(SeriesModel.class).list();
-        session.flush();
         session.close();
         return allSeries;
     }

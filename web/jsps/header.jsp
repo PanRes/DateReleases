@@ -28,17 +28,29 @@
 <h1 align="center">
     Date Releases
 </h1>
-<div class="row page-header">
-    <div class="col-lg-10">
-        <div class="col-lg-5 d-inline">
-            <h5><a href="/jsps/mainMenu.jsp">Main Menu</a></h5>
-            <c:out value=" | "/>
-            <h5><a href="/jsps/addDate.jsp">Add Date</a></h5>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Date Releases</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Series<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+                        <li><a href="viewSchedule?seriesId=${series.seriesId}">${series.name}</a></li>
+                    </c:forEach>
+                </ul>
+            </li>
+            <li><a href="/jsps/addDate.jsp">Add Date</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-text">
+                <p >Welcome <%=user%>, <a href="/jsps/logout.jsp">sign out?</a></p>
+            </li>
+        </ul>
     </div>
-    <div class="col-lg-2">
-        <div class="col-lg-offset-5">
-            <h5>Welcome <%=user%>, <a href="/jsps/logout.jsp">sign out?</a></h5>
-        </div>
-    </div>
-</div>
+</nav>
