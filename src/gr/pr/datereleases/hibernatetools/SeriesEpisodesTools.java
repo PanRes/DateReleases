@@ -13,6 +13,7 @@ public class SeriesEpisodesTools {
     public static List<SeriesEpisodesModel> getAllSeries(){
         Session session = HibernateTools.getSession();
         List<SeriesEpisodesModel> allSeries = session.createCriteria(SeriesEpisodesModel.class).list();
+        session.flush();
         session.close();
 
         return allSeries;
@@ -32,6 +33,7 @@ public class SeriesEpisodesTools {
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }
 
+        session.flush();
         session.close();
         return seriesById;
     }
@@ -42,6 +44,7 @@ public class SeriesEpisodesTools {
         Transaction transaction = session.beginTransaction();
         session.save(seriesEpisode);
         transaction.commit();
+        session.flush();
         session.close();
     }
 

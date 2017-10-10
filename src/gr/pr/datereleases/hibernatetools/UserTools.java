@@ -20,6 +20,7 @@ public class UserTools {
                 add(Restrictions.like("userName",userName)).
                 add((Restrictions.like("password", password))).list();
 
+        session.flush();
         session.close();
 
         if(!users.isEmpty()){
