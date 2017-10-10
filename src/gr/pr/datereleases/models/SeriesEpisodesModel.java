@@ -8,6 +8,20 @@ import java.util.Locale;
 
 @Entity
 @Table(name = "series_episodes", schema = "test_db")
+@NamedQueries(value = {
+        @NamedQuery(name="SeriesEpisodesModel.findAll",
+                query = "SELECT se FROM SeriesEpisodesModel se"),
+        @NamedQuery(name="SeriesEpisodesModel.findById",
+                query = "SELECT se FROM SeriesEpisodesModel se WHERE se.id = :id"),
+        @NamedQuery(name="SeriesEpisodesModel.findBySeriesId",
+                query = "SELECT se FROM SeriesEpisodesModel se WHERE se.seriesBySeriesId.id = :seriesId"),
+        @NamedQuery(name="SeriesEpisodesModel.findBySeason",
+                query = "SELECT se FROM SeriesEpisodesModel se WHERE se.season = :season"),
+        @NamedQuery(name="SeriesEpisodesModel.findByEpisode",
+                query = "SELECT se FROM SeriesEpisodesModel se WHERE se.episode = :episode"),
+        @NamedQuery(name="SeriesEpisodesModel.findByReleaseDate",
+                query = "SELECT se FROM SeriesEpisodesModel se WHERE se.releaseDate = :releaseDate")
+        })
 public class SeriesEpisodesModel {
 
     private int seriesEpisodesId;

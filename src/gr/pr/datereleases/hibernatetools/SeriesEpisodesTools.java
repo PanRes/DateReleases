@@ -6,13 +6,17 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import javax.persistence.Query;
 import java.util.*;
 
 public class SeriesEpisodesTools {
 
     public static List<SeriesEpisodesModel> getAllSeries(){
         Session session = HibernateTools.getSession();
-        List<SeriesEpisodesModel> allSeries = session.createCriteria(SeriesEpisodesModel.class).list();
+        Query query = session.getNamedQuery("SeriesEpisodesModel.findAll");
+
+        List<SeriesEpisodesModel> allSeries = query.getResultList();
+        System.out.println(allSeries);
         session.close();
 
         return allSeries;
@@ -22,7 +26,6 @@ public class SeriesEpisodesTools {
         Session session = HibernateTools.getSession();
         SeriesModel series = null;
         List<SeriesEpisodesModel> seriesById = null;
-        System.out.println(seriesId);
         if (seriesId == 0){
             seriesById = session.createCriteria(SeriesEpisodesModel.class).list();
         }

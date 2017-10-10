@@ -6,6 +6,10 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "series", schema = "test_db")
+@NamedQueries(value = {
+        @NamedQuery(name = "SeriesModel.findAll", query = "SELECT s FROM SeriesModel s"),
+        @NamedQuery(name = "SeriesModel.findById", query = "SELECT s FROM SeriesModel s WHERE s.id = :id"),
+})
 public class SeriesModel {
 
     private int seriesId;
