@@ -21,4 +21,9 @@
             <column name="series_id" not-null="true"/>
         </many-to-one>
     </class>
+
+    <sql-query name="SeriesEpisodesModel.findAll">
+        <return alias="SeriesEpisodes" class="gr.pr.datereleases.models.SeriesEpisodesModel"/>
+        <![CDATA[SELECT se FROM SeriesEpisodes se]]>
+    </sql-query>
 </hibernate-mapping>

@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <%@include file="header.jsp"%>
+        <%@include file="/jsps/universals/header.jsp"%>
     </header>
     <article>
         <div class="row text-center">
@@ -24,7 +24,7 @@
             </p>
 
 
-            <jsp:include page="series.jsp"/>
+            <jsp:include page="/jsps/util/series.jsp"/>
         </div>
     </article>
 </body>

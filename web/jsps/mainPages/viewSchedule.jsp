@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <%@include file="header.jsp"%>
+        <%@include file="/jsps/universals/header.jsp"%>
     </header>
     <article>
         <table class="table table-striped table-hover">

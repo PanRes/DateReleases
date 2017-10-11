@@ -36,7 +36,6 @@ public class AddDateServlet extends HttpServlet {
         SeriesModel series = SeriesTools.getSeriesById(seriesId);
         SeriesEpisodesModel seriesEpisodes = new SeriesEpisodesModel();
 
-        seriesEpisodes.setSeriesEpisodesId(1);
         seriesEpisodes.setSeriesBySeriesId(series);
         seriesEpisodes.setSeason(season);
         seriesEpisodes.setEpisode(episode);
@@ -50,7 +49,8 @@ public class AddDateServlet extends HttpServlet {
         }
 
         request.setAttribute("success",success);
-        response.sendRedirect("/jsps/addDate.jsp");
+        request.getSession().setAttribute("success","true");
+        response.sendRedirect("/addDate");
 
 //        System.out.println(seriesId);
 //        System.out.println(season);

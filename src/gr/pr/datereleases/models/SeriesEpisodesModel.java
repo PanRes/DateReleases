@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 @Entity
-@Table(name = "series_episodes", schema = "test_db")
+@Table(name = "series_episodes", schema = "test_db",catalog = "test_db")
 @NamedQueries(value = {
         @NamedQuery(name="SeriesEpisodesModel.findAll",
                 query = "SELECT se FROM SeriesEpisodesModel se"),

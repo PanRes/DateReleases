@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>mainMenu</servlet-name>
-        <jsp-file>/jsps/mainMenu.jsp</jsp-file>
+        <jsp-file>/jsps/mainPages/mainMenu.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>mainMenu</servlet-name>
@@ -15,13 +15,59 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>addDate</servlet-name>
+        <jsp-file>/jsps/mainPages/addDate.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addDate</servlet-name>
+        <url-pattern>/addDate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>viewSchedule</servlet-name>
-        <jsp-file>/jsps/viewSchedule.jsp</jsp-file>
+        <jsp-file>/jsps/mainPages/viewSchedule.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>viewSchedule</servlet-name>
         <url-pattern>/viewSchedule</url-pattern>
     </servlet-mapping>
+<!--
+
+    <filter>
+        <filter-name>redirectFilter</filter-name>
+        <filter-class>gr.pr.datereleases.filters.RedirectFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>redirectFilter</filter-name>
+        <url-pattern>/jsps/*</url-pattern>
+    </filter-mapping>
+-->
+
+    <filter>
+        <filter-name>loggedInFilter</filter-name>
+        <filter-class>gr.pr.datereleases.filters.notLoggedInFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loggedInFilter</filter-name>
+        <url-pattern>/jsps/mainPages/*</url-pattern>
+        <url-pattern>/jsps/universals/*</url-pattern>
+        <url-pattern>/jsps/util/*</url-pattern>
+        <servlet-name>mainMenu</servlet-name>
+        <servlet-name>addDate</servlet-name>
+        <servlet-name>viewSchedule</servlet-name>
+        <servlet-name>AddDateServlet</servlet-name>
+        <servlet-name>ScheduleServlet</servlet-name>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>isLoggedInFilter</filter-name>
+        <filter-class>gr.pr.datereleases.filters.isLoggedInFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>isLoggedInFilter</filter-name>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/jsps/login.jsp</url-pattern>
+    </filter-mapping>
 
     <welcome-file-list>
         <welcome-file>/jsps/login.jsp</welcome-file>

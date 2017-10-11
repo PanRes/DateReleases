@@ -24,13 +24,6 @@
             <h1 align="center">
                 Date Releases
             </h1>
-            <%
-                String user = (String) session.getAttribute("user");
-                if (!(user == null)){
-                    response.sendRedirect("/mainMenu");
-                    return;
-                }
-            %>
         </header>
         <article>
             <%--<%

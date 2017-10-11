@@ -19,10 +19,7 @@
 
 <%
     String user = (String) session.getAttribute("user");
-    if (user == null){
-        response.sendRedirect("/");
-        return;
-    }
+    String servletPath = request.getServletPath();
 %>
 
 <h1 align="center">
@@ -34,23 +31,28 @@
             <a class="navbar-brand" href="#">Date Releases</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li class='<%=(servletPath.equals("/jsps/mainMenu.jsp") || servletPath.equals("/mainMenu")) ? "active" : "" %>'>
+                <a href="/mainMenu">Main Menu</a>
+            </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Series<span class="caret"></span>
+                    Series<%--<b class="caret"></b>--%>
                 </a>
-                <ul class="dropdown-menu">
+                <%--<ul class="dropdown-menu">
                     <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
                         <li><a href="viewSchedule?seriesId=${series.seriesId}">${series.name}</a></li>
                     </c:forEach>
-                </ul>
+                </ul>--%>
             </li>
-            <li><a href="/jsps/addDate.jsp">Add Date</a></li>
+            <li class='<%=(servletPath.equals("/jsps/addDate.jsp") || servletPath.equals("/addDate")) ? "active" : "" %>'>
+                <a href="/addDate">Add Date</a>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="navbar-text">
-                <p >Welcome <%=user%>, <a href="/jsps/logout.jsp">sign out?</a></p>
+                <p >Welcome <%=user%>, <a href="/jsps/util/logout.jsp">sign out?</a></p>
             </li>
         </ul>
     </div>
 </nav>
+

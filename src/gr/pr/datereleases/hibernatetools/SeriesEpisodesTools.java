@@ -11,30 +11,18 @@ import java.util.*;
 
 public class SeriesEpisodesTools {
 
-    public static List<SeriesEpisodesModel> getAllSeries(){
-        Session session = HibernateTools.getSession();
-        Query query = session.getNamedQuery("SeriesEpisodesModel.findAll");
-
-        List<SeriesEpisodesModel> allSeries = query.getResultList();
-        System.out.println(allSeries);
-        session.close();
-
-        return allSeries;
-    }
-
     public static List<SeriesEpisodesModel> getSeriesById(int seriesId){
         Session session = HibernateTools.getSession();
-        SeriesModel series = null;
         List<SeriesEpisodesModel> seriesById = null;
         if (seriesId == 0){
             seriesById = session.createCriteria(SeriesEpisodesModel.class).list();
         }
         else{
-            series = (SeriesModel) session.get(SeriesModel.class,seriesId);
+            SeriesModel series = (SeriesModel) session.get(SeriesModel.class,seriesId);
             seriesById = session.createCriteria(SeriesEpisodesModel.class).
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }
-
+        System.out.println(seriesById);
         session.close();
         return seriesById;
     }

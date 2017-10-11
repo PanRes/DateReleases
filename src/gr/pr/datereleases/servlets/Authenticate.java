@@ -20,7 +20,7 @@ public class Authenticate extends HttpServlet {
 
         if(UserTools.isValidUser(userName,password)){
             session.setAttribute("user",userName);
-            response.sendRedirect("/jsps/mainMenu.jsp");
+            response.sendRedirect("/mainMenu");
         }
         else{
             request.setAttribute("notValid",true);

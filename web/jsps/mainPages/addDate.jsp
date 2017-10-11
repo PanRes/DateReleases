@@ -14,12 +14,13 @@
     </head>
     <body>
         <header>
-            <%@include file="header.jsp"%>
+            <%@include file="/jsps/universals/header.jsp"%>
         </header>
         <article>
             <c:set var="success" value='<%=request.getParameter("success")%>'/>
+            ${param.success}
             <%
-                System.out.println(request.getParameter("success"));
+                System.out.println(request.getAttribute("success"));
             %>
             <c:choose>
                 <c:when test="${success == true}">
