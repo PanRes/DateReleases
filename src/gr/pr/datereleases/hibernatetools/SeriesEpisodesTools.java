@@ -11,14 +11,14 @@ import java.util.*;
 
 public class SeriesEpisodesTools {
 
-    public static List<SeriesEpisodesModel> getSeriesById(int seriesId){
+    public static List<SeriesEpisodesModel> getSeriesEpisodeById(int seriesId){
         Session session = HibernateTools.getSession();
         List<SeriesEpisodesModel> seriesById = null;
         if (seriesId == 0){
             seriesById = session.createCriteria(SeriesEpisodesModel.class).list();
         }
         else{
-            SeriesModel series = (SeriesModel) session.get(SeriesModel.class,seriesId);
+            SeriesModel series = SeriesTools.getSeriesById(seriesId);
             seriesById = session.createCriteria(SeriesEpisodesModel.class).
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }

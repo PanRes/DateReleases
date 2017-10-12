@@ -35,7 +35,7 @@
                                                        *I sub one day from now for released label
                                                        * */
             %>
-            <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesById(seriesId)%>">
+            <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesEpisodeById(seriesId)%>">
                 <tr>
                     <td class="text-center">${seriesLine.seriesBySeriesId.name}</td>
                     <td class="text-center">${seriesLine.releaseDay()}</td>

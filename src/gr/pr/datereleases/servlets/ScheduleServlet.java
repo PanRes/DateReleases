@@ -18,7 +18,7 @@ public class ScheduleServlet extends HttpServlet {
         HttpSession session = request.getSession();
         int seriesId = Integer.valueOf(request.getParameter("seriesId"));
         System.out.println("1" + seriesId);
-        List<SeriesEpisodesModel> seriesEpisodesById = SeriesEpisodesTools.getSeriesById(seriesId);
+        List<SeriesEpisodesModel> seriesEpisodesById = SeriesEpisodesTools.getSeriesEpisodeById(seriesId);
         session.setAttribute("seriesEpisodesById",seriesEpisodesById);
         response.sendRedirect("/viewSchedule");
 
