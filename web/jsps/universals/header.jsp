@@ -1,3 +1,4 @@
+<%@ page import="gr.pr.datereleases.hibernatetools.SeriesTools" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -8,14 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<%@include file="inclusions.jsp"%>
 
 <%
     String user = (String) session.getAttribute("user");
@@ -36,13 +30,13 @@
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Series<%--<b class="caret"></b>--%>
+                    Series<b class="caret"></b>
                 </a>
-                <%--<ul class="dropdown-menu">
+                <ul class="dropdown-menu">
                     <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
                         <li><a href="viewSchedule?seriesId=${series.seriesId}">${series.name}</a></li>
                     </c:forEach>
-                </ul>--%>
+                </ul>
             </li>
             <li class='<%=(servletPath.equals("/jsps/addDate.jsp") || servletPath.equals("/addDate")) ? "active" : "" %>'>
                 <a href="/addDate">Add Date</a>

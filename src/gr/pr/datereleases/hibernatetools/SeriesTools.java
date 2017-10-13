@@ -25,6 +25,11 @@ public class SeriesTools {
         return series;
     }
 
+    public static String getSeriesNameBySeriesId(int seriesId){
+        Session session = HibernateTools.getSession();
+        return session.get(SeriesModel.class,seriesId).getName();
+    }
+
     public static SeriesModel getSeriesById(int seriesId){
         Session session = HibernateTools.getSession();
         return session.get(SeriesModel.class,seriesId);

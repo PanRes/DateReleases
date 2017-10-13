@@ -16,7 +16,7 @@
         <header>
             <%@include file="/jsps/universals/header.jsp"%>
         </header>
-        <article>
+        <article id="content">
             <c:set var="success" value='<%=request.getParameter("success")%>'/>
             ${param.success}
             <%
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </article>
-        <footer>
+        <footer id="footer">
             <%@include file="/jsps/universals/footer.jsp"%>
         </footer>
     </body>

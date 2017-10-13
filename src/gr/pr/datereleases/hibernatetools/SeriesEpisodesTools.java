@@ -11,7 +11,7 @@ import java.util.*;
 
 public class SeriesEpisodesTools {
 
-    public static List<SeriesEpisodesModel> getSeriesEpisodeById(int seriesId){
+    public static List<SeriesEpisodesModel> getSeriesEpisodeBySeriesId(int seriesId){
         Session session = HibernateTools.getSession();
         List<SeriesEpisodesModel> seriesById = null;
         if (seriesId == 0){
@@ -25,6 +25,10 @@ public class SeriesEpisodesTools {
         System.out.println(seriesById);
         session.close();
         return seriesById;
+    }
+
+    public static int getSeriesEpisodesRowsCountBySeriesId(int seriesId){
+        return SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId).size();
     }
 
     public static void insertSeriesEpisode(SeriesEpisodesModel seriesEpisode) throws Exception{

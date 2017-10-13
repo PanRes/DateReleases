@@ -15,7 +15,7 @@
     <header>
         <%@include file="/jsps/universals/header.jsp"%>
     </header>
-    <article>
+    <article id="content">
         <div class="row text-center">
             <p>
                 <a href="/viewSchedule?seriesId=0" class="btn btn-default text-center">
@@ -27,7 +27,7 @@
             <jsp:include page="/jsps/util/series.jsp"/>
         </div>
     </article>
-    <footer>
+    <footer id="footer">
         <%@include file="/jsps/universals/footer.jsp"%>
     </footer>
 </body>

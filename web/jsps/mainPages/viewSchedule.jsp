@@ -19,47 +19,56 @@
     <header>
         <%@include file="/jsps/universals/header.jsp"%>
     </header>
-    <article>
-        <table class="table table-striped table-hover">
-             <tr>
-                <th class="text-center">Name</th>
-                <th class="text-center">Day</th>
-                <th class="text-center">Seen</th>
-                <th class="text-center">Episode</th>
-                <th class="text-center">Date</th>
-             </tr>
-            <%
-                int seriesId = Integer.valueOf((String) request.getParameter("seriesId"));
-                Calendar now = Calendar.getInstance();
-                now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
+    <article id="content">
+        <%
+            int seriesId = Integer.valueOf((String) request.getParameter("seriesId"));
+            Calendar now = Calendar.getInstance();
+            now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
                                                        *I sub one day from now for released label
                                                        * */
-            %>
-            <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesEpisodeById(seriesId)%>">
-                <tr>
-                    <td class="text-center">${seriesLine.seriesBySeriesId.name}</td>
-                    <td class="text-center">${seriesLine.releaseDay()}</td>
-                    <td class="text-center">${seriesLine.viewDay()}</td>
-                    <td class="text-center">${seriesLine.seasonEpisode()}</td>
-                    <td class="text-center">
-                        <c:set var="now" value="<%=new Date(now.getTimeInMillis())%>"/>
-                        <c:choose>
-                            <c:when test="${seriesLine.releaseDate == null}">
-                                TBA
-                            </c:when>
-                            <c:when test="${seriesLine.releaseDate < now}">
-                                Released
-                            </c:when>
-                            <c:otherwise>
-                                <fmt:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
+        %>
+        <c:choose>
+            <c:when test="<%=SeriesEpisodesTools.getSeriesEpisodesRowsCountBySeriesId(seriesId) == 0%>">
+                <div class="text-center">
+                    <h4>There were no entries for series <%=SeriesTools.getSeriesNameBySeriesId(seriesId)%></h4>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Day</th>
+                        <th class="text-center">Seen</th>
+                        <th class="text-center">Episode</th>
+                        <th class="text-center">Date</th>
+                    </tr>
+                    <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId)%>">
+                        <tr>
+                            <td class="text-center">${seriesLine.seriesBySeriesId.name}</td>
+                            <td class="text-center">${seriesLine.releaseDay()}</td>
+                            <td class="text-center">${seriesLine.viewDay()}</td>
+                            <td class="text-center">${seriesLine.seasonEpisode()}</td>
+                            <td class="text-center">
+                                <c:set var="now" value="<%=new Date(now.getTimeInMillis())%>"/>
+                                <c:choose>
+                                    <c:when test="${seriesLine.releaseDate == null}">
+                                        TBA
+                                    </c:when>
+                                    <c:when test="${seriesLine.releaseDate < now}">
+                                        Released
+                                    </c:when>
+                                    <c:otherwise>
+                                        <fmt:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </c:otherwise>
+        </c:choose>
     </article>
-    <footer>
+    <footer id="footer">
         <%@include file="/jsps/universals/footer.jsp"%>
     </footer>
 </body>
