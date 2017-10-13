@@ -20,6 +20,12 @@
         <many-to-one name="seriesBySeriesId" class="gr.pr.datereleases.models.SeriesModel">
             <column name="series_id" not-null="true"/>
         </many-to-one>
+        <property name="channel">
+            <column name="channel" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="notes">
+            <column name="notes" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
     </class>
 
     <sql-query name="SeriesEpisodesModel.findAll">

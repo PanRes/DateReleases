@@ -154,37 +154,45 @@
       <Position>5</Position>
       <DataType>date|0</DataType>
     </column>
-    <index id="45" parent="13" name="series_id">
+    <column id="45" parent="13" name="channel">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="46" parent="13" name="notes">
+      <Position>7</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <index id="47" parent="13" name="series_id">
       <ColNames>series_id</ColNames>
     </index>
-    <key id="46" parent="13" name="PRIMARY">
+    <key id="48" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>series_episodes_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="47" parent="13" name="series_id">
+    <foreign-key id="49" parent="13" name="series_id">
       <ColNames>series_id</ColNames>
       <RefSchemaName>test_db</RefSchemaName>
       <RefTableName>series</RefTableName>
       <RefColNames>series_id</RefColNames>
     </foreign-key>
-    <column id="48" parent="14" name="id">
+    <column id="50" parent="14" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="49" parent="14" name="user_name">
+    <column id="51" parent="14" name="user_name">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="50" parent="14" name="password">
+    <column id="52" parent="14" name="password">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="51" parent="14" name="PRIMARY">
+    <key id="53" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
