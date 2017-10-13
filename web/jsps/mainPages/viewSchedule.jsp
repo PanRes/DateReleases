@@ -59,5 +59,8 @@
             </c:forEach>
         </table>
     </article>
+    <footer>
+        <%@include file="/jsps/universals/footer.jsp"%>
+    </footer>
 </body>
 </html>

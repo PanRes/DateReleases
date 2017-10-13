@@ -27,5 +27,8 @@
             <jsp:include page="/jsps/util/series.jsp"/>
         </div>
     </article>
+    <footer>
+        <%@include file="/jsps/universals/footer.jsp"%>
+    </footer>
 </body>
 </html>
