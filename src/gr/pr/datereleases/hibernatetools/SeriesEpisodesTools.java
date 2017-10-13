@@ -36,4 +36,10 @@ public class SeriesEpisodesTools {
         session.close();
     }
 
+    public static void insertMultipleSeriesEpisodes(List<SeriesEpisodesModel> seriesEpisodes) throws Exception {
+        for (SeriesEpisodesModel seriesEpisode : seriesEpisodes) {
+            SeriesEpisodesTools.insertSeriesEpisode(seriesEpisode);
+        }
+    }
+
 }

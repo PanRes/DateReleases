@@ -29,6 +29,8 @@ public class SeriesEpisodesModel {
     private Integer season;
     private Integer episode;
     private Date releaseDate;
+    private String channel;
+    private String notes;
 
     @Id
     @Column(name = "series_episodes_id", nullable = false)
@@ -78,6 +80,26 @@ public class SeriesEpisodesModel {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Basic
+    @Column(name = "channel", nullable = true)
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    @Basic
+    @Column(name = "notes", nullable = true)
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public String releaseDay(){
@@ -137,25 +159,30 @@ public class SeriesEpisodesModel {
         SeriesEpisodesModel that = (SeriesEpisodesModel) o;
 
         if (seriesEpisodesId != that.seriesEpisodesId) return false;
+        if (seriesBySeriesId != null ? !seriesBySeriesId.equals(that.seriesBySeriesId) : that.seriesBySeriesId != null)
+            return false;
         if (season != null ? !season.equals(that.season) : that.season != null) return false;
         if (episode != null ? !episode.equals(that.episode) : that.episode != null) return false;
         if (releaseDate != null ? !releaseDate.equals(that.releaseDate) : that.releaseDate != null) return false;
-
-        return true;
+        if (channel != null ? !channel.equals(that.channel) : that.channel != null) return false;
+        return notes != null ? notes.equals(that.notes) : that.notes == null;
     }
 
     @Override
     public int hashCode() {
         int result = seriesEpisodesId;
+        result = 31 * result + (seriesBySeriesId != null ? seriesBySeriesId.hashCode() : 0);
         result = 31 * result + (season != null ? season.hashCode() : 0);
         result = 31 * result + (episode != null ? episode.hashCode() : 0);
         result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
+        result = 31 * result + (channel != null ? channel.hashCode() : 0);
+        result = 31 * result + (notes != null ? notes.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        String print = seriesBySeriesId.getName() + "  " + releaseDay() + "  " + viewDay() + "  " + seasonEpisode();
+        String print = seriesBySeriesId.getName() + "  " + releaseDay() + "  " + viewDay() + "  " + seasonEpisode() + "  ";
 
         if (releaseDate == null){
             print += "TBA";
@@ -163,6 +190,8 @@ public class SeriesEpisodesModel {
         else{
             print += releaseDate;
         }
+
+        print += "  " + channel + "  " + notes;
 
         return print;
     }
