@@ -29,11 +29,11 @@ public class SeriesEpisodesModel {
     private Integer season;
     private Integer episode;
     private Date releaseDate;
-    private String channel;
     private String notes;
 
     @Id
     @Column(name = "series_episodes_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getSeriesEpisodesId() {
         return seriesEpisodesId;
     }
@@ -80,16 +80,6 @@ public class SeriesEpisodesModel {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    @Basic
-    @Column(name = "channel", nullable = true)
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
     }
 
     @Basic
@@ -164,7 +154,6 @@ public class SeriesEpisodesModel {
         if (season != null ? !season.equals(that.season) : that.season != null) return false;
         if (episode != null ? !episode.equals(that.episode) : that.episode != null) return false;
         if (releaseDate != null ? !releaseDate.equals(that.releaseDate) : that.releaseDate != null) return false;
-        if (channel != null ? !channel.equals(that.channel) : that.channel != null) return false;
         return notes != null ? notes.equals(that.notes) : that.notes == null;
     }
 
@@ -175,7 +164,6 @@ public class SeriesEpisodesModel {
         result = 31 * result + (season != null ? season.hashCode() : 0);
         result = 31 * result + (episode != null ? episode.hashCode() : 0);
         result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
-        result = 31 * result + (channel != null ? channel.hashCode() : 0);
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
         return result;
     }
@@ -191,7 +179,7 @@ public class SeriesEpisodesModel {
             print += releaseDate;
         }
 
-        print += "  " + channel + "  " + notes;
+        print += "  " + notes;
 
         return print;
     }

@@ -29,21 +29,21 @@ public class AddDateServlet extends HttpServlet {
             throws ServletException, IOException {
         boolean success = false;
 
+
         String formName = request.getParameter("formName");
-//        System.out.println(formName);
+
         if(formName != null && formName.equals("frmAddDateManually")){
             success = AddDatesUtil.addSingleDate(request);
         }
-        else /*if(formName.equals("frmAddDatesWithXlsx"))*/{
-            String fileName = AddDatesUtil.addDatesFromXlsx(request);
-            System.out.println(fileName);
-            if(fileName.length()>0){
-                List<SeriesEpisodesModel> seriesEpisodes = XlsxUtils.readFromXlsx(new File(fileName));
-                try {
-                    SeriesEpisodesTools.insertMultipleSeriesEpisodes(seriesEpisodes);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        else if(formName.equals("frmAddDatesWithXlsx")){
+            File xlsxFile = null;
+            try {
+                xlsxFile = AddDatesUtil.addDatesFromXlsx(request);
+                List<SeriesEpisodesModel> seriesEpisodes = null;
+                seriesEpisodes = XlsxUtils.readFromXlsx(xlsxFile);
+                SeriesEpisodesTools.insertMultipleSeriesEpisodes(seriesEpisodes);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

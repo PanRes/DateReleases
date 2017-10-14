@@ -17,7 +17,6 @@ public class ScheduleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         int seriesId = Integer.valueOf(request.getParameter("seriesId"));
-        System.out.println("1" + seriesId);
         List<SeriesEpisodesModel> seriesEpisodesById = SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId);
         session.setAttribute("seriesEpisodesById",seriesEpisodesById);
         response.sendRedirect("/viewSchedule");

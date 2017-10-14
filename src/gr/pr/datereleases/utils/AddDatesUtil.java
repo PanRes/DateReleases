@@ -8,11 +8,11 @@ import gr.pr.datereleases.models.SeriesModel;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class AddDatesUtil {
 
@@ -21,6 +21,7 @@ public class AddDatesUtil {
         int seriesId = Integer.valueOf(request.getParameter("seriesId"));
         int season = Integer.valueOf(request.getParameter("season"));
         int episode = Integer.valueOf(request.getParameter("episode"));
+        String notes = request.getParameter("notes");
         String dateString = request.getParameter("date");
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -37,6 +38,7 @@ public class AddDatesUtil {
         seriesEpisodes.setSeriesBySeriesId(series);
         seriesEpisodes.setSeason(season);
         seriesEpisodes.setEpisode(episode);
+        seriesEpisodes.setNotes(notes);
         seriesEpisodes.setReleaseDate(date);
 
         try {
@@ -49,29 +51,42 @@ public class AddDatesUtil {
 
     }
 
-    public static String addDatesFromXlsx(HttpServletRequest request) throws IOException, ServletException {
-        System.out.println("addDatesFromXlsx start");
+    public static File addDatesFromXlsx(HttpServletRequest request) throws IOException, ServletException {
         java.util.Date currDate = new java.util.Date();
-        String fileName = "";
+        Part filePart = request.getPart("uploadXlsx");
+        String fileName = extractFileName(filePart);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String saveDir = "C:" + File.separator + "JavaTools" + File.separator + "uploadedFiles" +
-                File.separator + sdf.format(currDate) + File.separator ;
-        System.out.println(saveDir);
-        File fileSaveDir = new File(saveDir);
-        if(!fileSaveDir.exists()){
-            fileSaveDir.mkdirs();
-            System.out.println("dir does not exist");
+                File.separator + sdf.format(currDate) + File.separator;
+        File xlsxFile = new File(saveDir + File.separator + fileName);
+
+
+        if(!xlsxFile.getParentFile().exists()){
+            xlsxFile.getParentFile().mkdirs();
         }
 
-        for (Part part : request.getParts()) {
-            fileName = extractFileName(part);
-            System.out.println("fileName: " + fileName);
-            fileName = saveDir + new File(fileName).getName();
-            part.write(fileName);
-            System.out.println(fileName);
+        try {
+            xlsxFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return fileName;
+        try {
+            OutputStream out = new FileOutputStream(xlsxFile);
+            InputStream fileContent = filePart.getInputStream();
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while((read = fileContent.read(bytes)) != -1){
+                out.write(bytes,0,read);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return xlsxFile;
     }
 
 
@@ -80,11 +95,9 @@ public class AddDatesUtil {
         String[] items = contextDisp.split(";");
         for (String s : items) {
             if(s.trim().startsWith("filename")){
-                System.out.println("extractFileName end");
-                return s.substring(s.indexOf("=") + 2);
+                return s.substring(s.indexOf("=") + 1).trim().replace("\"","");
             }
         }
-        System.out.println("extractFileName end");
         return "";
     }
 }

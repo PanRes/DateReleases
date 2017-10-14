@@ -11,7 +11,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,7 +20,8 @@ import java.util.List;
 public class XlsxUtils {
 
     //need fix to check if series does not exist to insert it, add series from addDate, add notes on seriesEpisodes
-    public static List<SeriesEpisodesModel> readFromXlsx(File xlsxFile) throws IOException {
+    public static List<SeriesEpisodesModel> readFromXlsx(File xlsxFile) throws Exception {
+
         List<SeriesEpisodesModel> seriesEpisodesModels = new ArrayList<>();
 
         FileInputStream fileInputStream = new FileInputStream(xlsxFile);
@@ -29,7 +29,9 @@ public class XlsxUtils {
         Sheet sheet = xssfWorkbook.getSheetAt(0);
         Iterator<Row> rows = sheet.iterator();
 
+        //Skip Titles
         rows.next();
+
         while(rows.hasNext()) {
             Row row = rows.next();
 
@@ -38,15 +40,11 @@ public class XlsxUtils {
             String seasonEpisode = row.getCell(3).getStringCellValue().trim();
             int season, episode;
             Date date = new Date(Calendar.getInstance().getTimeInMillis());
-            String channel = null;
             String notes = null;
 
-            if(row.getCell(5) != null){
-                channel = row.getCell(5).getStringCellValue();
-            }
 
-            if (row.getCell(6) != null) {
-                notes = row.getCell(6).getStringCellValue();
+            if (row.getCell(5) != null) {
+                notes = row.getCell(5).getStringCellValue();
             }
 
 
@@ -91,18 +89,20 @@ public class XlsxUtils {
                     }
                 }
             }
+
             SeriesModel seriesModel = SeriesTools.getSeriesByName(series);
+            System.out.println(seriesModel);
             SeriesEpisodesModel seriesEpisode = null;
-            seriesEpisode.setSeriesBySeriesId(seriesModel);
             seriesEpisode.setSeason(season);
             seriesEpisode.setEpisode(episode);
             seriesEpisode.setReleaseDate(date);
-            seriesEpisode.setChannel(channel);
             seriesEpisode.setNotes(notes);
+            seriesEpisode.setSeriesBySeriesId(seriesModel);
             seriesEpisodesModels.add(seriesEpisode);
             System.out.println(series + " | Season: " + season + " | Episode: " + episode + " | " +
-                    date + " | " + channel + " | " + notes);
+                    date + " | " + notes);
         }
+
         return seriesEpisodesModels;
     }
 }

@@ -17,6 +17,7 @@ public class SeriesModel {
     private Date dateStarted;
     private Byte ended;
     private String imageUrl;
+    private String channel;
     private Collection<SeriesEpisodesModel> seriesEpisodesBySeriesId;
 
     @Id
@@ -69,6 +70,25 @@ public class SeriesModel {
         this.imageUrl = imageUrl;
     }
 
+    @Basic
+    @Column(name = "channel", nullable = true, length = 45, unique = true)
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "seriesBySeriesId")
+    public Collection<SeriesEpisodesModel> getSeriesEpisodesBySeriesId() {
+        return seriesEpisodesBySeriesId;
+    }
+
+    public void setSeriesEpisodesBySeriesId(Collection<SeriesEpisodesModel> seriesEpisodesBySeriesId) {
+        this.seriesEpisodesBySeriesId = seriesEpisodesBySeriesId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,8 +101,7 @@ public class SeriesModel {
         if (dateStarted != null ? !dateStarted.equals(that.dateStarted) : that.dateStarted != null) return false;
         if (ended != null ? !ended.equals(that.ended) : that.ended != null) return false;
         if (imageUrl != null ? !imageUrl.equals(that.imageUrl) : that.imageUrl != null) return false;
-
-        return true;
+        return channel != null ? channel.equals(that.channel) : that.channel == null;
     }
 
     @Override
@@ -92,16 +111,8 @@ public class SeriesModel {
         result = 31 * result + (dateStarted != null ? dateStarted.hashCode() : 0);
         result = 31 * result + (ended != null ? ended.hashCode() : 0);
         result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        result = 31 * result + (channel != null ? channel.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "seriesBySeriesId")
-    public Collection<SeriesEpisodesModel> getSeriesEpisodesBySeriesId() {
-        return seriesEpisodesBySeriesId;
-    }
-
-    public void setSeriesEpisodesBySeriesId(Collection<SeriesEpisodesModel> seriesEpisodesBySeriesId) {
-        this.seriesEpisodesBySeriesId = seriesEpisodesBySeriesId;
     }
 
     @Override
@@ -112,7 +123,7 @@ public class SeriesModel {
                 ", dateStarted=" + dateStarted +
                 ", ended=" + ended +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", seriesEpisodesBySeriesId=" + seriesEpisodesBySeriesId +
+                ", channel='" + channel + '\'' +
                 '}';
     }
 }

@@ -20,6 +20,8 @@
         <%@include file="/jsps/universals/header.jsp"%>
     </header>
     <article id="content">
+        <jsp:useBean id="SeriesEpisodesTools" class="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools"/>
+        <jsp:useBean id="SeriesTools" class="gr.pr.datereleases.hibernatetools.SeriesTools"/>
         <%
             int seriesId = Integer.valueOf((String) request.getParameter("seriesId"));
             Calendar now = Calendar.getInstance();
@@ -28,9 +30,9 @@
                                                        * */
         %>
         <c:choose>
-            <c:when test="<%=SeriesEpisodesTools.getSeriesEpisodesRowsCountBySeriesId(seriesId) == 0%>">
+            <c:when test="${SeriesEpisodesTools.getSeriesEpisodesRowsCountBySeriesId(param.seriesId) == 0}">
                 <div class="text-center">
-                    <h4>There were no entries for series <%=SeriesTools.getSeriesNameBySeriesId(seriesId)%></h4>
+                    <h4>There were no entries for ${SeriesTools.getSeriesNameBySeriesId(param.seriesId)}</h4>
                 </div>
             </c:when>
             <c:otherwise>

@@ -37,43 +37,49 @@
             </div>
             <div class="col-lg-12 container text-center">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <h4>Series</h4>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         <h4>Season</h4>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         <h4>Episode</h4>
                     </div>
                     <div class="col-lg-2">
                         <h4>Date</h4>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-4">
+                        <h4>Notes</h4>
+                    </div>
+                    <div class="col-lg-1">
                         <h4>Submit</h4>
                     </div>
                 </div>
                 <div class="row">
-                    <form action="/AddDateServlet" method="post" name="frmAddDateManually">
-                        <input type="hidden" value="frmAddDateManually" name="formName">
-                        <div class="form-group col-lg-4">
-                            <select name="seriesId" required="required">
+                    <form action="/AddDateServlet" method="post" name="frmAddDateManually" >
+                        <input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
+                        <div class="form-group col-lg-3">
+                            <select name="seriesId" class="form-control" required="required">
                                 <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
                                     <option value="${series.seriesId}">${series.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="form-group col-lg-2">
-                            <input type="number" min="1" name="season" required="required">
+                        <div class="form-group col-lg-1">
+                            <input type="number" class="form-control" min="1" name="season" required="required">
+                        </div>
+                        <div class="form-group col-lg-1">
+                            <input type="number" class="form-control" min="0" name="episode" required="required">
                         </div>
                         <div class="form-group col-lg-2">
-                            <input type="number" min="0" name="episode" required="required">
+                            <input type="date" class="date form-control" name="date" required="required">
                         </div>
-                        <div class="form-group col-lg-2">
-                            <input type="date" name="date" class="date" required="required">
+                        <div class="form-group col-lg-4">
+                            <input type="text" class="form-control" name="notes">
                         </div>
-                        <div class="form-group col-lg-2">
-                            <input type="submit" class="btn btn-success" value="Submit Date" align="center">
+                        <div class="form-group col-lg-1">
+                            <input type="submit" class="btn btn-primary btn-success" value="Submit Date" align="center">
                         </div>
                     </form>
                 </div>

@@ -32,8 +32,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.20" level="application_server_libraries" />
     <orderEntry type="library" name="Hibernate 5.2.11-5.2.11" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.42-bin" level="application" />
     <orderEntry type="library" name="jstl-1.2" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.41" level="project" />
+    <orderEntry type="library" name="commons-collections4-4.1" level="project" />
     <orderEntry type="library" name="poi-3.17" level="project" />
   </component>
 </module>
