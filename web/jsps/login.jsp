@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -19,18 +20,13 @@
             </h1>
         </header>
         <article id="content">
-            <%--<%
-                String message = request.getParameter("wrongUser");
-                if (message != null && message.equals("true")){
-            %>
-
-            <div class="alert alert-warning">
-                <strong>Warning!</strong> The User Name or the Password is incorrect. Please try again.
-            </div>
-            <%
-                }
-            %>--%>
             <h2 class="page-header" align="center">Please Login</h2>
+
+            <c:if test="${wrongUser == true}">
+                <div class="alert alert-danger">
+                    <strong>Warning!</strong> The User Name or the Password is incorrect. Please try again.
+                </div>
+            </c:if>
             <form class="form-horizontal" action="/Authenticate" name="loginForm" method="post">
                 <input type="hidden" class="form-control" name="page" value="${page}">
                 <div align="center">

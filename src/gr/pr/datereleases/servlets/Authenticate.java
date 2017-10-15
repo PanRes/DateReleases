@@ -19,12 +19,17 @@ public class Authenticate extends HttpServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 
+        if (page == "" || page == null) {
+            page = "/mainMenu";
+        }
+
         if(UserTools.isValidUser(userName,password)){
             session.setAttribute("user",userName);
             response.sendRedirect(page);
         }
-        else{
-            request.setAttribute("notValid",true);
+        else {
+            request.setAttribute("wrongUser", true);
+            request.getServletContext().getRequestDispatcher("/").forward(request,response);
         }
     }
 
