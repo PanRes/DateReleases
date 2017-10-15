@@ -5,6 +5,7 @@ import gr.pr.datereleases.hibernatetools.SeriesTools;
 import gr.pr.datereleases.models.SeriesEpisodesModel;
 import gr.pr.datereleases.models.SeriesModel;
 import gr.pr.datereleases.utils.AddDatesUtil;
+import gr.pr.datereleases.utils.GenericUtils;
 import gr.pr.datereleases.utils.XlsxUtils;
 
 import javax.servlet.ServletException;
@@ -38,9 +39,8 @@ public class AddDateServlet extends HttpServlet {
         else if(formName.equals("frmAddDatesWithXlsx")){
             File xlsxFile = null;
             try {
-                xlsxFile = AddDatesUtil.addDatesFromXlsx(request);
-                List<SeriesEpisodesModel> seriesEpisodes = null;
-                seriesEpisodes = XlsxUtils.readFromXlsx(xlsxFile);
+                xlsxFile = GenericUtils.uploadFile(request);
+                List<SeriesEpisodesModel> seriesEpisodes = XlsxUtils.readFromXlsx(xlsxFile);
                 SeriesEpisodesTools.insertMultipleSeriesEpisodes(seriesEpisodes);
             } catch (Exception e) {
                 e.printStackTrace();

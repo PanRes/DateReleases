@@ -43,7 +43,7 @@ public class SeriesEpisodesModel {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "series_id", referencedColumnName = "series_id")
+    @JoinColumn(name = "series_id", referencedColumnName = "series_id", nullable = false)
     public SeriesModel getSeriesBySeriesId() {
         return seriesBySeriesId;
     }
@@ -53,7 +53,7 @@ public class SeriesEpisodesModel {
     }
 
     @Basic
-    @Column(name = "season", nullable = true)
+    @Column(name = "season", nullable = false)
     public Integer getSeason() {
         return season;
     }
@@ -63,7 +63,7 @@ public class SeriesEpisodesModel {
     }
 
     @Basic
-    @Column(name = "episode", nullable = true)
+    @Column(name = "episode", nullable = false)
     public Integer getEpisode() {
         return episode;
     }

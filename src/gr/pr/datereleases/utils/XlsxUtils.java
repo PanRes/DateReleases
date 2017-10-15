@@ -63,10 +63,8 @@ public class XlsxUtils {
                 String dateString = row.getCell(4).getStringCellValue().trim();
 
                 if (!dateString.equals("TBA")) {
+                    date = null;
                     if (dateString.substring(3, 5).equals("XX")) {
-                        date.setDate(31);
-                        date.setMonth(11);
-                        date.setYear(Integer.valueOf(String.valueOf(20) + dateString.substring(6)));
                         if (notes == null) {
                             notes = "TBA 20" + dateString.substring(6);
                         }
@@ -74,17 +72,11 @@ public class XlsxUtils {
                             notes += ", TBA 20" + dateString.substring(6);
                         }
                     } else {
-                        Calendar cal = Calendar.getInstance();
-                        cal.set(Calendar.MONTH, Integer.valueOf(dateString.substring(3, 5)) - 1);
-                        int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-                        date.setDate(maxDay);
-                        date.setMonth(Integer.valueOf(dateString.substring(3, 5)) - 1);
-                        date.setYear(Integer.valueOf(String.valueOf(20) + dateString.substring(6)));
                         if (notes == null) {
-                            notes = "TBA 20" + dateString.substring(6);
+                            notes = "TBA " + dateString.substring(3, 5) + "/20" + dateString.substring(6);
                         }
                         else{
-                            notes += ", TBA 20" + dateString.substring(6);
+                            notes += ", TBA " + dateString.substring(3, 5) + "/20" + dateString.substring(6);
                         }
                     }
                 }
@@ -92,15 +84,13 @@ public class XlsxUtils {
 
             SeriesModel seriesModel = SeriesTools.getSeriesByName(series);
             System.out.println(seriesModel);
-            SeriesEpisodesModel seriesEpisode = null;
+            SeriesEpisodesModel seriesEpisode = new SeriesEpisodesModel();
             seriesEpisode.setSeason(season);
             seriesEpisode.setEpisode(episode);
             seriesEpisode.setReleaseDate(date);
             seriesEpisode.setNotes(notes);
             seriesEpisode.setSeriesBySeriesId(seriesModel);
             seriesEpisodesModels.add(seriesEpisode);
-            System.out.println(series + " | Season: " + season + " | Episode: " + episode + " | " +
-                    date + " | " + notes);
         }
 
         return seriesEpisodesModels;

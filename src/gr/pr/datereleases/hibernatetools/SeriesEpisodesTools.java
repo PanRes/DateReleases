@@ -13,36 +13,28 @@ public class SeriesEpisodesTools {
 
     public static List<SeriesEpisodesModel> getSeriesEpisodeBySeriesId(int seriesId){
         Session session = HibernateTools.getSession();
-        List<SeriesEpisodesModel> seriesById = null;
+        List<SeriesEpisodesModel> seriesEpisodes = null;
         if (seriesId == 0){
-            seriesById = session.createCriteria(SeriesEpisodesModel.class).list();
+            seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).list();
         }
         else{
             SeriesModel series = SeriesTools.getSeriesById(seriesId);
-            seriesById = session.createCriteria(SeriesEpisodesModel.class).
+            seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }
-        System.out.println(seriesById);
+        System.out.println(seriesEpisodes);
         session.close();
-        return seriesById;
+        return seriesEpisodes;
     }
 
     public static int getSeriesEpisodesRowsCountBySeriesId(int seriesId){
         return SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId).size();
     }
 
-    public static void insertSeriesEpisode(SeriesEpisodesModel seriesEpisode) throws Exception{
-        Session session = HibernateTools.getSession();
-
-        Transaction transaction = session.beginTransaction();
-        session.save(seriesEpisode);
-        transaction.commit();
-        session.close();
-    }
-
     public static void insertMultipleSeriesEpisodes(List<SeriesEpisodesModel> seriesEpisodes) throws Exception {
         for (SeriesEpisodesModel seriesEpisode : seriesEpisodes) {
-            SeriesEpisodesTools.insertSeriesEpisode(seriesEpisode);
+            System.out.println(seriesEpisode.getSeriesBySeriesId().toString());
+            HibernateTools.insertEntity(seriesEpisode);
         }
     }
 

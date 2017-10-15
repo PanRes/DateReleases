@@ -49,7 +49,23 @@
                             <td class="text-center">${seriesLine.seriesBySeriesId.name}</td>
                             <td class="text-center">${seriesLine.releaseDay()}</td>
                             <td class="text-center">${seriesLine.viewDay()}</td>
-                            <td class="text-center">${seriesLine.seasonEpisode()}</td>
+                            <td class="text-center">
+                                <c:choose>
+                                    <c:when test="${seriesLine.episode == -1}">
+                                        <c:choose>
+                                            <c:when test="${seriesLine.season < 9}">
+                                                Season 0${seriesLine.season}
+                                            </c:when>
+                                            <c:otherwise>
+                                                Season ${seriesLine.season}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${seriesLine.seasonEpisode()}
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td class="text-center">
                                 <c:set var="now" value="<%=new Date(now.getTimeInMillis())%>"/>
                                 <c:choose>

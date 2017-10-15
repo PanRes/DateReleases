@@ -15,13 +15,13 @@
             <column name="episode" sql-type="int(11)" not-null="true"/>
         </property>
         <property name="releaseDate">
-            <column name="release_date" sql-type="date" not-null="true"/>
+            <column name="release_date" sql-type="date"/>
         </property>
-        <many-to-one name="seriesBySeriesId" class="gr.pr.datereleases.models.SeriesModel">
+        <many-to-one name="seriesBySeriesId" class="gr.pr.datereleases.models.SeriesModel" not-null="true">
             <column name="series_id" not-null="true"/>
         </many-to-one>
         <property name="notes">
-            <column name="notes" sql-type="varchar(255)" length="255" not-null="true"/>
+            <column name="notes" sql-type="varchar(255)" length="255"/>
         </property>
     </class>
 
