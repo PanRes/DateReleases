@@ -83,7 +83,6 @@ public class XlsxUtils {
             }
 
             SeriesModel seriesModel = SeriesTools.getSeriesByName(series);
-            System.out.println(seriesModel);
             SeriesEpisodesModel seriesEpisode = new SeriesEpisodesModel();
             seriesEpisode.setSeason(season);
             seriesEpisode.setEpisode(episode);

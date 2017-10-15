@@ -16,12 +16,15 @@ public class notLoggedInFilter implements Filter {
             throws ServletException, IOException {
 
         HttpServletRequest req = (HttpServletRequest) request;
+        String servletPath = req.getServletPath();
+        System.out.println(servletPath);
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         String user = (String) session.getAttribute("user");
 
         if(user == null){
-            resp.sendRedirect("/");
+            req.setAttribute("page", servletPath);
+            req.getServletContext().getRequestDispatcher("/").forward(req,resp);
         }
         else {
             chain.doFilter(request, response);

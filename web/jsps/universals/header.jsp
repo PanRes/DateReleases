@@ -23,9 +23,6 @@
             <a class="navbar-brand" href="/mainMenu">Date Releases</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="${servletPath == '/jsps/mainPages/mainMenu.jsp' or servletPath == '/mainMenu' ? 'active' : ''}">
-                <a href="/mainMenu">Main Menu</a>
-            </li>
             <li class="dropdown ${servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule' ? 'active' : ''}">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     Series<b class="caret"></b>

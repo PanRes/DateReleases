@@ -22,7 +22,6 @@ public class SeriesEpisodesTools {
             seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }
-        System.out.println(seriesEpisodes);
         session.close();
         return seriesEpisodes;
     }
@@ -33,7 +32,6 @@ public class SeriesEpisodesTools {
 
     public static void insertMultipleSeriesEpisodes(List<SeriesEpisodesModel> seriesEpisodes) throws Exception {
         for (SeriesEpisodesModel seriesEpisode : seriesEpisodes) {
-            System.out.println(seriesEpisode.getSeriesBySeriesId().toString());
             HibernateTools.insertEntity(seriesEpisode);
         }
     }

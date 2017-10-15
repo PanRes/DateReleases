@@ -32,6 +32,7 @@
             %>--%>
             <h2 class="page-header" align="center">Please Login</h2>
             <form class="form-horizontal" action="/Authenticate" name="loginForm" method="post">
+                <input type="hidden" class="form-control" name="page" value="${page}">
                 <div align="center">
                     <div class="form-group">
                         <label class="col-md-4">User Name : </label>

@@ -13,13 +13,9 @@ public class GenericUtils {
         java.util.Date currDate = new java.util.Date();
         Part filePart = request.getPart("uploadXlsx");
         Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat(" yyyy.MM.dd_hh-mm-ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_hh.mm.ss ");
         String fileName = extractFileName(filePart);
-        System.out.println(fileName);
-        System.out.println(getFileNameWithoutExtension(fileName));
-        System.out.println(getFileExtension(fileName));
-        fileName = getFileNameWithoutExtension(fileName) + sdf.format(now) + getFileExtension(fileName);
-        System.out.println(fileName);
+        fileName = getFileNameWithoutExtension(sdf.format(now) + fileName) + getFileExtension(fileName);
         sdf = new SimpleDateFormat("yyyy-MM-dd");
         String saveDir = "C:" + File.separator + "JavaTools" + File.separator + "uploadedFiles" +
                 File.separator + sdf.format(currDate);

@@ -14,13 +14,14 @@ import java.io.IOException;
 public class Authenticate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
+        String page = request.getParameter("page");
+        System.out.println(page);
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 
         if(UserTools.isValidUser(userName,password)){
             session.setAttribute("user",userName);
-            response.sendRedirect("/mainMenu");
+            response.sendRedirect(page);
         }
         else{
             request.setAttribute("notValid",true);
