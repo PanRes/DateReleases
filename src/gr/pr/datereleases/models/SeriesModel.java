@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Collection;
 
 @Entity
-@Table(name = "series", schema = "test_db")
+@Table(name = "series", schema = "test_db",catalog = "test_db")
 @NamedQueries(value = {
         @NamedQuery(name = "SeriesModel.findAll", query = "SELECT s FROM SeriesModel s"),
         @NamedQuery(name = "SeriesModel.findById", query = "SELECT s FROM SeriesModel s WHERE s.id = :id"),

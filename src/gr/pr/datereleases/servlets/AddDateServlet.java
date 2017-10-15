@@ -1,9 +1,7 @@
 package gr.pr.datereleases.servlets;
 
 import gr.pr.datereleases.hibernatetools.SeriesEpisodesTools;
-import gr.pr.datereleases.hibernatetools.SeriesTools;
 import gr.pr.datereleases.models.SeriesEpisodesModel;
-import gr.pr.datereleases.models.SeriesModel;
 import gr.pr.datereleases.utils.AddDatesUtil;
 import gr.pr.datereleases.utils.GenericUtils;
 import gr.pr.datereleases.utils.XlsxUtils;
@@ -16,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @WebServlet(name = "AddDateServlet", value = "/AddDateServlet")

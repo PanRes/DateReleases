@@ -3,7 +3,7 @@ package gr.pr.datereleases.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users", schema = "test_db", catalog = "")
+@Table(name = "users", schema = "test_db", catalog = "test_db")
 public class UsersModel {
 
     private int id;

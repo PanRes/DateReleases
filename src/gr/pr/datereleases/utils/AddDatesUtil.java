@@ -1,19 +1,14 @@
 package gr.pr.datereleases.utils;
 
 import gr.pr.datereleases.hibernatetools.HibernateTools;
-import gr.pr.datereleases.hibernatetools.SeriesEpisodesTools;
 import gr.pr.datereleases.hibernatetools.SeriesTools;
 import gr.pr.datereleases.models.SeriesEpisodesModel;
 import gr.pr.datereleases.models.SeriesModel;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-import java.io.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class AddDatesUtil {
 
