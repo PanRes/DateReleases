@@ -42,6 +42,11 @@
                 View Schedule for ${series.name}
             </a>
         </p>
+        <p>
+            <a href="/seriesInfo?seriesId=${series.seriesId}" class="btn btn-primary">
+                View ${series.name} Info
+            </a>
+        </p>
     </div>
     <c:set var="i" value="${i+1}"/>
 </c:forEach>

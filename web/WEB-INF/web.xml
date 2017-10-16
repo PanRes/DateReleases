@@ -32,6 +32,15 @@
         <url-pattern>/viewSchedule</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>seriesInfo</servlet-name>
+        <jsp-file>/jsps/mainPages/seriesInfo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>seriesInfo</servlet-name>
+        <url-pattern>/seriesInfo</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>notLoggedInFilter</filter-name>
         <filter-class>gr.pr.datereleases.filters.notLoggedInFilter</filter-class>
@@ -46,6 +55,7 @@
         <servlet-name>viewSchedule</servlet-name>
         <servlet-name>AddDateServlet</servlet-name>
         <servlet-name>ScheduleServlet</servlet-name>
+        <servlet-name>seriesInfo</servlet-name>
     </filter-mapping>
 
     <welcome-file-list>
