@@ -33,11 +33,11 @@
     </servlet-mapping>
 
     <filter>
-        <filter-name>loggedInFilter</filter-name>
+        <filter-name>notLoggedInFilter</filter-name>
         <filter-class>gr.pr.datereleases.filters.notLoggedInFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>loggedInFilter</filter-name>
+        <filter-name>notLoggedInFilter</filter-name>
         <url-pattern>/jsps/mainPages/*</url-pattern>
         <url-pattern>/jsps/universals/*</url-pattern>
         <url-pattern>/jsps/util/*</url-pattern>
@@ -46,16 +46,6 @@
         <servlet-name>viewSchedule</servlet-name>
         <servlet-name>AddDateServlet</servlet-name>
         <servlet-name>ScheduleServlet</servlet-name>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>isLoggedInFilter</filter-name>
-        <filter-class>gr.pr.datereleases.filters.isLoggedInFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>isLoggedInFilter</filter-name>
-        <url-pattern>/</url-pattern>
-        <url-pattern>/jsps/login.jsp</url-pattern>
     </filter-mapping>
 
     <welcome-file-list>

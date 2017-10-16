@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "loggedInFilter", value = "/loggedInFilter")
+@WebFilter(filterName = "notLoggedInFilter", value = "/notLoggedInFilter"/*,
+            servletNames = {"mainMenu","addDate","viewSchedule","AddDateServlet","ScheduleServlet"},
+            urlPatterns = {"/jsps/mainPages/*","/jsps/universals/*","/jsps/util/*"}*/)
 public class notLoggedInFilter implements Filter {
     public void destroy() {
     }
@@ -17,7 +19,6 @@ public class notLoggedInFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
         String servletPath = req.getServletPath();
-        System.out.println(servletPath);
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         String user = (String) session.getAttribute("user");

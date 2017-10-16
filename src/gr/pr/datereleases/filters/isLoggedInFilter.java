@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/*
+* Not used
+* */
+
 @WebFilter(filterName = "isLoggedInFilter", value = "/isLoggedInFilter")
 public class isLoggedInFilter implements Filter {
     public void destroy() {
@@ -14,7 +18,7 @@ public class isLoggedInFilter implements Filter {
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
+        System.out.println("isLoggedInFilter");
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();

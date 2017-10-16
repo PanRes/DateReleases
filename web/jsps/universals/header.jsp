@@ -28,7 +28,7 @@
                     Series<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="viewSchedule?seriesId=0">All Series</a></li>
+                    <li><a href="viewSchedule">All Series</a></li>
                     <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
                         <c:set var="activeSeries" value=""/>
                         <c:if test="${servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule'}">

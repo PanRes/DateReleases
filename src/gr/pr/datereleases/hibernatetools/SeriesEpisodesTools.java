@@ -22,7 +22,6 @@ public class SeriesEpisodesTools {
             seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }
-        session.close();
         return seriesEpisodes;
     }
 

@@ -18,7 +18,7 @@
     <article id="content">
         <div class="row text-center">
             <p>
-                <a href="/viewSchedule?seriesId=0" class="btn btn-default text-center">
+                <a href="/viewSchedule" class="btn btn-default text-center">
                     Schedule for all Series
                 </a>
             </p>

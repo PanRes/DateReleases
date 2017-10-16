@@ -15,7 +15,6 @@ public class Authenticate extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String page = request.getParameter("page");
-        System.out.println(page);
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 

@@ -37,14 +37,14 @@ public class AddDateServlet extends HttpServlet {
                 xlsxFile = GenericUtils.uploadFile(request);
                 List<SeriesEpisodesModel> seriesEpisodes = XlsxUtils.readFromXlsx(xlsxFile);
                 SeriesEpisodesTools.insertMultipleSeriesEpisodes(seriesEpisodes);
+                success = true;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
         request.setAttribute("success",success);
-        request.getSession().setAttribute("success","true");
-        response.sendRedirect("/addDate");
+        request.getServletContext().getRequestDispatcher("/addDate").forward(request,response);
 
     }
 

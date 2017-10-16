@@ -23,7 +23,12 @@
         <jsp:useBean id="SeriesEpisodesTools" class="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools"/>
         <jsp:useBean id="SeriesTools" class="gr.pr.datereleases.hibernatetools.SeriesTools"/>
         <%
-            int seriesId = Integer.valueOf((String) request.getParameter("seriesId"));
+
+            String seriesIdString = (String) request.getParameter("seriesId");
+            int seriesId = 0;
+            if (seriesIdString != null) {
+                seriesId = Integer.valueOf(seriesIdString);
+            }
             Calendar now = Calendar.getInstance();
             now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
                                                        *I sub one day from now for released label

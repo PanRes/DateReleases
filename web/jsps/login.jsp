@@ -13,6 +13,9 @@
     </head>
     <body>
         <header>
+            <c:if test="${user != null}">
+                <c:redirect url="/mainMenu"/>
+            </c:if>
             <%@include file="/jsps/universals/inclusions.jsp"%>
 
             <h1 align="center">
@@ -23,7 +26,7 @@
             <h2 class="page-header" align="center">Please Login</h2>
 
             <c:if test="${wrongUser == true}">
-                <div class="alert alert-danger">
+                <div class="alert alert-danger text-center">
                     <strong>Warning!</strong> The User Name or the Password is incorrect. Please try again.
                 </div>
             </c:if>

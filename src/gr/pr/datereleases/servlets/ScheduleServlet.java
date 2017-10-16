@@ -25,6 +25,6 @@ public class ScheduleServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        response.sendRedirect("/mainMenu");
-        doPost(request,response);
+        response.sendRedirect("/viewSchedule?seriesId=0");
     }
 }

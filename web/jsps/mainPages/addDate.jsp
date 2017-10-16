@@ -17,19 +17,15 @@
             <%@include file="/jsps/universals/header.jsp"%>
         </header>
         <article id="content">
-            <c:set var="success" value='<%=request.getParameter("success")%>'/>
-            ${param.success}
-            <%
-                System.out.println(request.getAttribute("success"));
-            %>
+            <h3 class="text-center"><u>Add single episode release date or add upload xlsx file to add multiple</u></h3>
             <c:choose>
                 <c:when test="${success == true}">
-                    <div class="alert alert-success">
+                    <div class="alert alert-success text-center">
                         Successfully Added Date!
                     </div>
                 </c:when>
                 <c:when test="${success == false}">
-                    <div class="alert alert-success">
+                    <div class="alert alert-danger text-center">
                         Failed to Add Date!
                     </div>
                 </c:when>
@@ -60,26 +56,30 @@
                     <form action="/AddDateServlet" method="post" name="frmAddDateManually" >
                         <input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
                         <div class="form-group col-lg-3">
-                            <select name="seriesId" class="form-control" required="required">
+                            <select name="seriesId" class="form-control text-center" required="required">
                                 <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
                                     <option value="${series.seriesId}">${series.name}</option>
                                 </c:forEach>
                             </select>
                         </div>
                         <div class="form-group col-lg-1">
-                            <input type="number" class="form-control" min="1" name="season" required="required">
+                            <input type="number" class="form-control text-center" min="1" name="season" id="season"
+                                   required="required">
                         </div>
                         <div class="form-group col-lg-1">
-                            <input type="number" class="form-control" min="0" name="episode" required="required">
+                            <input type="number" class="form-control text-center" min="0" name="episode" id="episode"
+                                   required="required">
                         </div>
                         <div class="form-group col-lg-2">
-                            <input type="date" class="date form-control" name="date" required="required">
+                            <input type="date" class="date form-control text-center" name="date" id="date"
+                                   required="required">
                         </div>
                         <div class="form-group col-lg-4">
-                            <input type="text" class="form-control" name="notes">
+                            <input type="text" class="form-control text-center" name="notes">
                         </div>
                         <div class="form-group col-lg-1">
-                            <input type="submit" class="btn btn-primary btn-success" value="Submit Date" align="center">
+                            <input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
+                                   class="btn btn-success">
                         </div>
                     </form>
                 </div>
@@ -88,10 +88,12 @@
                         <input type="hidden" name="formName" value="frmAddDatesWithXlsx">
                         <div align="center">
                             <label class="btn btn-default">
-                                Browse Xlsx <input type="file" name="uploadXlsx" style="display: none !important;"
-                                                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                Browse Xlsx
+                                <input type="file" id="uploadXlsx" name="uploadXlsx"
+                                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                             </label>
-                            <input type="submit" class="btn btn-success" value="Submit from Xlsx">
+                            <input type="submit" id="xlsxSubmitBtn" class="btn btn-success disabled"
+                                   value="Submit from Xlsx" disabled>
                         </div>
                     </form>
                 </div>
@@ -102,3 +104,41 @@
         </footer>
     </body>
 </html>
+
+<script type="application/javascript">
+    $("#uploadXlsx").change(function() {
+        $("#xlsxSubmitBtn").removeClass("disabled");
+        $("#xlsxSubmitBtn").prop("disabled",false);
+    });
+
+    /*$(document).ready(function () {
+        $("#addSingleEpisodeBtn").addClass("disabled");
+        $("#addSingleEpisodeBtn").prop("disabled", true);
+        if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+            console.log("in if");
+            $("#addSingleEpisodeBtn").removeClass("disabled");
+            $("#addSingleEpisodeBtn").prop("disabled",false);
+        }
+    });*/
+    $("#season").change(function() {
+        if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+            $("#addSingleEpisodeBtn").removeClass("disabled");
+            $("#addSingleEpisodeBtn").prop("disabled",false);
+        }
+
+    });
+
+    $("#episode").change(function() {
+        if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+            $("#addSingleEpisodeBtn").removeClass("disabled");
+            $("#addSingleEpisodeBtn").prop("disabled",false);
+        }
+    });
+
+    $("#date").change(function() {
+        if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+            $("#addSingleEpisodeBtn").removeClass("disabled");
+            $("#addSingleEpisodeBtn").prop("disabled",false);
+        }
+    });
+</script>
