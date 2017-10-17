@@ -19,7 +19,10 @@ public class NotLoggedInFilter implements Filter {
             throws ServletException, IOException {
 
         HttpServletRequest req = (HttpServletRequest) request;
-        String servletPath = req.getServletPath() + "?" + req.getQueryString();
+        String servletPath = req.getServletPath();
+        if (req.getQueryString() != null){
+            servletPath += "?" + req.getQueryString();
+        }
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         String user = (String) session.getAttribute("user");
