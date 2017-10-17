@@ -12,23 +12,17 @@
     <title>Main Menu</title>
 </head>
 <body>
-    <header>
-        <%@include file="/jsps/universals/header.jsp"%>
-    </header>
-    <article id="content">
-        <div class="row text-center">
-            <p>
-                <a href="/viewSchedule" class="btn btn-default text-center">
-                    Schedule for all Series
-                </a>
-            </p>
+    <%@include file="/jsps/universals/header.jsp"%>
+    <div class="row text-center">
+        <p>
+            <a href="/viewSchedule" class="btn btn-default text-center">
+                Schedule for all Series
+            </a>
+        </p>
 
 
-            <jsp:include page="/jsps/util/series.jsp"/>
-        </div>
-    </article>
-    <footer id="footer">
-        <%@include file="/jsps/universals/footer.jsp"%>
-    </footer>
+        <jsp:include page="/jsps/util/series.jsp"/>
+    </div>
+    <%@include file="/jsps/universals/footer.jsp"%>
 </body>
 </html>

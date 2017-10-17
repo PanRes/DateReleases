@@ -9,18 +9,10 @@ import java.util.Date;
 
 public class GenericUtils {
 
-    public static File uploadFile(HttpServletRequest request) throws IOException, ServletException {
-        java.util.Date currDate = new java.util.Date();
-        Part filePart = request.getPart("uploadXlsx");
-        Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_hh.mm.ss ");
+    public static File uploadFile(Part filePart, File saveDir,String filePrefix)
+            throws IOException, ServletException {
         String fileName = extractFileName(filePart);
-        fileName = getFileNameWithoutExtension(sdf.format(now) + fileName) + getFileExtension(fileName);
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String saveDir = "C:" + File.separator + "JavaTools" + File.separator + "uploadedFiles" +
-                File.separator + sdf.format(currDate);
-        File uploadedFile = new File(saveDir + File.separator + fileName);
-
+        File uploadedFile = new File(saveDir + File.separator + filePrefix + fileName);
 
         if(!uploadedFile.getParentFile().exists()){
             uploadedFile.getParentFile().mkdirs();
@@ -60,13 +52,5 @@ public class GenericUtils {
             }
         }
         return "";
-    }
-
-    public static String getFileNameWithoutExtension(String fullFileName){
-        return fullFileName.substring(0,fullFileName.indexOf("."));
-    }
-
-    public static String getFileExtension(String fullFileName){
-        return fullFileName.substring(fullFileName.indexOf("."));
     }
 }

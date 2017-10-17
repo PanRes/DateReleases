@@ -18,7 +18,6 @@ body {
     padding: 20px;
 }
 
-#uploadXlsx{
+#uploadXlsx, #imgUrl{
     display: none !important;
 }
-

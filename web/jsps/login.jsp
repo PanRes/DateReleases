@@ -52,9 +52,6 @@
                     </div>
                 </div>
             </form>
-        </article>
-        <footer id="footer">
             <%@include file="/jsps/universals/footer.jsp"%>
-        </footer>
     </body>
 </html>

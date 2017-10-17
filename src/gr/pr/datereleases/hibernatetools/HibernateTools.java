@@ -34,4 +34,12 @@ public class HibernateTools {
         transaction.commit();
         session.close();
     }
+
+    public static void updateEntity(Object entity){
+        Session session = getSession();
+        session.beginTransaction();
+        session.update(entity);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

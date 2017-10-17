@@ -13,95 +13,89 @@
         <title>Add Date for Episode</title>
     </head>
     <body>
-        <header>
-            <%@include file="/jsps/universals/header.jsp"%>
-        </header>
-        <article id="content">
-            <h3 class="text-center"><u>Add single episode release date or add upload xlsx file to add multiple</u></h3>
-            <c:choose>
-                <c:when test="${success == true}">
-                    <div class="alert alert-success text-center">
-                        Successfully Added Date!
-                    </div>
-                </c:when>
-                <c:when test="${success == false}">
-                    <div class="alert alert-danger text-center">
-                        Failed to Add Date!
-                    </div>
-                </c:when>
-            </c:choose>
-            </div>
-            <div class="col-lg-12 container text-center">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h4>Series</h4>
-                    </div>
-                    <div class="col-lg-1">
-                        <h4>Season</h4>
-                    </div>
-                    <div class="col-lg-1">
-                        <h4>Episode</h4>
-                    </div>
-                    <div class="col-lg-2">
-                        <h4>Date</h4>
-                    </div>
-                    <div class="col-lg-4">
-                        <h4>Notes</h4>
-                    </div>
-                    <div class="col-lg-1">
-                        <h4>Submit</h4>
-                    </div>
+        <%@include file="/jsps/universals/header.jsp"%>
+        <h3 class="text-center"><u>Add single episode release date or add upload xlsx file to add multiple</u></h3>
+        <c:choose>
+            <c:when test="${success == true}">
+                <div class="alert alert-success text-center">
+                    Successfully Added Date!
                 </div>
-                <div class="row">
-                    <form action="/AddDateServlet" method="post" name="frmAddDateManually" >
-                        <input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
-                        <div class="form-group col-lg-3">
-                            <select name="seriesId" class="form-control text-center" required="required">
-                                <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-                                    <option value="${series.seriesId}">${series.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-1">
-                            <input type="number" class="form-control text-center" min="1" name="season" id="season"
-                                   required="required">
-                        </div>
-                        <div class="form-group col-lg-1">
-                            <input type="number" class="form-control text-center" min="0" name="episode" id="episode"
-                                   required="required">
-                        </div>
-                        <div class="form-group col-lg-2">
-                            <input type="date" class="date form-control text-center" name="date" id="date"
-                                   required="required">
-                        </div>
-                        <div class="form-group col-lg-4">
-                            <input type="text" class="form-control text-center" name="notes">
-                        </div>
-                        <div class="form-group col-lg-1">
-                            <input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
-                                   class="btn btn-success">
-                        </div>
-                    </form>
+            </c:when>
+            <c:when test="${success == false}">
+                <div class="alert alert-danger text-center">
+                    Failed to Add Date!
                 </div>
-                <div class="row">
-                    <form action="/AddDateServlet" method="post" name="frmAddDatesWithXlsx" enctype="multipart/form-data">
-                        <input type="hidden" name="formName" value="frmAddDatesWithXlsx">
-                        <div align="center">
-                            <label class="btn btn-default">
-                                Browse Xlsx
-                                <input type="file" id="uploadXlsx" name="uploadXlsx"
-                                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                            </label>
-                            <input type="submit" id="xlsxSubmitBtn" class="btn btn-success disabled"
-                                   value="Submit from Xlsx" disabled>
-                        </div>
-                    </form>
+            </c:when>
+        </c:choose>
+        </div>
+        <div class="col-lg-12 container text-center">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h4>Series</h4>
+                </div>
+                <div class="col-lg-1">
+                    <h4>Season</h4>
+                </div>
+                <div class="col-lg-1">
+                    <h4>Episode</h4>
+                </div>
+                <div class="col-lg-2">
+                    <h4>Date</h4>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Notes</h4>
+                </div>
+                <div class="col-lg-1">
+                    <h4>Submit</h4>
                 </div>
             </div>
-        </article>
-        <footer id="footer">
-            <%@include file="/jsps/universals/footer.jsp"%>
-        </footer>
+            <div class="row">
+                <form action="/AddDateServlet" method="post" name="frmAddDateManually" >
+                    <input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
+                    <div class="form-group col-lg-3">
+                        <select name="seriesId" class="form-control text-center" required="required">
+                            <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+                                <option value="${series.seriesId}">${series.name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <input type="number" class="form-control text-center" min="1" name="season" id="season"
+                               required="required">
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <input type="number" class="form-control text-center" min="0" name="episode" id="episode"
+                               required="required">
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <input type="date" class="date form-control text-center" name="date" id="date"
+                               required="required">
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <input type="text" class="form-control text-center" name="notes">
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
+                               class="btn btn-success">
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <form action="/AddDateServlet" method="post" name="frmAddDatesWithXlsx" enctype="multipart/form-data">
+                    <input type="hidden" name="formName" value="frmAddDatesWithXlsx">
+                    <div align="center">
+                        <label class="btn btn-default">
+                            Browse Xlsx
+                            <input type="file" id="uploadXlsx" name="uploadXlsx"
+                                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                        </label>
+                        <input type="submit" id="xlsxSubmitBtn" class="btn btn-success disabled"
+                               value="Submit from Xlsx" disabled>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <%@include file="/jsps/universals/footer.jsp"%>
     </body>
 </html>
 

@@ -33,6 +33,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>editSeries</servlet-name>
+        <jsp-file>/jsps/mainPages/editSeries.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editSeries</servlet-name>
+        <url-pattern>/editSeries</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>seriesInfo</servlet-name>
         <jsp-file>/jsps/mainPages/seriesInfo.jsp</jsp-file>
     </servlet>
@@ -41,9 +50,18 @@
         <url-pattern>/seriesInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>editSeriesServlet</servlet-name>
+        <servlet-class>gr.pr.datereleases.servlets.EditSeriesServlet</servlet-class>
+    </servlet>s
+    <servlet-mapping>
+        <servlet-name>editSeriesServlet</servlet-name>
+        <url-pattern>/EditSeriesServlet</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>notLoggedInFilter</filter-name>
-        <filter-class>gr.pr.datereleases.filters.notLoggedInFilter</filter-class>
+        <filter-class>gr.pr.datereleases.filters.NotLoggedInFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>notLoggedInFilter</filter-name>
@@ -56,6 +74,18 @@
         <servlet-name>AddDateServlet</servlet-name>
         <servlet-name>ScheduleServlet</servlet-name>
         <servlet-name>seriesInfo</servlet-name>
+        <servlet-name>editSeries</servlet-name>
+        <servlet-name>editSeriesServlet</servlet-name>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>parametersNeededFilter</filter-name>
+        <filter-class>gr.pr.datereleases.filters.ParametersNeededFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>parametersNeededFilter</filter-name>
+        <servlet-name>seriesInfo</servlet-name>
+        <servlet-name>editSeries</servlet-name>
     </filter-mapping>
 
     <welcome-file-list>

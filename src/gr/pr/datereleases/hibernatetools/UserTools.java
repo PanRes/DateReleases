@@ -15,7 +15,7 @@ public class UserTools {
 
     public static boolean isValidUser(String userName,String password){
         Session session = HibernateTools.getSession();
-
+        session.beginTransaction();
         List<UsersModel> users = session.createCriteria(UsersModel.class).
                 add(Restrictions.like("userName",userName)).
                 add((Restrictions.like("password", password))).list();

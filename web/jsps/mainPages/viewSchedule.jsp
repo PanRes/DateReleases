@@ -12,14 +12,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Schedule</title>
-</head>
-<body>
-    <header>
+    <head>
+        <title>Schedule</title>
+    </head>
+    <body>
         <%@include file="/jsps/universals/header.jsp"%>
-    </header>
-    <article id="content">
         <jsp:useBean id="SeriesEpisodesTools" class="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools"/>
         <jsp:useBean id="SeriesTools" class="gr.pr.datereleases.hibernatetools.SeriesTools"/>
         <%
@@ -51,7 +48,11 @@
                     </tr>
                     <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId)%>">
                         <tr>
-                            <td class="text-center">${seriesLine.seriesBySeriesId.name}</td>
+                            <td class="text-center">
+                                <a href="seriesInfo?seriesId=${seriesLine.seriesBySeriesId.seriesId}">
+                                    ${seriesLine.seriesBySeriesId.name}
+                                </a>
+                            </td>
                             <td class="text-center">${seriesLine.releaseDay()}</td>
                             <td class="text-center">${seriesLine.viewDay()}</td>
                             <td class="text-center">
@@ -90,9 +91,6 @@
                 </table>
             </c:otherwise>
         </c:choose>
-    </article>
-    <footer id="footer">
         <%@include file="/jsps/universals/footer.jsp"%>
-    </footer>
-</body>
+    </body>
 </html>

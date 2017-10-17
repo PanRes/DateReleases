@@ -13,6 +13,7 @@ public class SeriesEpisodesTools {
 
     public static List<SeriesEpisodesModel> getSeriesEpisodeBySeriesId(int seriesId){
         Session session = HibernateTools.getSession();
+        session.beginTransaction();
         List<SeriesEpisodesModel> seriesEpisodes = null;
         if (seriesId == 0){
             seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).list();
@@ -22,6 +23,11 @@ public class SeriesEpisodesTools {
             seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).
                     add(Restrictions.eq("seriesBySeriesId",series)).list();
         }
+        /*
+        * Leave System.out.println be there, alternative it is not return anything, needs investigation
+        * */
+        System.out.println(seriesEpisodes);
+        session.close();
         return seriesEpisodes;
     }
 

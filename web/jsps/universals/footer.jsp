@@ -6,14 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+</article>
+<footer id="footer">
+    <div class="text-center footer pull-bottom">
+        <h4>
+            <div class="row">
+                Copyright<span class="glyphicon glyphicon-copyright-mark"></span> of Panagiotis Ressos - 2017
+            </div>
+            <div class="row">
+                <a href="https://github.com/PanRes" target="_blank">Github Repository</a>
+            </div>
+        </h4>
+    </div>
+</footer>
 
-<div class="text-center footer pull-bottom">
-    <h4>
-        <div class="row">
-            Copyright<span class="glyphicon glyphicon-copyright-mark"></span> of Panagiotis Ressos
-        </div>
-        <div class="row">
-            <a href="https://github.com/PanRes" target="_blank">Github Repository</a>
-        </div>
-    </h4>
-</div>

@@ -4,27 +4,20 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/*
-* Not used
-* */
-
-@WebFilter(filterName = "isLoggedInFilter", value = "/isLoggedInFilter")
-public class isLoggedInFilter implements Filter {
+@WebFilter(filterName = "ParametersNeededFilter", value = "/ParametersNeededFilter" )
+public class ParametersNeededFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        System.out.println("isLoggedInFilter");
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        HttpSession session = req.getSession();
-        String user = (String) session.getAttribute("user");
 
-        if(user != null){
+        if (req.getParameter("seriesId") == null) {
             resp.sendRedirect("/mainMenu");
         }
         else{

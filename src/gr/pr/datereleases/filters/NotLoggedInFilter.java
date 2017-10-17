@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
-@WebFilter(filterName = "notLoggedInFilter", value = "/notLoggedInFilter"/*,
+@WebFilter(filterName = "NotLoggedInFilter", value = "/NotLoggedInFilter"/*,
             servletNames = {"mainMenu","addDate","viewSchedule","AddDateServlet","ScheduleServlet"},
             urlPatterns = {"/jsps/mainPages/*","/jsps/universals/*","/jsps/util/*"}*/)
-public class notLoggedInFilter implements Filter {
+public class NotLoggedInFilter implements Filter {
     public void destroy() {
     }
 
@@ -18,11 +19,10 @@ public class notLoggedInFilter implements Filter {
             throws ServletException, IOException {
 
         HttpServletRequest req = (HttpServletRequest) request;
-        String servletPath = req.getServletPath();
+        String servletPath = req.getServletPath() + "?" + req.getQueryString();
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         String user = (String) session.getAttribute("user");
-
         if(user == null){
             req.setAttribute("page", servletPath);
             req.getServletContext().getRequestDispatcher("/").forward(req,resp);
