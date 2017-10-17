@@ -93,6 +93,8 @@
 
 <script type="application/javascript">
     $("#imgUrl").change(function () {
-       document.getElementById("fileName").innerHTML = this.value;
+        var fileName = this.value;
+        fileName = fileName.substring(fileName.lastIndexOf("\\") + 1, fileName.length);
+        document.getElementById("fileName").innerHTML = fileName;
     });
 </script> 
