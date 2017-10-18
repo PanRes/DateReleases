@@ -39,7 +39,6 @@ public class EditSeriesServlet extends HttpServlet {
         String seriesChannel = request.getParameter("seriesChannel");
 
         Part filePart = request.getPart("imgUrl");
-        System.out.println(filePart);
         byte ended = Byte.valueOf(request.getParameter("seriesEnded"));
         SeriesModel series = SeriesTools.getSeriesById(seriesId);
         if (seriesName != null && !seriesName.equals("")) {
@@ -57,9 +56,7 @@ public class EditSeriesServlet extends HttpServlet {
 
         if(filePart != null){
             String imgUrl = request.getRealPath("") + "contentFiles/imgs";
-            System.out.println(imgUrl);
-            File imgFile = GenericUtils.uploadFile(filePart, new File(imgUrl),seriesId + "_");
-            System.out.println(imgFile);
+            File imgFile = GenericUtils.uploadFile(filePart, new File(imgUrl),seriesName + "_");
             series.setImageUrl("/contentFiles/imgs/" + imgFile.getName());
         }
 

@@ -45,6 +45,8 @@
                         <th class="text-center">Seen</th>
                         <th class="text-center">Episode</th>
                         <th class="text-center">Date</th>
+                        <th class="text-center" width="300">Notes</th>
+                        <th class="text-center" width="50">Delete</th>
                     </tr>
                     <c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId)%>">
                         <tr>
@@ -85,6 +87,14 @@
                                         <fmt:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
                                     </c:otherwise>
                                 </c:choose>
+                            </td>
+                            <td class="text-center" width="300">
+                                ${seriesLine.notes}
+                            </td>
+                            <td class="text-center" width="50">
+                                <a href="/DeleteSeresEpisodeRowServlet?seriesEpisodeId=${seriesLine.seriesEpisodesId}&seriesId=${param.seriesId}">
+                                    <span class="glyphicon glyphicon-remove deleteSeriesEpisodebtn"></span>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

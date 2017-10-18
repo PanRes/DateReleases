@@ -53,10 +53,19 @@
     <servlet>
         <servlet-name>editSeriesServlet</servlet-name>
         <servlet-class>gr.pr.datereleases.servlets.EditSeriesServlet</servlet-class>
-    </servlet>s
+    </servlet>
     <servlet-mapping>
         <servlet-name>editSeriesServlet</servlet-name>
         <url-pattern>/EditSeriesServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>addSeries</servlet-name>
+        <jsp-file>/jsps/mainPages/addSeries.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addSeries</servlet-name>
+        <url-pattern>/addSeries</url-pattern>
     </servlet-mapping>
 
     <filter>

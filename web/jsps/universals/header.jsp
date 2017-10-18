@@ -24,15 +24,16 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown ${servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule' ? 'active' : ''}">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Series<b class="caret"></b>
+                        Series Schedule<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="viewSchedule">All Series</a></li>
+                        <li class="${(servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule') and
+                                param.seriesId == null ? 'active' : ''}"><a href="viewSchedule">All Series</a></li>
                         <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-                            <c:set var="activeSeries" value=""/>
+                            <c:set var="activeScheduleSeries" value=""/>
                             <c:if test="${servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule'}">
                                 <c:if test="${param.seriesId == series.seriesId}">
-                                    <c:set var="activeSeries" value="active"/>
+                                    <c:set var="activeScheduleSeries" value="active"/>
                                 </c:if>
                             </c:if>
                             <li class="${activeSeries}">
@@ -41,8 +42,29 @@
                         </c:forEach>
                     </ul>
                 </li>
+                <li class="dropdown ${servletPath == '/jsps/maiPages/editSeries.jsp' or
+                        servletPath == '/editSeries' ? 'active' : ''}">
+                    <a href="#" class="dta-toggle" data-toggle="dropdown">
+                        Edit Series<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+                            <c:set var="activeEditSeries" value=""/>
+                            <c:if test="${(servletPath == '/jsps/maiPages/editSeries.jsp' or
+                                    servletPath == '/editSeries') and series.seriesId == param.seriesId}">
+                                <c:set var="activeEditSeries" value="active"/>
+                            </c:if>
+                            <li class="${activeEditSeries}">
+                                <a href="/editSeries?seriesId=${series.seriesId}">Edit ${series.name}</a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </li>
                 <li class="${servletPath == '/jsps/mainPages/addDate.jsp' or servletPath == '/addDate' ? 'active' : ''}">
-                    <a href="/addDate">Add Date</a>
+                    <a href="/addDate">Add Episode Date</a>
+                </li>
+                <li class="${servletPath == '/jsps/mainPages/addPage.jsp' or servletPath == '/addPage' ? 'active' : ''}">
+                    <a href="/addSeries">Add Series</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

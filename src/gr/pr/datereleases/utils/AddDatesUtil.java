@@ -1,6 +1,7 @@
 package gr.pr.datereleases.utils;
 
 import gr.pr.datereleases.hibernatetools.HibernateTools;
+import gr.pr.datereleases.hibernatetools.SeriesEpisodesTools;
 import gr.pr.datereleases.hibernatetools.SeriesTools;
 import gr.pr.datereleases.models.SeriesEpisodesModel;
 import gr.pr.datereleases.models.SeriesModel;
@@ -29,16 +30,17 @@ public class AddDatesUtil {
         }
 
         SeriesModel series = SeriesTools.getSeriesById(seriesId);
-        SeriesEpisodesModel seriesEpisodes = new SeriesEpisodesModel();
+        SeriesEpisodesModel seriesEpisode = new SeriesEpisodesModel();
 
-        seriesEpisodes.setSeriesBySeriesId(series);
-        seriesEpisodes.setSeason(season);
-        seriesEpisodes.setEpisode(episode);
-        seriesEpisodes.setNotes(notes);
-        seriesEpisodes.setReleaseDate(date);
+        seriesEpisode.setSeriesBySeriesId(series);
+        seriesEpisode.setSeason(season);
+        seriesEpisode.setEpisode(episode);
+        seriesEpisode.setNotes(notes);
+        seriesEpisode.setReleaseDate(date);
+
 
         try {
-            HibernateTools.insertEntity(seriesEpisodes);
+            SeriesEpisodesTools.insertOrUpdateSeriesEpisode(seriesEpisode);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

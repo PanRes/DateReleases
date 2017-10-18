@@ -92,16 +92,25 @@ public class SeriesModel {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
         SeriesModel that = (SeriesModel) o;
 
-        if (seriesId != that.seriesId) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (dateStarted != null ? !dateStarted.equals(that.dateStarted) : that.dateStarted != null) return false;
-        if (ended != null ? !ended.equals(that.ended) : that.ended != null) return false;
-        if (imageUrl != null ? !imageUrl.equals(that.imageUrl) : that.imageUrl != null) return false;
-        return channel != null ? channel.equals(that.channel) : that.channel == null;
+        if (this.getSeriesId() != that.getSeriesId()) {
+            return false;
+        }
+        if (this.getName() != null ? !this.getName().equals(that.getName()) : that.getName() != null) {
+            return false;
+        }
+        if (this.getDateStarted() != null ? !this.getDateStarted().equals(that.getDateStarted()) : that.getDateStarted() != null) {
+            return false;
+        }
+        if (this.getEnded() != null ? !this.getEnded().equals(that.getEnded()) : that.getEnded() != null) {
+            return false;
+        }
+        if (this.getImageUrl() != null ? !this.getImageUrl().equals(that.getImageUrl()) : that.getImageUrl() != null) {
+            return false;
+        }
+        return this.getChannel() != null ? this.getChannel().equals(that.getChannel()) : that.getChannel() == null;
     }
 
     @Override

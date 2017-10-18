@@ -144,27 +144,20 @@ public class SeriesEpisodesModel {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
         SeriesEpisodesModel that = (SeriesEpisodesModel) o;
 
-        if (seriesEpisodesId != that.seriesEpisodesId) return false;
-        if (seriesBySeriesId != null ? !seriesBySeriesId.equals(that.seriesBySeriesId) : that.seriesBySeriesId != null)
+        if (this.getSeriesBySeriesId() != null ? !this.getSeriesBySeriesId().equals(that.getSeriesBySeriesId()) : that.getSeriesBySeriesId() != null)
             return false;
-        if (season != null ? !season.equals(that.season) : that.season != null) return false;
-        if (episode != null ? !episode.equals(that.episode) : that.episode != null) return false;
-        if (releaseDate != null ? !releaseDate.equals(that.releaseDate) : that.releaseDate != null) return false;
-        return notes != null ? notes.equals(that.notes) : that.notes == null;
+        if (this.getSeason() != null ? !this.getSeason().equals(that.getSeason()) : that.getSeason() != null) return false;
+        return this.getEpisode() != null ? this.getEpisode().equals(that.getEpisode()) : that.getEpisode() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = seriesEpisodesId;
-        result = 31 * result + (seriesBySeriesId != null ? seriesBySeriesId.hashCode() : 0);
+        int result = seriesBySeriesId != null ? seriesBySeriesId.hashCode() : 0;
         result = 31 * result + (season != null ? season.hashCode() : 0);
         result = 31 * result + (episode != null ? episode.hashCode() : 0);
-        result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
-        result = 31 * result + (notes != null ? notes.hashCode() : 0);
         return result;
     }
 

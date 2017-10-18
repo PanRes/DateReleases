@@ -21,3 +21,7 @@ body {
 #uploadXlsx, #imgUrl{
     display: none !important;
 }
+
+.deleteSeriesEpisodebtn{
+    color: #c10000;
+}
