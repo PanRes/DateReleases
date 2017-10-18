@@ -14,19 +14,19 @@
     <body>
         <%@include file="/jsps/universals/header.jsp"%>
         <c:choose>
-            <c:when test="${successCreation == 'success'}">
+            <c:when test="${successCreation == success}">
                 <div class="alert alert-success text-center">
-                    Series successfully Created
+                    <h4>Series successfully Created</h4>
                 </div>
             </c:when>
-            <c:when test="${successCreation == 'exists'}">
+            <c:when test="${successCreation == exists}">
                 <div class="alert alert-warning text-center">
-                    Series Already Exists
+                    <h4>Series Already Exists</h4>
                 </div>
             </c:when>
-            <c:when test="${successCreation == 'fail'}">
+            <c:when test="${successCreation == fail}">
                 <div class="alert alert-danger text-center">
-                    Series failed to be Created
+                    <h4>Series failed to be Created</h4>
                 </div>
             </c:when>
         </c:choose>
