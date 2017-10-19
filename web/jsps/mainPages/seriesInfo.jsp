@@ -46,7 +46,7 @@
                         </p>
                         <p>
                             <c:choose>
-                                <c:when test="${series.ended == 0}">
+                                <c:when test="${!series.ended}">
                                     Still going!
                                     </p>
                                     <p>
@@ -57,7 +57,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </p>
-                        <c:if test="${series.ended == 0}">
+                        <c:if test="${!series.ended}">
                             <p>
                                 <a href="/viewSchedule?seriesId=${series.seriesId}" class="btn btn-default">
                                     View ${series.name} Schedule

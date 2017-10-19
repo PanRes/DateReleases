@@ -13,7 +13,7 @@ import java.util.List;
 public class UserTools {
 
 
-    public static boolean isValidUser(String userName,String password){
+    public static int isValidUser(String userName,String password){
         Session session = HibernateTools.getSession();
         session.beginTransaction();
         List<UsersModel> users = session.createCriteria(UsersModel.class).
@@ -23,12 +23,19 @@ public class UserTools {
         session.close();
 
         if(!users.isEmpty()){
-            return true;
+            return users.get(0).getId();
         }
 
-        return false;
+        return -1;
     }
 
+    public static UsersModel getUserById(int userId){
+        Session session = HibernateTools.getSession();
+        session.beginTransaction();
+        UsersModel user = session.get(UsersModel.class,userId);
+        session.close();
+        return user;
+    }
 
 
 }

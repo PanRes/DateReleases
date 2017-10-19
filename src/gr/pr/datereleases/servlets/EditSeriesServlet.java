@@ -39,7 +39,7 @@ public class EditSeriesServlet extends HttpServlet {
         String seriesChannel = request.getParameter("seriesChannel");
 
         Part filePart = request.getPart("imgUrl");
-        byte ended = Byte.valueOf(request.getParameter("seriesEnded"));
+        boolean ended = Integer.valueOf(request.getParameter("seriesEnded")) == 0;
         SeriesModel series = SeriesTools.getSeriesById(seriesId);
         if (seriesName != null && !seriesName.equals("")) {
             series.setName(seriesName);

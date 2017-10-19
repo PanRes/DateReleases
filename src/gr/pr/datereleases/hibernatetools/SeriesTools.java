@@ -29,6 +29,7 @@ public class SeriesTools {
         }
         catch (IndexOutOfBoundsException e){
             series.setName(seriesName);
+            series.setEnded(false);
             HibernateTools.insertEntity(series);
             series = (SeriesModel) session.createCriteria(SeriesModel.class).
                     add(Restrictions.like("name",seriesName)).list().get(0);

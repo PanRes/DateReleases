@@ -24,8 +24,7 @@
         </header>
         <article id="content">
             <h2 class="page-header" align="center">Please Login</h2>
-
-            <c:if test="${wrongUser == true}">
+            <c:if test="${param.wrongUser == true}">
                 <div class="alert alert-danger text-center">
                     <strong>Warning!</strong> The User Name or the Password is incorrect. Please try again.
                 </div>

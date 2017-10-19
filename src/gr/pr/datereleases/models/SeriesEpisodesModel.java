@@ -42,7 +42,7 @@ public class SeriesEpisodesModel {
         this.seriesEpisodesId = seriesEpisodesId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "series_id", referencedColumnName = "series_id", nullable = false)
     public SeriesModel getSeriesBySeriesId() {
         return seriesBySeriesId;

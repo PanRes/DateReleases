@@ -62,11 +62,11 @@
                     <div class="col-lg-9 form-group">
                         <label class="radio-inline">
                             <input type="radio" name="seriesEnded" id="radioEnded"
-                                   value="0" ${series.ended == 0 ? "checked" : ""}> Series has ended
+                                   value="0" ${!series.ended ? "checked" : ""}> Series has ended
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="seriesEnded" id="radioGoing"
-                                   value="1" ${series.ended == 1 ? "checked" : ""}> Series still going
+                                   value="1" ${series.ended ? "checked" : ""}> Series still going
                         </label>
                     </div>
                 </div>

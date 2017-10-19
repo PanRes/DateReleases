@@ -83,11 +83,10 @@ public class SeriesEpisodesTools {
 
     public static void deleteSeriesEpisodeRow(int seriesEpisodeId){
         Session session = HibernateTools.getSession();
+        session.beginTransaction();
         SeriesEpisodesModel seriesEpisode = session.load(SeriesEpisodesModel.class,seriesEpisodeId);
-        Transaction tx = session.beginTransaction();
-        session.delete(seriesEpisode);
+        HibernateTools.deleteTableRow(seriesEpisode);
         session.flush();
-        tx.commit();
         session.close();
     }
 

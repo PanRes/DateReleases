@@ -29,7 +29,7 @@ public class AddSeriesServlet extends HttpServlet {
         String seriesName = request.getParameter("seriesName");
         try {
             SeriesModel series = SeriesTools.getSeriesByName(seriesName);
-            response.sendRedirect("/addSeries?successCreation=exists");
+            response.sendRedirect("/addSeries?successCreation='exists'");
         }
         catch (HibernateException he){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,7 +40,7 @@ public class AddSeriesServlet extends HttpServlet {
                 e.printStackTrace();
             }
             String seriesChannel = request.getParameter("seriesChannel");
-            byte ended = Byte.valueOf(request.getParameter("seriesEnded"));
+            boolean ended = Integer.valueOf(request.getParameter("seriesEnded")) == 0;
 
             Part filePart = request.getPart("imgUrl");
             SeriesModel series = new SeriesModel();
@@ -63,11 +63,11 @@ public class AddSeriesServlet extends HttpServlet {
             series.setEnded(ended);
             try{
                 HibernateTools.insertEntity(series);
-                response.sendRedirect("/addSeries?successCreation=success");
+                response.sendRedirect("/addSeries?successCreation='success'");
             }
             catch (Exception e){
                 e.printStackTrace();
-                response.sendRedirect("/addSeries?successCreation=fail");
+                response.sendRedirect("/addSeries?successCreation='fail'");
             }
         }
 

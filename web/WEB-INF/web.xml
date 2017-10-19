@@ -85,6 +85,8 @@
         <servlet-name>seriesInfo</servlet-name>
         <servlet-name>editSeries</servlet-name>
         <servlet-name>editSeriesServlet</servlet-name>
+        <servlet-name>addSeries</servlet-name>
+        <servlet-name>AddRemoveFavoritesServlet</servlet-name>
     </filter-mapping>
 
     <filter>
@@ -95,6 +97,7 @@
         <filter-name>parametersNeededFilter</filter-name>
         <servlet-name>seriesInfo</servlet-name>
         <servlet-name>editSeries</servlet-name>
+        <servlet-name>AddRemoveFavoritesServlet</servlet-name>
     </filter-mapping>
 
     <welcome-file-list>

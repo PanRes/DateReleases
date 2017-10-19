@@ -42,4 +42,13 @@ public class HibernateTools {
         session.getTransaction().commit();
         session.close();
     }
+
+    public static void deleteTableRow(Object entity){
+        Session session = HibernateTools.getSession();
+        Transaction tx = session.beginTransaction();
+        session.delete(entity);
+        session.flush();
+        tx.commit();
+        session.close();
+    }
 }

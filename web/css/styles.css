@@ -25,3 +25,7 @@ body {
 .deleteSeriesEpisodebtn{
     color: #c10000;
 }
+
+.favoritesBtn{
+    color: #dd4444;
+}

@@ -15,10 +15,11 @@ public class SeriesModel {
     private int seriesId;
     private String name;
     private Date dateStarted;
-    private Byte ended;
+    private boolean ended;
     private String imageUrl;
     private String channel;
     private Collection<SeriesEpisodesModel> seriesEpisodesBySeriesId;
+    private Collection<UsersFavoritesSeriesModel> usersFavoritesSeriesModels;
 
     @Id
     @Column(name = "series_id", nullable = false)
@@ -52,11 +53,11 @@ public class SeriesModel {
 
     @Basic
     @Column(name = "ended", nullable = true)
-    public Byte getEnded() {
+    public boolean getEnded() {
         return ended;
     }
 
-    public void setEnded(Byte ended) {
+    public void setEnded(boolean ended) {
         this.ended = ended;
     }
 
@@ -80,7 +81,7 @@ public class SeriesModel {
         this.channel = channel;
     }
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "seriesBySeriesId")
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "seriesBySeriesId")
     public Collection<SeriesEpisodesModel> getSeriesEpisodesBySeriesId() {
         return seriesEpisodesBySeriesId;
     }
@@ -89,38 +90,44 @@ public class SeriesModel {
         this.seriesEpisodesBySeriesId = seriesEpisodesBySeriesId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
+    public boolean isEnded(){
+        return ended;
+    }
 
-        SeriesModel that = (SeriesModel) o;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "seriesBySeriesId")
+    public Collection<UsersFavoritesSeriesModel> getUsersFavoritesSeriesModels(){
+        return usersFavoritesSeriesModels;
+    }
 
-        if (this.getSeriesId() != that.getSeriesId()) {
-            return false;
-        }
-        if (this.getName() != null ? !this.getName().equals(that.getName()) : that.getName() != null) {
-            return false;
-        }
-        if (this.getDateStarted() != null ? !this.getDateStarted().equals(that.getDateStarted()) : that.getDateStarted() != null) {
-            return false;
-        }
-        if (this.getEnded() != null ? !this.getEnded().equals(that.getEnded()) : that.getEnded() != null) {
-            return false;
-        }
-        if (this.getImageUrl() != null ? !this.getImageUrl().equals(that.getImageUrl()) : that.getImageUrl() != null) {
-            return false;
-        }
-        return this.getChannel() != null ? this.getChannel().equals(that.getChannel()) : that.getChannel() == null;
+    public void setUsersFavoritesSeriesModels(Collection<UsersFavoritesSeriesModel> usersFavoritesSeriesModels){
+        this.usersFavoritesSeriesModels = usersFavoritesSeriesModels;
     }
 
     @Override
-    public int hashCode() {
-        int result = seriesId;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (dateStarted != null ? dateStarted.hashCode() : 0);
-        result = 31 * result + (ended != null ? ended.hashCode() : 0);
-        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
-        result = 31 * result + (channel != null ? channel.hashCode() : 0);
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if (!(o instanceof SeriesModel)) return false;
+
+        SeriesModel that = (SeriesModel) o;
+
+        if (getSeriesId() != that.getSeriesId()) return false;
+        if (isEnded() != that.isEnded()) return false;
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        if (getDateStarted() != null ? !getDateStarted().equals(that.getDateStarted()) : that.getDateStarted() != null)
+            return false;
+        if (getImageUrl() != null ? !getImageUrl().equals(that.getImageUrl()) : that.getImageUrl() != null)
+            return false;
+        return getChannel() != null ? getChannel().equals(that.getChannel()) : that.getChannel() == null;
+    }
+
+    @Override
+    public int hashCode(){
+        int result = getSeriesId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getDateStarted() != null ? getDateStarted().hashCode() : 0);
+        result = 31 * result + (isEnded() ? 1 : 0);
+        result = 31 * result + (getImageUrl() != null ? getImageUrl().hashCode() : 0);
+        result = 31 * result + (getChannel() != null ? getChannel().hashCode() : 0);
         return result;
     }
 

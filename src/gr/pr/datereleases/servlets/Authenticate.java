@@ -22,13 +22,14 @@ public class Authenticate extends HttpServlet {
             page = "/mainMenu";
         }
 
-        if(UserTools.isValidUser(userName,password)){
+        int userId = UserTools.isValidUser(userName,password);
+        if(userId > 0){
             session.setAttribute("user",userName);
+            session.setAttribute("userId",userId);
             response.sendRedirect(page);
         }
         else {
-            request.setAttribute("wrongUser", true);
-            request.getServletContext().getRequestDispatcher("/").forward(request,response);
+            response.sendRedirect("/?wrongUser=true");
         }
     }
 
