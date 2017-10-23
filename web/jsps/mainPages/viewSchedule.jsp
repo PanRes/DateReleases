@@ -3,6 +3,7 @@
 <%@ page import="gr.pr.datereleases.hibernatetools.SeriesEpisodesTools" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Locale" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -26,7 +27,7 @@
             if (seriesIdString != null) {
                 seriesId = Integer.valueOf(seriesIdString);
             }
-            Calendar now = Calendar.getInstance();
+            Calendar now = Calendar.getInstance(Locale.US);
             now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
                                                        *I sub one day from now for released label
                                                        * */
