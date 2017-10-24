@@ -1,20 +1,17 @@
 package gr.pr.datereleases.hibernatetools;
 
-import com.sun.org.apache.regexp.internal.RE;
 import gr.pr.datereleases.models.SeriesModel;
 import gr.pr.datereleases.models.UsersFavoritesSeriesModel;
 import gr.pr.datereleases.models.UsersModel;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import java.util.List;
 
 public class UserFarvoriteSeriesTools{
 
     public static void addRemoveUsersFavoritesFavorites(int seriesId, int userId){
         if(isUsersFavoriteSeries(seriesId, userId)){
-            UsersFavoritesSeriesModel usersFavoritesSeries = getUsersFavoriteSeriesById(userId);
+            UsersFavoritesSeriesModel usersFavoritesSeries = getUsersFavoriteSeriesUserAndSeriesById(userId,seriesId);
             HibernateTools.deleteTableRow(usersFavoritesSeries);
         }
         else{
@@ -44,10 +41,15 @@ public class UserFarvoriteSeriesTools{
         }
     }
 
-    public static UsersFavoritesSeriesModel getUsersFavoriteSeriesById(int userFavoritesSeriesId){
+    public static UsersFavoritesSeriesModel getUsersFavoriteSeriesUserAndSeriesById(int userId,int seriesId){
         Session session = HibernateTools.getSession();
         session.beginTransaction();
-        UsersFavoritesSeriesModel userFavoritesSeries = session.get(UsersFavoritesSeriesModel.class,userFavoritesSeriesId);
+        UsersModel user = session.get(UsersModel.class,userId);
+        SeriesModel series = session.get(SeriesModel.class,seriesId);
+        UsersFavoritesSeriesModel userFavoritesSeries = (UsersFavoritesSeriesModel)
+                session.createCriteria(UsersFavoritesSeriesModel.class).
+                add(Restrictions.eq("seriesBySeriesId",series)).
+                add(Restrictions.eq("usersByUserId",user)).list().get(0);
         session.close();
         return userFavoritesSeries;
     }

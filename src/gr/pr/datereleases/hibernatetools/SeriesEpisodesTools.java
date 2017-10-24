@@ -94,15 +94,21 @@ public class SeriesEpisodesTools {
     public static boolean seriesEpisodeExists(SeriesEpisodesModel seriesEpisode){
         List<SeriesEpisodesModel> seriesEpisodesModels = getSeriesEpisodeBySeriesId(0);
         for (SeriesEpisodesModel seriesEpisodesModel : seriesEpisodesModels) {
-            System.out.println("seriesEpisodesModel" + seriesEpisodesModel.getSeriesBySeriesId());
-            System.out.println("seriesEpisode" + seriesEpisode.getSeriesBySeriesId());
-            System.out.println(seriesEpisode.getSeriesBySeriesId().equals(seriesEpisodesModel.getSeriesBySeriesId()) +
-            " " + seriesEpisode.getSeriesBySeriesId().hashCode() + " " + seriesEpisodesModel.getSeriesBySeriesId().hashCode());
             if(seriesEpisode.equals(seriesEpisodesModel)){
                 return true;
             }
         }
         return false;
+    }
+
+    public static SeriesEpisodesModel getSeriesEpisodeById(int seriesEpisodeId){
+        System.out.println("inside getSeriesEpisodeById");
+        Session session = HibernateTools.getSession();
+        session.beginTransaction();
+        SeriesEpisodesModel seriesEpisode = session.get(SeriesEpisodesModel.class,seriesEpisodeId);
+        session.flush();
+        session.close();
+        return seriesEpisode;
     }
 
 }

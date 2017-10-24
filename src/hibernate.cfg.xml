@@ -9,6 +9,7 @@
         <property name="connection.password">root</property>
         <property name="connection.username">root</property>
         <property name="current_session_context_class">thread</property>
+        <property name="connection.pool_size">100</property>
         <mapping class="gr.pr.datereleases.models.SeriesModel"/>
         <mapping resource="gr/pr/datereleases/models/SeriesModel.hbm.xml"/>
         <mapping class="gr.pr.datereleases.models.SeriesEpisodesModel"/>

@@ -20,7 +20,7 @@
     </c:if>
 
     <div class="col-md-4">
-        <div class="col-md-1">
+        <%--<div class="col-md-1">
             <a href="/AddRemoveFavoritesServlet?seriesId=${series.seriesId}" class="favoritesBtn">
                 <c:choose>
                     <c:when test="${UserFavoriteSeriesTools.isUsersFavoriteSeries(series.seriesId,userId)}">
@@ -32,18 +32,18 @@
                 </c:choose>
             </a>
         </div>
-        <div class="col-md-11">
-            <p>
-                <c:choose>
-                    <c:when test="${series.imageUrl != null}">
-                        <img src="${series.imageUrl}" style="height: auto;" width="200" class="img-thumbnail">
-                    </c:when>
-                    <c:otherwise>
-                        <img src="/contentFiles/imgs/not-found.png" style="height: auto;" width="200" class="img-thumbnail"/>
-                    </c:otherwise>
-                </c:choose>
-            </p>
-        </div>
+        <div class="col-md-11">--%>
+        <p>
+            <c:choose>
+                <c:when test="${series.imageUrl != null}">
+                    <img src="${series.imageUrl}" style="height: auto;" width="200" class="img-thumbnail">
+                </c:when>
+                <c:otherwise>
+                    <img src="/contentFiles/imgs/not-found.png" style="height: auto;" width="200" class="img-thumbnail"/>
+                </c:otherwise>
+            </c:choose>
+        </p>
+       <%-- </div>--%>
         <h3>${series.name}</h3>
         <p class="text-success">
             Premiere : <fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>
