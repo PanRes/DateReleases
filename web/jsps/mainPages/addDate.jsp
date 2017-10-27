@@ -11,20 +11,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>${param.modeDate == 'edit' ? "Edit" : "Add"} Date for Episode</title>
+        <title>${pageContext.request.servletPath == 'edit' ? "Edit" : "Add"} Date for Episode</title>
     </head>
     <body>
         <%@include file="/jsps/universals/header.jsp"%>
+
         <c:choose>
-            <c:when test="${param.modeDate == 'edit'}">
+            <c:when test="${pageContext.request.servletPath == '/editDate'}">
                 <h3 class="text-center"><u>Edit episode release date</u></h3>
                 <c:choose>
-                    <c:when test="${success == true}">
+                    <c:when test="${param.success == true}">
                         <div class="alert alert-success text-center">
                             Successfully Edited Date!
                         </div>
                     </c:when>
-                    <c:when test="${success == false}">
+                    <c:when test="${param.success == false}">
                         <div class="alert alert-danger text-center">
                             Failed to Edit Date!
                         </div>
@@ -34,12 +35,12 @@
             <c:otherwise>
                 <h3 class="text-center"><u>Add single episode release date or add upload xlsx file to add multiple</u></h3>
                 <c:choose>
-                    <c:when test="${success == true}">
+                    <c:when test="${param.success == true}">
                         <div class="alert alert-success text-center">
                             Successfully Added Date!
                         </div>
                     </c:when>
-                    <c:when test="${success == false}">
+                    <c:when test="${param.success == false}">
                         <div class="alert alert-danger text-center">
                             Failed to Add Date!
                         </div>
@@ -70,37 +71,8 @@
                 </div>
             </div>
             <c:choose>
-                <c:when test="${param.modeDate == 'edit'}">
-                    <jsp:useBean id="seriesEpisode" class="gr.pr.datereleases.models.SeriesEpisodesModel"/>
-                    <%
-                        System.out.println(request.getParameter("seriesEpisodeId"));
-                    %>
-                    <c:set var="seriesEpisode" value='<%=SeriesEpisodesTools.getSeriesEpisodeById(Integer.valueOf(request.getParameter("seriesEpisodeId")))%>'/>
-                    <div class="row">
-                        <form action="/AddDateServlet" method="post" name="frmEditDate" >
-                            <input type="hidden" class="form-control" value="frmEditDate" name="formName">
-                            <div class="form-group col-lg-3">
-                                <input type="text" value="${seriesEpisode.seriesBySeriesId.name}" class="text-center" readonly>
-                            </div>
-                            <div class="form-group col-lg-1">
-                                <input type="number" class="form-control text-center" name="season" value="${seriesEpisode.season}" readonly>
-                            </div>
-                            <div class="form-group col-lg-1">
-                                <input type="number" class="form-control text-center" name="episode" value="${seriesEpisode.episode}" readonly>
-                            </div>
-                            <div class="form-group col-lg-2">
-                                <input type="date" class="date form-control text-center" name="date" id="editDate"
-                                       required="required" value="${seriesEpisode.releaseDate}">
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <input type="text" class="form-control text-center" name="notes" value="${seriesEpisode.notes}">
-                            </div>
-                            <div class="form-group col-lg-1">
-                                <input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
-                                       class="btn btn-success">
-                            </div>
-                        </form>
-                    </div>
+                <c:when test="${pageContext.request.servletPath == '/editDate'}">
+                    <%@include file="/jsps/util/editDate.jsp"%>
                 </c:when>
                 <c:otherwise>
                     <jsp:include page="/jsps/util/addDateForms.jsp"/>
@@ -110,10 +82,3 @@
         <%@include file="/jsps/universals/footer.jsp"%>
     </body>
 </html>
-
-<script type="application/javascript">
-    $("#editDate").change(function() {
-        $("#xlsxSubmitBtn").removeClass("disabled");
-        $("#xlsxSubmitBtn").prop("disabled",false);
-    });
-</script>

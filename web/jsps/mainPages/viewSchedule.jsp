@@ -93,7 +93,7 @@
                                 ${seriesLine.notes}
                             </td>
                             <td class="text-center" width="50">
-                                <a href="/addDate?modeDate=edit&seriesEpisodeId=${seriesLine.seriesEpisodesId}">
+                                <a href="/editDate?seriesEpisodeId=${seriesLine.seriesEpisodesId}">
                                     <span class="glyphicon glyphicon-edit editSeriesEpisodeRowbtn"></span>
                                 </a>
                                 <a href="/DeleteSeresEpisodeRowServlet?seriesEpisodeId=${seriesLine.seriesEpisodesId}&seriesId=${param.seriesId}">

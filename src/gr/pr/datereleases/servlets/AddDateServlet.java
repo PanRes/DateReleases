@@ -1,10 +1,12 @@
 package gr.pr.datereleases.servlets;
 
+import gr.pr.datereleases.hibernatetools.HibernateTools;
 import gr.pr.datereleases.hibernatetools.SeriesEpisodesTools;
 import gr.pr.datereleases.models.SeriesEpisodesModel;
 import gr.pr.datereleases.utils.AddDatesUtil;
 import gr.pr.datereleases.utils.GenericUtils;
 import gr.pr.datereleases.utils.XlsxUtils;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,11 +30,11 @@ public class AddDateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean success = false;
-
+        String redirect = "/addDate" + "?success=";
 
         String formName = request.getParameter("formName");
 
-        if(formName != null && formName.equals("frmAddDateManually")){
+        if(formName.equals("frmAddDateManually")){
             success = AddDatesUtil.addSingleDate(request);
         }
         else if(formName.equals("frmAddDatesWithXlsx")){
@@ -52,9 +55,33 @@ public class AddDateServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+        else if (formName.equals("frmEditDate")){
+            int seriesEpisodeId = Integer.valueOf(request.getParameter("seriesEpisodeId"));
+            String dateString = request.getParameter("date");
+            redirect = "/editDate?seriesEpisodeId=" + seriesEpisodeId + "&success=";
 
-        request.setAttribute("success",success);
-        request.getServletContext().getRequestDispatcher("/addDate").forward(request,response);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.sql.Date date = null;
+            try {
+                date = new java.sql.Date(sdf.parse(dateString).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String notes = request.getParameter("notes");
+
+            SeriesEpisodesModel seriesEpisode = SeriesEpisodesTools.getSeriesEpisodeById(seriesEpisodeId);
+            seriesEpisode.setNotes(notes);
+            seriesEpisode.setReleaseDate(date);
+
+            try{
+                HibernateTools.updateEntity(seriesEpisode);
+                success = true;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        response.sendRedirect(redirect + success);
 
     }
 

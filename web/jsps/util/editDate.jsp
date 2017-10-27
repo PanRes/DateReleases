@@ -12,6 +12,7 @@
 <div class="row">
     <form action="/AddDateServlet" method="post" name="frmEditDate" >
         <input type="hidden" class="form-control" value="frmEditDate" name="formName">
+        <input type="hidden" class="form-control" value="${param.seriesEpisodeId}" name="seriesEpisodeId"/>
         <div class="form-group col-lg-3">
             <input type="text" value="${seriesEpisode.seriesBySeriesId.name}" class="text-center" readonly>
         </div>
@@ -22,22 +23,15 @@
             <input type="number" class="form-control text-center" name="episode" value="${seriesEpisode.episode}" readonly>
         </div>
         <div class="form-group col-lg-2">
-            <input type="date" class="date form-control text-center" name="date" id="date"
+            <input type="date" class="date form-control text-center" name="date" id="editDate"
                    required="required" value="${seriesEpisode.releaseDate}">
         </div>
         <div class="form-group col-lg-4">
             <input type="text" class="form-control text-center" name="notes" value="${seriesEpisode.notes}">
         </div>
         <div class="form-group col-lg-1">
-            <input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
-                   class="btn btn-success">
+            <input type="submit" id=editSubmitButton" value="Submit Date" class="btn btn-success">
         </div>
     </form>
 </div>
 
-<script type="application/javascript">
-    $("#date").change(function() {
-        $("#xlsxSubmitBtn").removeClass("disabled");
-        $("#xlsxSubmitBtn").prop("disabled",false);
-    });
-</script>

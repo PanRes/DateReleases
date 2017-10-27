@@ -102,10 +102,10 @@ public class SeriesEpisodesTools {
     }
 
     public static SeriesEpisodesModel getSeriesEpisodeById(int seriesEpisodeId){
-        System.out.println("inside getSeriesEpisodeById");
         Session session = HibernateTools.getSession();
         session.beginTransaction();
         SeriesEpisodesModel seriesEpisode = session.get(SeriesEpisodesModel.class,seriesEpisodeId);
+        System.out.println(seriesEpisode);
         session.flush();
         session.close();
         return seriesEpisode;

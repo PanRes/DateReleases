@@ -41,13 +41,18 @@ public class SeriesTools {
 
     public static String getSeriesNameBySeriesId(int seriesId){
         Session session = HibernateTools.getSession();
-        return session.get(SeriesModel.class,seriesId).getName();
+        session.beginTransaction();
+        String seriesName = session.get(SeriesModel.class,seriesId).getName();
+        session.flush();
+        session.close();
+        return seriesName;
     }
 
     public static SeriesModel getSeriesById(int seriesId){
         Session session = HibernateTools.getSession();
         session.beginTransaction();
         SeriesModel seriesModel = session.get(SeriesModel.class,seriesId);
+        session.flush();
         session.close();
         return seriesModel;
     }

@@ -1,6 +1,7 @@
 package gr.pr.datereleases.hibernatetools;
 
 import com.sun.xml.internal.ws.handler.HandlerException;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -22,6 +23,12 @@ public class HibernateTools {
     }
 
     public static Session getSession() throws HandlerException {
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (HibernateException ex) {
+            session = sessionFactory.openSession();
+        }
 
         return sessionFactory.openSession();
     }
@@ -37,9 +44,9 @@ public class HibernateTools {
 
     public static void updateEntity(Object entity){
         Session session = getSession();
-        session.beginTransaction();
+        Transaction tx = session.beginTransaction();
         session.update(entity);
-        session.getTransaction().commit();
+        tx.commit();
         session.close();
     }
 
@@ -47,8 +54,8 @@ public class HibernateTools {
         Session session = HibernateTools.getSession();
         Transaction tx = session.beginTransaction();
         session.delete(entity);
-        session.flush();
-        tx.commit();
+		tx.commit();
+		session.flush();
         session.close();
     }
 }

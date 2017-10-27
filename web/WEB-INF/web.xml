@@ -21,6 +21,7 @@
     <servlet-mapping>
         <servlet-name>addDate</servlet-name>
         <url-pattern>/addDate</url-pattern>
+        <url-pattern>/editDate</url-pattern>
     </servlet-mapping>
 
     <servlet>
