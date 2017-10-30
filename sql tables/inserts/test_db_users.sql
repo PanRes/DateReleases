@@ -1,0 +1,2 @@
+INSERT INTO test_db.users (user_name, password, img_url, first_name, middle_name, last_name, email) VALUES ('PR', 'test123', null, null, null, null, 'p.ressos@hotmail.com');
+INSERT INTO test_db.users (user_name, password, img_url, first_name, middle_name, last_name, email) VALUES ('panres', 'test123', null, null, null, null, 'p.ressos@hotmail.com');

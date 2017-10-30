@@ -1,0 +1,1 @@
+UPDATE test_db.series_episodes SET series_id = 1, season = 1, episode = 1, release_date = '2017-12-31', notes = 'Test, zxcvabc, sdgasd' WHERE series_episodes_id = 266;

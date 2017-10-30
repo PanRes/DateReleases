@@ -1,0 +1,2 @@
+UPDATE test_db.books SET title = 'H2G2', description = 'Best IT Scifi Book', unit_cost = 12.5, isbn = '1234-5678-5678', no_of_pages = 247 WHERE id = 500;
+UPDATE test_db.books SET title = 'H2G2', description = 'Best IT Scifi Book', unit_cost = 12.5, isbn = '1234-5678-5678', no_of_pages = 247 WHERE id = 5000;
