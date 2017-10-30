@@ -17,7 +17,7 @@
         <%@include file="/jsps/universals/header.jsp"%>
 
         <c:choose>
-            <c:when test="${pageContext.request.servletPath == '/editDate'}">
+            <c:when test="${pageContext.request.servletPath == '/editSeriesDate'}">
                 <h3 class="text-center"><u>Edit episode release date</u></h3>
                 <c:choose>
                     <c:when test="${param.success == true}">
@@ -71,8 +71,8 @@
                 </div>
             </div>
             <c:choose>
-                <c:when test="${pageContext.request.servletPath == '/editDate'}">
-                    <%@include file="/jsps/util/editDate.jsp"%>
+                <c:when test="${pageContext.request.servletPath == '/editSeriesDate'}">
+                    <%@include file="/jsps/util/editSeriesDate.jsp"%>
                 </c:when>
                 <c:otherwise>
                     <jsp:include page="/jsps/util/addDateForms.jsp"/>

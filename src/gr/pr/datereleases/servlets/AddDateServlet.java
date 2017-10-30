@@ -30,7 +30,7 @@ public class AddDateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean success = false;
-        String redirect = "/addDate" + "?success=";
+        String redirect = "/addSeriesDate" + "?success=";
 
         String formName = request.getParameter("formName");
 
@@ -58,7 +58,7 @@ public class AddDateServlet extends HttpServlet {
         else if (formName.equals("frmEditDate")){
             int seriesEpisodeId = Integer.valueOf(request.getParameter("seriesEpisodeId"));
             String dateString = request.getParameter("date");
-            redirect = "/editDate?seriesEpisodeId=" + seriesEpisodeId + "&success=";
+            redirect = "/editSeriesDate?seriesEpisodeId=" + seriesEpisodeId + "&success=";
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.sql.Date date = null;
@@ -87,7 +87,7 @@ public class AddDateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("/addDate");
+        response.sendRedirect("/addSeriesDate");
 
     }
 }

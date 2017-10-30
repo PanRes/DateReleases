@@ -20,7 +20,7 @@
     </c:if>
 
     <div class="col-md-4">
-        <%--<div class="col-md-1">
+        <div class="col-md-1">
             <a href="/AddRemoveFavoritesServlet?seriesId=${series.seriesId}" class="favoritesBtn">
                 <c:choose>
                     <c:when test="${UserFavoriteSeriesTools.isUsersFavoriteSeries(series.seriesId,userId)}">
@@ -32,7 +32,7 @@
                 </c:choose>
             </a>
         </div>
-        <div class="col-md-11">--%>
+        <div class="col-md-11">
         <p>
             <c:choose>
                 <c:when test="${series.imageUrl != null}">
@@ -43,7 +43,7 @@
                 </c:otherwise>
             </c:choose>
         </p>
-       <%-- </div>--%>
+        </div>
         <h3>${series.name}</h3>
         <p class="text-success">
             Premiere : <fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>

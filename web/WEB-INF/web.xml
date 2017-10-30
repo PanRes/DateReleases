@@ -15,13 +15,13 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>addDate</servlet-name>
-        <jsp-file>/jsps/mainPages/addDate.jsp</jsp-file>
+        <servlet-name>addSeriesDate</servlet-name>
+        <jsp-file>/jsps/mainPages/addSeriesDate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>addDate</servlet-name>
-        <url-pattern>/addDate</url-pattern>
-        <url-pattern>/editDate</url-pattern>
+        <servlet-name>addSeriesDate</servlet-name>
+        <url-pattern>/addSeriesDate</url-pattern>
+        <url-pattern>/editSeriesDate</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -69,6 +69,24 @@
         <url-pattern>/addSeries</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>userInfo</servlet-name>
+        <jsp-file>/jsps/userControlPanel/userInfo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userInfo</servlet-name>
+        <url-pattern>/userInfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>changeUserPassword</servlet-name>
+        <jsp-file>/jsps/userControlPanel/changeUserPassword.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeUserPassword</servlet-name>
+        <url-pattern>/changeUserPassword</url-pattern>
+    </servlet-mapping>
+    
     <filter>
         <filter-name>notLoggedInFilter</filter-name>
         <filter-class>gr.pr.datereleases.filters.NotLoggedInFilter</filter-class>
@@ -76,10 +94,11 @@
     <filter-mapping>
         <filter-name>notLoggedInFilter</filter-name>
         <url-pattern>/jsps/mainPages/*</url-pattern>
-        <url-pattern>/jsps/universals/*</url-pattern>
         <url-pattern>/jsps/util/*</url-pattern>
+        <url-pattern>/jsps/seriesPages/*</url-pattern>
+        <url-pattern>/jsps/userControlPanel/*</url-pattern>
         <servlet-name>mainMenu</servlet-name>
-        <servlet-name>addDate</servlet-name>
+        <servlet-name>addSeriesDate</servlet-name>
         <servlet-name>viewSchedule</servlet-name>
         <servlet-name>AddDateServlet</servlet-name>
         <servlet-name>ScheduleServlet</servlet-name>
@@ -88,6 +107,8 @@
         <servlet-name>editSeriesServlet</servlet-name>
         <servlet-name>addSeries</servlet-name>
         <servlet-name>AddRemoveFavoritesServlet</servlet-name>
+        <servlet-name>userInfo</servlet-name>
+        <servlet-name>changeUserPassword</servlet-name>
     </filter-mapping>
 
     <filter>

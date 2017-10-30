@@ -42,3 +42,6 @@
         crossorigin="anonymous">
 </script>
 
+<script
+        src="https://use.fontawesome.com/e5d31c3650.js">
+</script>
