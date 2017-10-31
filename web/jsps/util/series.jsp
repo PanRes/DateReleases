@@ -62,6 +62,8 @@
             <a href="/seriesInfo?seriesId=${series.seriesId}" class="btn btn-info">
                 View ${series.name} Info
             </a>
+        </p>
+        <p>
             <a href="/editSeries?seriesId=${series.seriesId}" class="btn btn-primary">
                 Edit ${series.name} Info
             </a>

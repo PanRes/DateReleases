@@ -77,7 +77,7 @@
                         </c:forEach>
                     </ul>
                 </li>
-                <li class="${servletPath == '/jsps/mainPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
+                <li class="${servletPath == '/jsps/seriesPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
                     <a href="/addSeriesDate">Add Episode Date</a>
                 </li>
                 <li class="${servletPath == '/jsps/mainPages/addPage.jsp' or servletPath == '/addPage' ? 'active' : ''}">

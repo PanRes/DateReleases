@@ -1,6 +1,7 @@
 package gr.pr.datereleases.models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users", schema = "test_db", catalog = "test_db")
@@ -14,6 +15,7 @@ public class UsersModel {
     private String middleName;
     private String lastName;
     private String email;
+    private Collection<UsersFavoritesSeriesModel> usersFavoritesSeriesModels;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -93,6 +95,15 @@ public class UsersModel {
 
     public void setEmail(String email){
         this.email = email;
+    }
+
+
+    public Collection<UsersFavoritesSeriesModel> getUsersFavoritesSeriesModels(){
+        return usersFavoritesSeriesModels;
+    }
+
+    public void setUsersFavoritesSeriesModels(Collection<UsersFavoritesSeriesModel> usersFavoritesSeriesModels){
+        this.usersFavoritesSeriesModels = usersFavoritesSeriesModels;
     }
 
     @Override

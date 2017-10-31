@@ -30,7 +30,7 @@
         </set>
         <set name="usersFavoritesSeriesModels">
             <key>
-                <column name="user_id"/>
+                <column name="series_id"/>
             </key>
             <one-to-many not-found="ignore" class="gr.pr.datereleases.models.UsersFavoritesSeriesModel"/>
         </set>

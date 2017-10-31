@@ -16,7 +16,7 @@
     
     <servlet>
         <servlet-name>addSeriesDate</servlet-name>
-        <jsp-file>/jsps/mainPages/addSeriesDate.jsp</jsp-file>
+        <jsp-file>/jsps/seriesPages/addSeriesDate.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>addSeriesDate</servlet-name>
@@ -35,7 +35,7 @@
 
     <servlet>
         <servlet-name>editSeries</servlet-name>
-        <jsp-file>/jsps/mainPages/editSeries.jsp</jsp-file>
+        <jsp-file>/jsps/seriesPages/editSeries.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>editSeries</servlet-name>
@@ -44,7 +44,7 @@
     
     <servlet>
         <servlet-name>seriesInfo</servlet-name>
-        <jsp-file>/jsps/mainPages/seriesInfo.jsp</jsp-file>
+        <jsp-file>/jsps/seriesPages/seriesInfo.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>seriesInfo</servlet-name>
@@ -62,7 +62,7 @@
     
     <servlet>
         <servlet-name>addSeries</servlet-name>
-        <jsp-file>/jsps/mainPages/addSeries.jsp</jsp-file>
+        <jsp-file>/jsps/seriesPages/addSeries.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>addSeries</servlet-name>

@@ -55,7 +55,6 @@ public class HibernateTools {
         Transaction tx = session.beginTransaction();
         session.delete(entity);
 		tx.commit();
-		session.flush();
         session.close();
     }
 }

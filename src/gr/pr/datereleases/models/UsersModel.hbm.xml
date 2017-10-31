@@ -29,5 +29,11 @@
         <property name="email">
             <column name="email" sql-type="varchar(255)" length="255" not-null="true"/>
         </property>
+        <set name="usersFavoritesSeriesModels">
+            <key>
+                <column name="user_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="gr.pr.datereleases.models.UsersFavoritesSeriesModel"/>
+        </set>
     </class>
 </hibernate-mapping>
