@@ -19,6 +19,11 @@
         type="text/css"
 />
 
+<script
+        src="/js/scripts.js"
+        type="application/javascript">
+</script>
+
 <!-- Latest compiled and minified CSS -->
 <link
         rel="stylesheet"

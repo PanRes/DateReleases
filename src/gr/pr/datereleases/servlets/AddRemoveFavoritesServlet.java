@@ -25,14 +25,8 @@ public class AddRemoveFavoritesServlet extends HttpServlet{
         int seriesId = Integer.valueOf(request.getParameter("seriesId"));
         int userId = (int) session.getAttribute("userId");
 
-        UserFarvoriteSeriesTools.addRemoveUsersFavoritesFavorites(seriesId,userId);
-        String redirectPage = request.getServletPath();
-        String queryString = request.getQueryString();
-        if(queryString != null){
-            response.sendRedirect(redirectPage + "?" + queryString);
-        }
-        else{
-            response.sendRedirect(redirectPage);
-        }
+        boolean removedFromFavorite = UserFarvoriteSeriesTools.addRemoveUsersFavoritesFavorites(seriesId,userId);
+        String redirectPage = request.getHeader("referer");
+        response.sendRedirect(redirectPage);
     }
 }

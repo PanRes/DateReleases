@@ -31,21 +31,25 @@
             </c:if>
             <form class="form-horizontal" action="/Authenticate" name="loginForm" method="post">
                 <input type="hidden" class="form-control" name="page" value="${page}">
-                <div align="center">
-                    <div class="form-group">
-                        <label class="col-md-4">User Name : </label>
+                <div class="text-center">
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="pull-right">User Name : </label>
+                        </div>
                         <div class="col-md-4">
                             <input type="text" name="userName" class="form-control" required="required"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-4">Password</label>
+                    <div class="row form-group">
+                        <div class="col-md-4">
+                            <label class="pull-right">Password : </label>
+                        </div>
                         <div class="col-md-4">
                             <input type="password" name="password" class="form-control" required="required">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-4 col-md-offset-2">
+                    <div class="row form-group">
+                        <div class="text-center">
                             <input type="submit" name="btnSubmit" class="btn btn-primary btn-lg" value="Login">
                         </div>
                     </div>

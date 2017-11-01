@@ -53,10 +53,7 @@
 </div>
 
 <script type="application/javascript">
-    $("#uploadXlsx").change(function() {
-        $("#xlsxSubmitBtn").removeClass("disabled");
-        $("#xlsxSubmitBtn").prop("disabled",false);
-    });
+
 
     /*$(document).ready(function () {
         $("#addSingleEpisodeBtn").addClass("disabled");

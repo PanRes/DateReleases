@@ -24,10 +24,14 @@
             <a href="/AddRemoveFavoritesServlet?seriesId=${series.seriesId}" class="favoritesBtn">
                 <c:choose>
                     <c:when test="${UserFavoriteSeriesTools.isUsersFavoriteSeries(series.seriesId,userId)}">
-                        <b class="glyphicon glyphicon-heart"></b>
+                        <abbr title="Remove from favorites">
+                            <i class="glyphicon glyphicon-heart"></i>
+                        </abbr>
                     </c:when>
                     <c:otherwise>
-                        <b class="glyphicon glyphicon-heart-empty"></b>
+                        <abbr title="Add to Favorites">
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </abbr>
                     </c:otherwise>
                 </c:choose>
             </a>

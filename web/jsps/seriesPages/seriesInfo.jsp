@@ -17,10 +17,25 @@
     <body>
         <%@include file="/jsps/universals/header.jsp"%>
         <jsp:useBean id="series" scope="page" class="gr.pr.datereleases.models.SeriesModel"/>
+        <jsp:useBean id="UserFavoriteSeriesTools" class="gr.pr.datereleases.hibernatetools.UserFarvoriteSeriesTools"/>
         <c:set var="series" value='<%=SeriesTools.getSeriesById(Integer.valueOf(request.getParameter("seriesId")))%>'/>
         <div class="panel panel-info">
             <p class="panel-heading">
-            ${series.name} Information
+                ${series.name} Information &nbsp;
+                <a href="/AddRemoveFavoritesServlet?seriesId=${series.seriesId}" class="favoritesBtn">
+                    <c:choose>
+                        <c:when test="${UserFavoriteSeriesTools.isUsersFavoriteSeries(series.seriesId,userId)}">
+                            <abbr title="Remove from favorites">
+                                <i class="glyphicon glyphicon-heart"></i>
+                            </abbr>
+                        </c:when>
+                        <c:otherwise>
+                            <abbr title="Add to Favorites">
+                                <i class="glyphicon glyphicon-heart-empty"></i>
+                            </abbr>
+                        </c:otherwise>
+                    </c:choose>
+                </a>
             </p>
             <div class="panel-body" id="seriesInfoPanelBody">
                 <div class="media">
