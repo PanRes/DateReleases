@@ -76,6 +76,11 @@
                         </div>
                     </p>
                 </div>
+                <div class="row col-lg-offset-4">
+                    <a href="/editUserInfo" class="btn btn-primary">
+                        <i class="fa fa-pencil-square-o"></i> Edit Profile Info
+                    </a>
+                </div>
             </div>
         </div>
         <%@include file="/jsps/universals/footer.jsp"%>
