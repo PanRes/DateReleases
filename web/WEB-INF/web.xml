@@ -4,6 +4,20 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <context-param>
+        <param-name>userProfileImgs</param-name>
+        <param-value>/contentFiles/imgs/userProfiles</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>seriesImgs</param-name>
+        <param-value>/contentFiles/imgs/series</param-value>
+    </context-param>
+<!--
+    <context-param>
+        <param-name>userProfileImgs</param-name>
+        <param-value>/contentFiles/imgs/userProfiles</param-value>
+    </context-param>-->
 
     <servlet>
         <servlet-name>mainMenu</servlet-name>
@@ -86,6 +100,15 @@
         <servlet-name>changeUserPassword</servlet-name>
         <url-pattern>/changeUserPassword</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>editUserInfo</servlet-name>
+        <jsp-file>/jsps/userControlPanel/editUserInfo.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editUserInfo</servlet-name>
+        <url-pattern>/editUserInfo</url-pattern>
+    </servlet-mapping>
     
     <filter>
         <filter-name>notLoggedInFilter</filter-name>
@@ -109,6 +132,7 @@
         <servlet-name>AddRemoveFavoritesServlet</servlet-name>
         <servlet-name>userInfo</servlet-name>
         <servlet-name>changeUserPassword</servlet-name>
+        <servlet-name>editUserInfo</servlet-name>
     </filter-mapping>
 
     <filter>

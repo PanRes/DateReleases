@@ -1,10 +1,10 @@
-INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Lucifer', '2016-01-25', 0, '/contentFiles/imgs/lucifer.jpg', 'Fox');
-INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('The FLash', '2014-10-07', 0, '/contentFiles/imgs/2_The_Flash_Intertitle.png', null);
+INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Lucifer', '2016-01-25', 0, '/contentFiles/imgs/series/lucifer.jpg', 'Fox');
+INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('The FLash', '2014-10-07', 0, '/contentFiles/imgs/series/2_The_Flash_Intertitle.png', null);
 INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Arrow', '2012-10-10', 0, null, null);
-INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Legends of Tomorrow', null, 0, null, null);
+INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Legends of Tomorrow', null, 1, null, null);
 INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('The Gifted', null, 0, null, null);
 INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Marvel''s Spider-Man', null, 0, null, null);
-INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Doctor Who', null, 0, '/contentFiles/imgs/not-found.png', null);
+INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Doctor Who', null, 0, null, null);
 INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Man at Arms: Art of War', null, 0, null, null);
 INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('The Big Bang Theory', null, 0, null, null);
 INSERT INTO test_db.series (name, date_started, ended, imageUrl, channel) VALUES ('Mr.Robot', null, 0, null, null);

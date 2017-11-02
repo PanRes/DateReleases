@@ -42,8 +42,8 @@
         <input type="hidden" name="formName" value="frmAddDatesWithXlsx">
         <div align="center">
             <label class="btn btn-default">
-                <span class="glyphicon glyphicon-upload"></span> Browse Xlsx
-                <input type="file" id="uploadXlsx" name="uploadXlsx"
+                <span class="fa  fa-file-excel-o"></span> Browse Xlsx
+                <input type="file" id="uploadXlsx" name="uploadXlsx" class="labelBtn"
                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
             </label>
             <input type="submit" id="xlsxSubmitBtn" class="btn btn-success disabled"

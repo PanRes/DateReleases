@@ -13,7 +13,7 @@ $( document ).ready(function() {
         }
     }
 
-    $("#profileImg").change(function(){
+    $("#uploadProfileImage").change(function(){
         readURL(this);
     });
 

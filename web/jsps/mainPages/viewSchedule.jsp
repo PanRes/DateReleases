@@ -100,7 +100,7 @@
                                 </a>
                                 <a href="/DeleteSeresEpisodeRowServlet?seriesEpisodeId=${seriesLine.seriesEpisodesId}&seriesId=${param.seriesId}">
                                     <abbr title="Delete this Row">
-                                        <span class="glyphicon glyphicon-remove deleteSeriesEpisodebtn"></span>
+                                        <span class="glyphicon glyphicon-remove deleteSeriesEpisodeBtn"></span>
                                     </abbr>
                                 </a>
                             </td>

@@ -77,7 +77,7 @@
                     <div class="col-lg-9">
                         <label class="btn btn-warning">
                             <span class="glyphicon glyphicon-upload"></span>Choose Image for ${series.name}
-                            <input type="file" name="imgUrl" id="imgUrl" accept="image/*">
+                            <input type="file" name="imgUrl" id="imgUrl" class="labelBtn" accept="image/*">
                         </label>
                         <small id="fileName"></small>
                     </div>

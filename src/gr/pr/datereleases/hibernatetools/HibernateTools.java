@@ -35,7 +35,6 @@ public class HibernateTools {
 
     public static void insertEntity(Object entity){
         Session session = HibernateTools.getSession();
-
         Transaction transaction = session.beginTransaction();
         session.save(entity);
         transaction.commit();
@@ -46,6 +45,7 @@ public class HibernateTools {
         Session session = getSession();
         Transaction tx = session.beginTransaction();
         session.update(entity);
+        session.flush();
         tx.commit();
         session.close();
     }
@@ -54,6 +54,7 @@ public class HibernateTools {
         Session session = HibernateTools.getSession();
         Transaction tx = session.beginTransaction();
         session.delete(entity);
+        session.flush();
 		tx.commit();
         session.close();
     }

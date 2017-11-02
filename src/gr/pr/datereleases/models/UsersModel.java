@@ -28,7 +28,7 @@ public class UsersModel {
     }
 
     @Basic
-    @Column(name = "user_name", nullable = false, length = 45)
+    @Column(name = "user_name", nullable = false, length = 45, unique = true)
     public String getUserName() {
         return userName;
     }
@@ -88,7 +88,7 @@ public class UsersModel {
     }
 
     @Basic
-    @Column(name = "email", length = 255, nullable = false)
+    @Column(name = "email", length = 255, nullable = false, unique = true)
     public String getEmail(){
         return email;
     }

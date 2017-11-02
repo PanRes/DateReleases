@@ -94,6 +94,10 @@
                                 'active' : ''}">
                             <a href="/userInfo">User Info</a>
                         </li>
+                        <li class="${servletPath == '/editUserInfo' ||
+                                servletPath == '/jsps/userControlPanel/editUserInfo.jsp' ? 'active' : ''}">
+                            <a href="/editUserInfo">Edit User Info</a>
+                        </li>
                         <li class="${servletPath == '/changeUserPassword' ||
                                 servletPath == '/jsps/userControlPanel/changeUserPassword.jsp' ? 'active' : ''}">
                             <a href="/changeUserPassword">Change Password</a>

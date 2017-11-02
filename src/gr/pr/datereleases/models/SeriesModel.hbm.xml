@@ -20,7 +20,7 @@
             <column name="channel" sql-type="varchar(45)" />
         </property>
         <property name="imageUrl">
-            <column name="imageUrl" sql-type="varchar(255)" default="/contentFiles/imgs/not-found.png"/>
+            <column name="imageUrl" sql-type="varchar(255)"/>
         </property>
         <set name="seriesEpisodesBySeriesId">
             <key>

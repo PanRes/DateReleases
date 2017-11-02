@@ -43,7 +43,7 @@
                     <img src="${series.imageUrl}" style="height: auto;" width="200" class="img-thumbnail">
                 </c:when>
                 <c:otherwise>
-                    <img src="/contentFiles/imgs/not-found.png" style="height: auto;" width="200" class="img-thumbnail"/>
+                    <img src="${initParam['seriesImgs']}/not-found.png" style="height: auto;" width="200" class="img-thumbnail"/>
                 </c:otherwise>
             </c:choose>
         </p>

@@ -53,11 +53,11 @@ public class AddSeriesServlet extends HttpServlet {
                 series.setChannel(seriesChannel);
             }
 
-
-            if(filePart != null){
-                String imgUrl = request.getRealPath("") + "contentFiles/imgs";
+            String seriesImgsDir = request.getServletContext().getInitParameter("seriesImgs");
+            if(filePart.getSize() > 0){
+                String imgUrl = request.getRealPath("") + "contentFiles/imgs/series";
                 File imgFile = GenericUtils.uploadFile(filePart, new File(imgUrl),seriesName + "_");
-                series.setImageUrl("/contentFiles/imgs/" + imgFile.getName());
+                series.setImageUrl(seriesImgsDir + File.separator + imgFile.getName());
             }
 
             series.setEnded(ended);

@@ -37,5 +37,25 @@ public class UserTools {
         return user;
     }
 
+    public static boolean userNameExists(String userName, int userId){
+        Session session = HibernateTools.getSession();
+        session.beginTransaction();
+        List<UsersModel> users = session.createCriteria(UsersModel.class).
+                add(Restrictions.eq("userName",userName)).
+                add(Restrictions.ne("id",userId)).list();
+        session.flush();
+        session.close();
+        return !users.isEmpty();
+    }
 
+    public static boolean emailExists(String email, int userId){
+        Session session = HibernateTools.getSession();
+        session.beginTransaction();
+        List<UsersModel> users = session.createCriteria(UsersModel.class).
+                add(Restrictions.eq("email",email)).
+                add(Restrictions.ne("id",userId)).list();
+        session.flush();
+        session.close();
+        return !users.isEmpty();
+    }
 }

@@ -1,10 +1,10 @@
-UPDATE test_db.series SET name = 'Lucifer', date_started = '2016-01-25', ended = 0, imageUrl = '/contentFiles/imgs/lucifer.jpg', channel = 'Fox' WHERE series_id = 1;
-UPDATE test_db.series SET name = 'The FLash', date_started = '2014-10-07', ended = 0, imageUrl = '/contentFiles/imgs/2_The_Flash_Intertitle.png', channel = null WHERE series_id = 2;
+UPDATE test_db.series SET name = 'Lucifer', date_started = '2016-01-25', ended = 0, imageUrl = '/contentFiles/imgs/series/lucifer.jpg', channel = 'Fox' WHERE series_id = 1;
+UPDATE test_db.series SET name = 'The FLash', date_started = '2014-10-07', ended = 0, imageUrl = '/contentFiles/imgs/series/2_The_Flash_Intertitle.png', channel = null WHERE series_id = 2;
 UPDATE test_db.series SET name = 'Arrow', date_started = '2012-10-10', ended = 0, imageUrl = null, channel = null WHERE series_id = 3;
-UPDATE test_db.series SET name = 'Legends of Tomorrow', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 4;
+UPDATE test_db.series SET name = 'Legends of Tomorrow', date_started = null, ended = 1, imageUrl = null, channel = null WHERE series_id = 4;
 UPDATE test_db.series SET name = 'The Gifted', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 5;
 UPDATE test_db.series SET name = 'Marvel''s Spider-Man', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 6;
-UPDATE test_db.series SET name = 'Doctor Who', date_started = null, ended = 0, imageUrl = '/contentFiles/imgs/not-found.png', channel = null WHERE series_id = 7;
+UPDATE test_db.series SET name = 'Doctor Who', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 7;
 UPDATE test_db.series SET name = 'Man at Arms: Art of War', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 8;
 UPDATE test_db.series SET name = 'The Big Bang Theory', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 9;
 UPDATE test_db.series SET name = 'Mr.Robot', date_started = null, ended = 0, imageUrl = null, channel = null WHERE series_id = 10;

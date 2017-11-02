@@ -78,7 +78,7 @@
                         <label class="btn btn-warning">
                             <span class="glyphicon glyphicon-upload"></span>
                             Choose Image for <small id="seriesNamebtn">new Series</small>
-                            <input type="file" name="imgUrl" id="imgUrl" accept="image/*">
+                            <input type="file" class="labelBtn" name="imgUrl" id="imgUrl" accept="image/*">
                         </label>
                         <small id="fileName"></small>
                     </div>

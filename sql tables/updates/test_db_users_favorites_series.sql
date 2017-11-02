@@ -1,0 +1,1 @@
+UPDATE test_db.users_favorites_series SET user_id = 1, series_id = 2 WHERE id = 660;

@@ -46,7 +46,7 @@
                                      style="height: auto;" width="300"/>
                             </c:when>
                             <c:otherwise>
-                                <img src="/contentFiles/imgs/not-found.png" class="thumbnail text-center"
+                                <img src="${initParam['seriesImgs']}/not-found.png" class="thumbnail text-center"
                                      style="height: auto;" width="300"/>
                             </c:otherwise>
                         </c:choose>

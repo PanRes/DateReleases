@@ -18,11 +18,11 @@ body {
     padding: 20px;
 }
 
-#uploadXlsx, #imgUrl{
+.labelBtn{
     display: none !important;
 }
 
-.deleteSeriesEpisodebtn{
+.deleteSeriesEpisodeBtn{
     color: #c10000;
 }
 
@@ -46,4 +46,10 @@ abbr[title] {
     text-decoration: none !important;
     border-bottom: 0px !important;
 
+}
+
+img {
+    max-width: 100%;
+    width: auto;
+    max-height: 300px;
 }

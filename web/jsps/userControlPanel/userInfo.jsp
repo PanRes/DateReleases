@@ -18,10 +18,10 @@
             <div class="col-lg-3 text-center">
                 <c:choose>
                     <c:when test="${user.imageUrl == null}">
-                        <img src="/contentFiles/imgs/user-200.png" class="thumbnail">
+                        <img src="${initParam['userProfileImgs']}/defaultUserImage.png" class="thumbnail center-block">
                     </c:when>
                     <c:otherwise>
-                        <img src="${user.imageUrl}">
+                        <img src="${user.imageUrl}" class="thumbnail center-block">
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -29,7 +29,7 @@
                 <div class="row col-lg-12">
                     <p>
                         <div class="col-lg-4">
-                            User Name:
+                            <strong>User Name:</strong>
                         </div>
                         <div class="col-lg-8">
                             ${user.userName}
@@ -39,7 +39,7 @@
                 <div class="row col-lg-12">
                     <p>
                         <div class="col-lg-4">
-                            Email:
+                            <strong>Email:</strong>
                         </div>
                         <div class="col-lg-8">
                             ${user.email}
@@ -49,7 +49,7 @@
                 <div class="row col-lg-12">
                     <p>
                         <div class="col-lg-4">
-                            First Name:
+                            <strong>First Name:</strong>
                         </div>
                         <div class="col-lg-8">
                             ${user.firstName}
@@ -59,7 +59,7 @@
                 <div class="row col-lg-12">
                    <p>
                         <div class="col-lg-4">
-                            Middle Name:
+                            <strong>Middle Name:</strong>
                         </div>
                         <div class="col-lg-8">
                             ${user.middleName}
@@ -69,7 +69,7 @@
                 <div class="row col-lg-12">
                     <p>
                         <div class="col-lg-4">
-                            Last Name:
+                            <strong>Last Name:</strong>
                         </div>
                         <div class="col-lg-8">
                             ${user.lastName}
