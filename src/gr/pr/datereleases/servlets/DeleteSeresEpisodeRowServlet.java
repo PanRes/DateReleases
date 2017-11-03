@@ -21,6 +21,6 @@ public class DeleteSeresEpisodeRowServlet extends HttpServlet {
         int seriesEpisodeId = Integer.valueOf(request.getParameter("seriesEpisodeId"));
         int seriesId = Integer.valueOf(request.getParameter("seriesId"));
         SeriesEpisodesTools.deleteSeriesEpisodeRow(seriesEpisodeId);
-        response.sendRedirect("/viewSchedule?seriesId=" + seriesId);
+        response.sendRedirect("/viewSeriesSchedule?seriesId=" + seriesId);
     }
 }

@@ -39,11 +39,10 @@
             </p>
             <div class="panel-body" id="seriesInfoPanelBody">
                 <div class="media">
-                    <div class="media-left">
+                    <div class="col-lg-4">
                         <c:choose>
                             <c:when test="${series.imageUrl != null}">
-                                <img src="${series.imageUrl}" class="thumbnail text-center"
-                                     style="height: auto;" width="300"/>
+                                <img src="${series.imageUrl}" class="thumbnail text-center"/>
                             </c:when>
                             <c:otherwise>
                                 <img src="${initParam['seriesImgs']}/not-found.png" class="thumbnail text-center"
@@ -51,7 +50,7 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-                    <div class="media-body">
+                    <div class="col-lg-8">
                         <p>
                             <strong>First Aired:</strong>
                             <fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>
@@ -74,7 +73,7 @@
                         </p>
                         <c:if test="${!series.ended}">
                             <p>
-                                <a href="/viewSchedule?seriesId=${series.seriesId}" class="btn btn-default">
+                                <a href="/viewSeriesSchedule?seriesId=${series.seriesId}" class="btn btn-default">
                                     View ${series.name} Schedule
                                 </a>
                             </p>

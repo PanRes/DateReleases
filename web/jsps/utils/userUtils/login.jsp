@@ -14,7 +14,7 @@
     <body>
         <header>
             <c:if test="${user != null}">
-                <c:redirect url="/mainMenu"/>
+                <c:redirect url="/"/>
             </c:if>
             <%@include file="/jsps/universals/inclusions.jsp"%>
 
@@ -33,23 +33,21 @@
                 <input type="hidden" class="form-control" name="page" value="${page}">
                 <div class="text-center">
                     <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="pull-right">User Name : </label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" name="userName" class="form-control" required="required"/>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-md-4">
-                            <label class="pull-right">Password : </label>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="password" name="password" class="form-control" required="required">
+                        <div class="input-group text-center col-lg-4 col-lg-offset-4">
+                            <span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
+                            <input type="text" name="userName" class="form-control" required
+                                   placeholder="UserName or Email"/>
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="text-center">
+                        <div class="input-group text-center col-lg-4 col-lg-offset-4">
+                            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                            <input type="password" name="password" class="form-control" required
+                                    placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="text-center col-lg-3 col-lg-offset-4">
                             <input type="submit" name="btnSubmit" class="btn btn-primary btn-lg" value="Login">
                         </div>
                     </div>

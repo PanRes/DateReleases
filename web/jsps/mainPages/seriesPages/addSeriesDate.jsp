@@ -72,10 +72,10 @@
             </div>
             <c:choose>
                 <c:when test="${pageContext.request.servletPath == '/editSeriesDate'}">
-                    <%@include file="/jsps/util/editSeriesDate.jsp"%>
+                    <%@include file="/jsps/utils/seriesUtil/editSeriesDate.jsp"%>
                 </c:when>
                 <c:otherwise>
-                    <jsp:include page="/jsps/util/addDateForms.jsp"/>
+                    <jsp:include page="/jsps/utils/seriesUtil/addSeriesDateForms.jsp"/>
                 </c:otherwise>
             </c:choose>
         </div>

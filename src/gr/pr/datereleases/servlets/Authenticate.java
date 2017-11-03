@@ -1,6 +1,7 @@
 package gr.pr.datereleases.servlets;
 
 import gr.pr.datereleases.hibernatetools.UserTools;
+import gr.pr.datereleases.models.UsersModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
 
 @WebServlet(name = "Authenticate",value = "/Authenticate")
 public class Authenticate extends HttpServlet {
@@ -19,17 +21,16 @@ public class Authenticate extends HttpServlet {
         String password = request.getParameter("password");
 
         if (page == "" || page == null) {
-            page = "/mainMenu";
+            page = "/";
         }
 
-        int userId = UserTools.isValidUser(userName,password);
-        if(userId > 0){
-            session.setAttribute("user",userName);
-            session.setAttribute("userId",userId);
+        UsersModel user = UserTools.isValidUser(userName,password);
+        if(user != null){
+            session.setAttribute("user",user);
             response.sendRedirect(page);
         }
         else {
-            response.sendRedirect("/?wrongUser=true");
+            response.sendRedirect("/login?wrongUser=true");
         }
     }
 

@@ -15,13 +15,13 @@
     <%@include file="/jsps/universals/header.jsp"%>
     <div class="row text-center">
         <p>
-            <a href="/viewSchedule" class="btn btn-default text-center">
+            <a href="/viewSeriesSchedule" class="btn btn-default text-center">
                 Schedule for all Series
             </a>
         </p>
 
 
-        <jsp:include page="/jsps/util/series.jsp"/>
+        <jsp:include page="/jsps/utils/seriesUtil/series.jsp"/>
     </div>
     <%@include file="/jsps/universals/footer.jsp"%>
 </body>

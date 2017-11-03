@@ -18,7 +18,7 @@ public class ParametersNeededFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
 
         if (req.getParameter("seriesId") == null) {
-            resp.sendRedirect("/mainMenu");
+            resp.sendRedirect("/series");
         }
         else{
             chain.doFilter(request, response);

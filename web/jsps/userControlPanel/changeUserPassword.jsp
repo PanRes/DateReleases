@@ -13,7 +13,7 @@
     <body>
         <%@ include file="/jsps/universals/header.jsp"%>
         <div class="container text-center">
-            <h4>${user} Change Password</h4>
+            <h4>${user.getUserName()} Change Password</h4>
             <c:choose>
                 <c:when test="${success == 'success'}">
                     <div class="alert alert-success">
@@ -45,7 +45,7 @@
                         New Password:
                     </div>
                     <div class="col-lg-4">
-                        <input type="password" name="newPassword" id="newPassword"
+                        <input type="password" name="password" id="password"
                                class="form-control" required>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         Verify New Password:
                     </div>
                     <div class="col-lg-4">
-                        <input type="password" name="newPasswordVerify" id="newPasswordVerify"
+                        <input type="password" name="passwordVerify" id="passwordVerify"
                                class="form-control" required>
                     </div>
                     <div class="col-lg-3">
@@ -75,42 +75,12 @@
 </html>
 
 <script type="application/javascript">
-   /* $("#newPasswordVerify").change(function(){
-       if ($("#newPasswordVerify").value() != $("#newPassword").value()){
+   /* $("#passwordVerify").change(function(){
+       if ($("#passwordVerify").value() != $("#password").value()){
            console.log("inside if");
            alert("Both new password must be the same!");
        }
     });*/
 
-    $("#newPasswordVerify").change(function () {
-        var verifyMessage = "New Passwords must be the same"
-        if ($("#newPassword").val() != "") {
-            if($("#newPasswordVerify").val() != $("#newPassword").val()){
-                document.getElementById("verifyMessage").innerHTML = verifyMessage;
-                $("#btnChangePassword").addClass("disabled");
-                $("#btnChangePassword").prop("disabled",true);
-            }
-            else {
-                document.getElementById("verifyMessage").innerHTML = "";
-                $("#btnChangePassword").removeClass("disabled");
-                $("#btnChangePassword").prop("disabled",false);
-            }
-        }
-    });
 
-    $("#newPassword").change(function () {
-        var verifyMessage = "New Passwords must be the same"
-        if ($("#newPasswordVerify").val() != "") {
-            if($("#newPasswordVerify").val() != $("#newPassword").val()){
-                document.getElementById("verifyMessage").innerHTML = verifyMessage;
-                $("#btnChangePassword").addClass("disabled");
-                $("#btnChangePassword").prop("disabled",true);
-            }
-            else {
-                document.getElementById("verifyMessage").innerHTML = "";
-                $("#btnChangePassword").removeClass("disabled");
-                $("#btnChangePassword").prop("disabled",false);
-            }
-        }
-    });
 </script>

@@ -19,12 +19,12 @@ public class ScheduleServlet extends HttpServlet {
         int seriesId = Integer.valueOf(request.getParameter("seriesId"));
         List<SeriesEpisodesModel> seriesEpisodesById = SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId);
         session.setAttribute("seriesEpisodesById",seriesEpisodesById);
-        response.sendRedirect("/viewSchedule");
+        response.sendRedirect("/viewSeriesSchedule");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        response.sendRedirect("/mainMenu");
-        response.sendRedirect("/viewSchedule?seriesId=0");
+        response.sendRedirect("/viewSeriesSchedule");
     }
 }

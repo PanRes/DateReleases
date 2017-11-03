@@ -1,5 +1,7 @@
 package gr.pr.datereleases.filters;
 
+import gr.pr.datereleases.models.UsersModel;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +27,10 @@ public class NotLoggedInFilter implements Filter {
         }
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        String user = (String) session.getAttribute("user");
+        UsersModel user = (UsersModel) session.getAttribute("user");
         if(user == null){
             req.setAttribute("page", servletPath);
-            req.getServletContext().getRequestDispatcher("/").forward(req,resp);
+            req.getServletContext().getRequestDispatcher("/login").forward(req,resp);
         }
         else {
             chain.doFilter(request, response);

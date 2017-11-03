@@ -17,7 +17,7 @@ $( document ).ready(function() {
         readURL(this);
     });
 
-    //for addDateForms.jsp to activate button when xlsx is chosen
+    //for addSeriesDateForms.jsp to activate button when xlsx is chosen
     $("#uploadXlsx").change(function() {
         $("#xlsxSubmitBtn").removeClass("disabled");
         $("#xlsxSubmitBtn").prop("disabled",false);
@@ -43,4 +43,72 @@ $( document ).ready(function() {
             $("#addSingleEpisodeBtn").prop("disabled",false);
         }
     });
+
+    $("#passwordVerify").change(function () {
+        var verifyMessage = "New Passwords must be the same"
+        if ($("#password").val() != "") {
+            if($("#passwordVerify").val() != $("#password").val()){
+                document.getElementById("verifyMessage").innerHTML = verifyMessage;
+                $("#btnChangePassword").addClass("disabled");
+                $("#btnChangePassword").prop("disabled",true);
+            }
+            else {
+                document.getElementById("verifyMessage").innerHTML = "";
+                $("#btnChangePassword").removeClass("disabled");
+                $("#btnChangePassword").prop("disabled",false);
+            }
+        }
+    });
+
+    $("#password").change(function () {
+        var verifyMessage = "New Passwords must be the same"
+        if ($("#passwordVerify").val() != "") {
+            if($("#passwordVerify").val() != $("#password").val()){
+                document.getElementById("verifyMessage").innerHTML = verifyMessage;
+                $("#btnChangePassword").addClass("disabled");
+                $("#btnChangePassword").prop("disabled",true);
+            }
+            else {
+                document.getElementById("verifyMessage").innerHTML = "";
+                $("#btnChangePassword").removeClass("disabled");
+                $("#btnChangePassword").prop("disabled",false);
+            }
+        }
+    });
+/*
+    $("#passwordVerifySignUp").change(function () {
+        console.log($("#passwordVerifySignUp").val());
+        console.log($("#passwordSignUp").val());
+        var verifyMessage = "Passwords must be the same"
+        if ($("#passwordSignUp").val() != "") {
+            if($("#passwordVerifySignUp").val() != $("#password").val()){
+                document.getElementById("verifyMessageSignUp").innerHTML = verifyMessage;
+                $("#btnSubmitSignUp").addClass("disabled");
+                $("#btnSubmitSignUp").prop("disabled",true);
+            }
+            else {
+                document.getElementById("verifyMessageSignUp").innerHTML = "";
+                $("#btnSubmitSignUp").removeClass("disabled");
+                $("#btnSubmitSignUp").prop("disabled",false);
+            }
+        }
+    });
+
+    $("#passwordSignUp").change(function () {
+        console.log($("#passwordVerifySignUp").val());
+        console.log($("#passwordSignUp").val());
+        var verifyMessage = "Passwords must be the same"
+        if ($("#passwordVerifySignUp").val() != "") {
+            if($("#passwordVerifySignUp").val() != $("#passwordSignUp").val()){
+                document.getElementById("verifyMessageSignUp").innerHTML = verifyMessage;
+                $("#btnSubmitSignUp").addClass("disabled");
+                $("#btnSubmitSignUp").prop("disabled",true);
+            }
+            else {
+                document.getElementById("verifyMessageSignUp").innerHTML = "";
+                $("#btnSubmitSignUp").removeClass("disabled");
+                $("#btnSubmitSignUp").prop("disabled",false);
+            }
+        }
+    });*/
 });

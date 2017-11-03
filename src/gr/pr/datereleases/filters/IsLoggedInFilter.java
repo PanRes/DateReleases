@@ -1,5 +1,7 @@
 package gr.pr.datereleases.filters;
 
+import gr.pr.datereleases.models.UsersModel;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +23,10 @@ public class IsLoggedInFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        String user = (String) session.getAttribute("user");
+        UsersModel user = (UsersModel) session.getAttribute("user");
 
         if(user != null){
-            resp.sendRedirect("/mainMenu");
+            resp.sendRedirect("/");
         }
         else{
             chain.doFilter(request, response);

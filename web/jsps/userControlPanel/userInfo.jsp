@@ -1,4 +1,7 @@
-<%@ page import="gr.pr.datereleases.hibernatetools.UserTools" %><%--
+<%@ page import="gr.pr.datereleases.hibernatetools.UserTools" %>
+<%@ page import="gr.pr.datereleases.models.UsersModel" %>
+
+<%--
   Created by IntelliJ IDEA.
   User: pressos
   Date: 30/10/2017
@@ -13,7 +16,7 @@
     <body>
         <%@include file="/jsps/universals/header.jsp"%>
         <jsp:useBean id="user" class="gr.pr.datereleases.models.UsersModel"/>
-        <c:set var="user" value='<%=UserTools.getUserById((int) session.getAttribute("userId"))%>'/>
+        <c:set var="user" value='<%=session.getAttribute("user")%>'/>
         <div class="container">
             <div class="col-lg-3 text-center">
                 <c:choose>

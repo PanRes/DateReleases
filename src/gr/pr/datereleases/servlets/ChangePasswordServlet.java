@@ -18,23 +18,22 @@ public class ChangePasswordServlet extends HttpServlet{
 			throws ServletException, IOException{
 
 		String oldPassword = request.getParameter("oldPassword");
-		String newPassword = request.getParameter("newPassword");
-		String newPasswordVerify = request.getParameter("newPasswordVerify");
+		String password = request.getParameter("password");
+		String passwordVerify = request.getParameter("passwordVerify");
 		HttpSession httpSession = request.getSession();
-		int userId = (int) httpSession.getAttribute("userId");
 
-		UsersModel user = UserTools.getUserById(userId);
+		UsersModel user = (UsersModel) httpSession.getAttribute("userId");
 
 		if(!oldPassword.equals(user.getPassword())){
 			request.setAttribute("success","wrongPassword");
 			request.getRequestDispatcher("/changeUserPassword").forward(request,response);
 		}
-		else if (!newPassword.equals(newPasswordVerify)){
+		else if (!password.equals(passwordVerify)){
 			request.setAttribute("success","differentPasswords");
 			request.getRequestDispatcher("/changeUserPassword").forward(request,response);
 		}
 		else{
-			user.setPassword(newPassword);
+			user.setPassword(password);
 			HibernateTools.updateEntity(user);
 			request.setAttribute("success","success");
 			request.getRequestDispatcher("/changeUserPassword").forward(request,response);

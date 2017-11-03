@@ -20,97 +20,102 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/mainMenu">Date Releases</a>
+                <a class="navbar-brand" href="/">Date Releases</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="dropdown ${servletPath == '/jsps/mainPages/seriesInfo.jsp' or servletPath == '/seriesInfo' ? 'active' : ''}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Series Info<b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu scrollable-menu" role="menu">
-                        <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-                            <c:set var="activeInfoSeries" value=""/>
-                            <c:if test="${(servletPath == '/jsps/maiPages/seriesInfo.jsp' or
+                <li class="dropdown ${servletPath.startsWith("/jsps/seriesPages") ? 'active' : ''}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Series <b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li class="${servletPath == '/series' || servletPath == '/jsps/mainPages/seriesPages/series.jsp' ?
+                                    'active' : ''}">
+                            <a href="/series">All Series</a>
+                        </li>
+                        <li class="dropdown-submenu ${servletPath == '/jsps/mainPages/seriesInfo.jsp' or servletPath == '/seriesInfo' ? 'active' : ''}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Info</a>
+                            <ul class="dropdown-menu scrollable-menu" role="menu">
+                                <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+                                    <c:set var="activeInfoSeries" value=""/>
+                                    <c:if test="${(servletPath == '/jsps/maiPages/seriesInfo.jsp' or
                                     servletPath == '/seriesInfo') and series.seriesId == param.seriesId}">
-                                <c:set var="activeInfoSeries" value="active"/>
-                            </c:if>
-                            <li class="${activeInfoSeries}">
-                                <a href="seriesInfo?seriesId=${series.seriesId}">${series.name}</a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </li>
-                <li class="dropdown ${servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule' ? 'active' : ''}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Series Schedule<b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu scrollable-menu">
-                        <li class="${(servletPath == '/jsps/mainPages/viewSchedule.jsp' or servletPath == '/viewSchedule') and
-                                param.seriesId == null ? 'active' : ''}"><a href="viewSchedule">All Series</a></li>
-                        <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-                            <c:set var="activeScheduleSeries" value=""/>
-                            <c:if test="${(servletPath == '/jsps/maiPages/viewSchedule.jsp' or
-                                    servletPath == '/viewSchedule') and series.seriesId == param.seriesId}">
-                                <c:set var="activeScheduleSeries" value="active"/>
-                            </c:if>
-                            <li class="${activeScheduleSeries}">
-                                <a href="viewSchedule?seriesId=${series.seriesId}">${series.name}</a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </li>
-                <li class="dropdown ${servletPath == '/jsps/maiPages/editSeriesDate.jsp' or
+                                        <c:set var="activeInfoSeries" value="active"/>
+                                    </c:if>
+                                    <li class="${activeInfoSeries}">
+                                        <a href="seriesInfo?seriesId=${series.seriesId}">${series.name}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu ${servletPath == '/jsps/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule' ? 'active' : ''}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Schedule</a>
+                            <ul class="dropdown-menu scrollable-menu">
+                                <li class="${(servletPath == '/jsps/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule') and
+                                param.seriesId == null ? 'active' : ''}"><a href="/viewSeriesSchedule">All Series</a></li>
+                                <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+                                    <c:set var="activeScheduleSeries" value=""/>
+                                    <c:if test="${(servletPath == '/jsps/seriesPages/viewSeriesSchedule.jsp' or
+                                    servletPath == '/viewSeriesSchedule') and series.seriesId == param.seriesId}">
+                                        <c:set var="activeScheduleSeries" value="active"/>
+                                    </c:if>
+                                    <li class="${activeScheduleSeries}">
+                                        <a href="/viewSeriesSchedule?seriesId=${series.seriesId}">${series.name}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu ${servletPath == '/jsps/maiPages/editSeriesDate.jsp' or
                         servletPath == '/editSeries' ? 'active' : ''}">
-                    <a href="#" class="dta-toggle" data-toggle="dropdown">
-                        Edit Series<b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu scrollable-menu">
-                        <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-                            <c:set var="activeEditSeries" value=""/>
-                            <c:if test="${(servletPath == '/jsps/maiPages/editSeriesDate.jsp' or
+                            <a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
+                            <ul class="dropdown-menu scrollable-menu">
+                                <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+                                    <c:set var="activeEditSeries" value=""/>
+                                    <c:if test="${(servletPath == '/jsps/maiPages/editSeriesDate.jsp' or
                                     servletPath == '/editSeries') and series.seriesId == param.seriesId}">
-                                <c:set var="activeEditSeries" value="active"/>
-                            </c:if>
-                            <li class="${activeEditSeries}">
-                                <a href="/editSeries?seriesId=${series.seriesId}">Edit ${series.name}</a>
+                                        <c:set var="activeEditSeries" value="active"/>
+                                    </c:if>
+                                    <li class="${activeEditSeries}">
+                                        <a href="/editSeries?seriesId=${series.seriesId}">Edit ${series.name}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                        <li class="${servletPath == '/jsps/mainPages/seriesPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
+                            <a href="/addSeriesDate">Add Episode Date</a>
+                        </li>
+                        <li class="${servletPath == '/jsps/mainPages/addPage.jsp' or servletPath == '/addPage' ? 'active' : ''}">
+                            <a href="/addSeries">Add Series</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <c:if test="${servletPath != '//jsps/welcomePage.jsp' || user != null}">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="data-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user fa-fw"></i> Welcome ${user.userName}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu scrollable-menu">
+                            <li class="${servletPath == '/userInfo' || servletPath == '/jsps/userControlPanel/userInfo.jsp' ?
+                                    'active' : ''}">
+                                <a href="/userInfo">User Info</a>
                             </li>
-                        </c:forEach>
-                    </ul>
-                </li>
-                <li class="${servletPath == '/jsps/seriesPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
-                    <a href="/addSeriesDate">Add Episode Date</a>
-                </li>
-                <li class="${servletPath == '/jsps/mainPages/addPage.jsp' or servletPath == '/addPage' ? 'active' : ''}">
-                    <a href="/addSeries">Add Series</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="data-toggle" data-toggle="dropdown">
-                        Welcome ${user}<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu scrollable-menu">
-                        <li class="${servletPath == '/userInfo' || servletPath == '/jsps/userControlPanel/userInfo.jsp' ?
-                                'active' : ''}">
-                            <a href="/userInfo">User Info</a>
-                        </li>
-                        <li class="${servletPath == '/editUserInfo' ||
-                                servletPath == '/jsps/userControlPanel/editUserInfo.jsp' ? 'active' : ''}">
-                            <a href="/editUserInfo">Edit User Info</a>
-                        </li>
-                        <li class="${servletPath == '/changeUserPassword' ||
-                                servletPath == '/jsps/userControlPanel/changeUserPassword.jsp' ? 'active' : ''}">
-                            <a href="/changeUserPassword">Change Password</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/jsps/util/logout.jsp">
-                                sign out? <i class="fa fa-sign-out"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                            <li class="${servletPath == '/editUserInfo' ||
+                                    servletPath == '/jsps/userControlPanel/editUserInfo.jsp' ? 'active' : ''}">
+                                <a href="/editUserInfo">Edit User Info</a>
+                            </li>
+                            <li class="${servletPath == '/changeUserPassword' ||
+                                    servletPath == '/jsps/userControlPanel/changeUserPassword.jsp' ? 'active' : ''}">
+                                <a href="/changeUserPassword">Change Password</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/jsps/utils/userUtils/logout.jsp">
+                                    sign out? <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </c:if>
         </div>
     </nav>
 </header>

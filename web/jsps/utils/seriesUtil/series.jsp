@@ -58,7 +58,7 @@
             </p>
         </c:if>
         <p>
-            <a href="/viewSchedule?seriesId=${series.seriesId}" class="btn btn-default">
+            <a href="/viewSeriesSchedule?seriesId=${series.seriesId}" class="btn btn-default">
                 Schedule for ${series.name}
             </a>
         </p>

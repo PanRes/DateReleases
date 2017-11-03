@@ -7,26 +7,35 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class UserTools {
 
 
-    public static int isValidUser(String userName,String password){
+    public static UsersModel isValidUser(String userName,String password){
+        int id = -1;
         Session session = HibernateTools.getSession();
         session.beginTransaction();
         List<UsersModel> users = session.createCriteria(UsersModel.class).
                 add(Restrictions.like("userName",userName)).
                 add((Restrictions.like("password", password))).list();
-
-        session.close();
-
-        if(!users.isEmpty()){
-            return users.get(0).getId();
+        if(users.isEmpty()){
+            users = session.createCriteria(UsersModel.class).
+                    add(Restrictions.like("email",userName)).
+                    add((Restrictions.like("password", password))).list();
+            if(users.isEmpty()){
+                users = null;
+            }
         }
 
-        return -1;
+        session.flush();
+        session.close();
+
+        return users.get(0);
     }
 
     public static UsersModel getUserById(int userId){
@@ -48,12 +57,32 @@ public class UserTools {
         return !users.isEmpty();
     }
 
+    public static boolean userNameExists(String userName){
+        Session session = HibernateTools.getSession();
+        session.beginTransaction();
+        List<UsersModel> users = session.createCriteria(UsersModel.class).
+                add(Restrictions.eq("userName",userName)).list();
+        session.flush();
+        session.close();
+        return !users.isEmpty();
+    }
+
     public static boolean emailExists(String email, int userId){
         Session session = HibernateTools.getSession();
         session.beginTransaction();
         List<UsersModel> users = session.createCriteria(UsersModel.class).
                 add(Restrictions.eq("email",email)).
                 add(Restrictions.ne("id",userId)).list();
+        session.flush();
+        session.close();
+        return !users.isEmpty();
+    }
+
+    public static boolean emailExists(String email){
+        Session session = HibernateTools.getSession();
+        session.beginTransaction();
+        List<UsersModel> users = session.createCriteria(UsersModel.class).
+                add(Restrictions.eq("email",email)).list();
         session.flush();
         session.close();
         return !users.isEmpty();

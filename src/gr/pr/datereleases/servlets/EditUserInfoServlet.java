@@ -23,8 +23,7 @@ public class EditUserInfoServlet extends HttpServlet{
 		String success = "fail";
 		String button = request.getParameter("submitBtn");
 		HttpSession session = request.getSession();
-		int userId = (int) request.getSession().getAttribute("userId");
-		UsersModel user = UserTools.getUserById(userId);
+		UsersModel user = (UsersModel) request.getSession().getAttribute("user");
 
 		if (button.equals("Submit Profile Changes")){
 			String userName = request.getParameter("userName");
@@ -34,10 +33,10 @@ public class EditUserInfoServlet extends HttpServlet{
 			String lastName = request.getParameter("lastName");
 			Part profileImg = request.getPart("uploadProfileImage");
 
-			if (UserTools.userNameExists(userName,userId)){
+			if (UserTools.userNameExists(userName,user.getId())){
 				success = "duplicateUserName";
 			}
-			else if(UserTools.emailExists(email,userId)){
+			else if(UserTools.emailExists(email,user.getId())){
 				success = "duplicateEmail";
 			}
 			else {
@@ -50,14 +49,14 @@ public class EditUserInfoServlet extends HttpServlet{
 				String userProfileImgsDir = request.getServletContext().getInitParameter("userProfileImgs");
 				if(profileImg.getSize() > 0){
 					String imgUrl = request.getRealPath("") + userProfileImgsDir;
-					File imgFile = GenericUtils.uploadFile(profileImg, new File(imgUrl),userId + "_" + userName + "_");
+					File imgFile = GenericUtils.uploadFile(profileImg, new File(imgUrl),user.getId() + "_" + userName + "_");
 					user.setImageUrl(userProfileImgsDir + File.separator + imgFile.getName());
 				}
 
 				try{
 					HibernateTools.updateEntity(user);
 					success = "success";
-					session.setAttribute("user",userName);
+					session.setAttribute("user",user);
 				}
 				catch (Exception e){
 					e.printStackTrace();
