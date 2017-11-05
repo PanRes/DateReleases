@@ -76,7 +76,7 @@
     
     <servlet>
         <servlet-name>seriesInfo</servlet-name>
-        <jsp-file>/jsps/seriesPages/seriesInfo.jsp</jsp-file>
+        <jsp-file>/jsps/mainPages/seriesPages/seriesInfo.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>seriesInfo</servlet-name>

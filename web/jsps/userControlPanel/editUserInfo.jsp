@@ -128,7 +128,7 @@
                         </p>
                     </div>
                     <div class="row text-center">
-                        <input type="submit" value="Submit Profile Changes" class="btn btn-Success btn-lg"/>
+                        <input type="submit" value="Submit Profile Changes" name="submitBtn" class="btn btn-Success btn-lg"/>
                     </div>
                 </div>
             </div>

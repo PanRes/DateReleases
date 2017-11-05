@@ -81,7 +81,7 @@
                         <li class="${servletPath == '/jsps/mainPages/seriesPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
                             <a href="/addSeriesDate">Add Episode Date</a>
                         </li>
-                        <li class="${servletPath == '/jsps/mainPages/addPage.jsp' or servletPath == '/addPage' ? 'active' : ''}">
+                        <li class="${servletPath == '/jsps/mainPages/seriesPages/addSeries.jsp' or servletPath == '/addSeries' ? 'active' : ''}">
                             <a href="/addSeries">Add Series</a>
                         </li>
                     </ul>
