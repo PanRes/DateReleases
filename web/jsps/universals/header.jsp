@@ -1,5 +1,7 @@
 <%@ page import="gr.pr.datereleases.hibernatetools.SeriesTools" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmr" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -7,16 +9,28 @@
   Time: 10:52 πμ
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <%@include file="inclusions.jsp"%>
 
 <c:set var="servletPath" value="${pageContext.request.servletPath}"/>
+<fmt:setLocale value="${param.language}"/>
+<fmt:setBundle basename="language"/>
 <header>
-    <h1 align="center">
-        Date Releases
-    </h1>
+    <div class="row">
+        <form>
+            <select class="selectpicker" id="language" name="language" onchange="submit()">
+                <option value="en" ${param.language == 'en' ? 'selected' : ''}>English</option>
+                <option value="el" ${param.language == 'el' ? 'selected' : ''}>Greek</option>
+            </select>
+        </form>
+        <div class="h1 text-center">
+            Date Releases
+        </div>
+    </div>
 
+    ${param.language}
+    <fmt:message key="hello"/>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">

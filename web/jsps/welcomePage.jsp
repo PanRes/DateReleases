@@ -18,12 +18,12 @@
             <c:choose>
                 <c:when test="${user != null}">
                     <div class="row">
-                        <p><h2>Welcome ${user.userName} to Panagiotis Ressos' Site</h2></p>
+                        <p><h2><fmt:message key="welcome.page.title"/> </h2></p>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="row">
-                        <p><h2>Welcome to Panagiotis Ressos' Site</h2></p>
+                        <p><h2><fmt:message key="welcome.page.title"/></h2></p>
                     </div>
                 </c:otherwise>
             </c:choose>
