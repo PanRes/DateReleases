@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Locale;
 
 @WebFilter(filterName = "LanguageFilter", value = "/LanguageFilter")
 public class LanguageFilter implements Filter{
@@ -19,8 +20,13 @@ public class LanguageFilter implements Filter{
 
 		String querySting = httpRequest.getQueryString();
 
+		System.out.println(querySting);
 
-
+//
+//		Locale locale = httpRequest.;
+//
+//		//		request.setAttribute("language",);
+//		System.out.println("locale " + locale);
 		chain.doFilter(request, response);
 	}
 

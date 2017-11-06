@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="${param.language}">
     <head>
         <title>Welcome</title>
     </head>
     <body>
+
         <%@include file="universals/header.jsp"%>
         <jsp:useBean id="user" class="gr.pr.datereleases.models.UsersModel"/>
         <c:set var="user" value='<%=session.getAttribute("user")%>'/>

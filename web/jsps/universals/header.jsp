@@ -1,7 +1,6 @@
-<%@ page import="gr.pr.datereleases.hibernatetools.SeriesTools" %>
+<%@ page import="gr.pr.datereleases.hibernatetools.SeriesTools"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fmr" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -15,8 +14,8 @@
 
 <c:set var="servletPath" value="${pageContext.request.servletPath}"/>
 
-<fmt:setLocale value="${param.language}"/>
-<fmt:setBundle basename="language"/>
+<fmt:setLocale value="${param.language}" scope="session"/>
+<fmt:setBundle basename="language" scope="session"/>
 <header>
     <div class="row">
 
@@ -26,12 +25,12 @@
         </div>
         <div class="col-lg-2 form-group">
             <form>
-                <select class="form-control selectpicker" id="language" name="language" onchange="submit()">
-                    <option value="en" ${param.language == 'en' ? 'selected' : ''}>
-                        English
+                <select class="selectpicker pull-right" data-width="fit" id="language" name="language" onchange="submit()">
+                    <option  value="el" ${param.language == 'el' ? 'selected' : ''}
+                             data-content='<span class="flag-icon flag-icon-gr"></span>'>
                     </option>
-                    <option value="el" ${param.language == 'el' ? 'selected' : ''}>
-                        Greek
+                    <option value="en" ${param.language == 'en' ? 'selected' : ''}
+                            data-content='<span class="flag-icon flag-icon-gb"></span>'>
                     </option>
                 </select>
             </form>
@@ -111,6 +110,19 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <%--<div id="navbar" class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img id="imgNavSel" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavSel">ITA</span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a class="flag-icon flag-icon-gr" href="#" class="language"><span class="flag-icon flag-icon-gr"></span>Italiano</a></li>
+                                <li><a id="navDeu" href="#" class="language"> <img id="imgNavDeu" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavDeu">Deutsch</span></a></li>
+                                <li><a id="navFra" href="#" class="language"><img id="imgNavFra" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavFra">Francais</span></a></li>
+                                <li><a id="navEng" href="#" class="language"><img id="imgNavEng" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavEng">English</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>--%>
                 <c:if test="${servletPath != '//jsps/welcomePage.jsp' || user != null}">
                     <li class="dropdown">
                         <a href="#" class="data-toggle" data-toggle="dropdown">
