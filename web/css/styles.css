@@ -110,3 +110,16 @@ img {
 }
 /*</editor-fold-submenu>*/
 
+.icon-small
+{
+    height:5px;
+    margin:0;
+    padding:0;
+}
+
+.icon-medium
+{
+    height:5px;
+    margin:0;
+    padding:0;
+}

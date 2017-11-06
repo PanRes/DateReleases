@@ -14,18 +14,27 @@
 <%@include file="inclusions.jsp"%>
 
 <c:set var="servletPath" value="${pageContext.request.servletPath}"/>
+
 <fmt:setLocale value="${param.language}"/>
 <fmt:setBundle basename="language"/>
 <header>
     <div class="row">
-        <form>
-            <select class="selectpicker" id="language" name="language" onchange="submit()">
-                <option value="en" ${param.language == 'en' ? 'selected' : ''}>English</option>
-                <option value="el" ${param.language == 'el' ? 'selected' : ''}>Greek</option>
-            </select>
-        </form>
-        <div class="h1 text-center">
+
+
+        <div class="col-lg-8 col-lg-offset-2 h1 text-center">
             Date Releases
+        </div>
+        <div class="col-lg-2 form-group">
+            <form>
+                <select class="form-control selectpicker" id="language" name="language" onchange="submit()">
+                    <option value="en" ${param.language == 'en' ? 'selected' : ''}>
+                        English
+                    </option>
+                    <option value="el" ${param.language == 'el' ? 'selected' : ''}>
+                        Greek
+                    </option>
+                </select>
+            </form>
         </div>
     </div>
 
@@ -101,8 +110,8 @@
                     </ul>
                 </li>
             </ul>
-            <c:if test="${servletPath != '//jsps/welcomePage.jsp' || user != null}">
-                <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <c:if test="${servletPath != '//jsps/welcomePage.jsp' || user != null}">
                     <li class="dropdown">
                         <a href="#" class="data-toggle" data-toggle="dropdown">
                             <i class="fa fa-user fa-fw"></i> Welcome ${user.userName}<span class="caret"></span>
@@ -128,8 +137,8 @@
                             </li>
                         </ul>
                     </li>
-                </ul>
-            </c:if>
+                </c:if>
+            </ul>
         </div>
     </nav>
 </header>
