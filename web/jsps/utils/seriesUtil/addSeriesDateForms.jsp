@@ -6,7 +6,7 @@
   Time: 11:35 πμ
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <div class="row">
     <form action="/AddDateServlet" method="post" name="frmAddDateManually" >
         <input type="hidden" class="form-control" value="frmAddDateManually" name="formName">

@@ -14,27 +14,17 @@
 
 <c:set var="servletPath" value="${pageContext.request.servletPath}"/>
 
-<fmt:setLocale value="${param.language}" scope="session"/>
+<fmt:setLocale value="${sessionScope.language}" scope="session"/>
 <fmt:setBundle basename="language" scope="session"/>
 <header>
     <div class="row">
 
-
         <div class="col-lg-8 col-lg-offset-2 h1 text-center">
             Date Releases
         </div>
-        <div class="col-lg-2 form-group">
-            <form>
-                <select class="selectpicker pull-right" data-width="fit" id="language" name="language" onchange="submit()">
-                    <option  value="el" ${param.language == 'el' ? 'selected' : ''}
-                             data-content='<span class="flag-icon flag-icon-gr"></span>'>
-                    </option>
-                    <option value="en" ${param.language == 'en' ? 'selected' : ''}
-                            data-content='<span class="flag-icon flag-icon-gb"></span>'>
-                    </option>
-                </select>
-            </form>
-        </div>
+           <%-- <div class="col-lg-2 form-group">
+
+            </div>--%>
     </div>
 
     ${param.language}
@@ -110,20 +100,20 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <%--<div id="navbar" class="navbar-collapse collapse navbar-right">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img id="imgNavSel" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavSel">ITA</span> <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a class="flag-icon flag-icon-gr" href="#" class="language"><span class="flag-icon flag-icon-gr"></span>Italiano</a></li>
-                                <li><a id="navDeu" href="#" class="language"> <img id="imgNavDeu" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavDeu">Deutsch</span></a></li>
-                                <li><a id="navFra" href="#" class="language"><img id="imgNavFra" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavFra">Francais</span></a></li>
-                                <li><a id="navEng" href="#" class="language"><img id="imgNavEng" src="" alt="..." class="img-thumbnail icon-small">  <span id="lanNavEng">English</span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>--%>
-                <c:if test="${servletPath != '//jsps/welcomePage.jsp' || user != null}">
+                <form class="navbar-form navbar-left" action="/LanguageServlet" method="post">
+                    <select class="selectpicker btn-black" data-width="fit" id="language" name="language"
+                            onchange="submit()">
+                        <option  value="el" ${language == 'el' ? 'selected' : ''}
+                                 data-content='<span class="flag-icon flag-icon-gr"></span> Ελληνικά'>
+                            Ελληνικά
+                        </option>
+                        <option value="en" ${language == 'en' ? 'selected' : ''}
+                                data-content='<span class="flag-icon flag-icon-gb"></span> English'>
+                            English
+                        </option>
+                    </select>
+                </form>
+                <c:if test="${ user != null}">
                     <li class="dropdown">
                         <a href="#" class="data-toggle" data-toggle="dropdown">
                             <i class="fa fa-user fa-fw"></i> Welcome ${user.userName}<span class="caret"></span>

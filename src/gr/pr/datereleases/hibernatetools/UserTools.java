@@ -31,9 +31,12 @@ public class UserTools {
                 users = null;
             }
         }
-
         session.flush();
         session.close();
+
+        if (users == null){
+            return null;
+        }
 
         return users.get(0);
     }

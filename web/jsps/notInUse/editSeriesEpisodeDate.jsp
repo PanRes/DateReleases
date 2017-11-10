@@ -6,7 +6,7 @@
   Time: 11:25 πμ
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <jsp:useBean id="seriesEpisode" class="gr.pr.datereleases.models.SeriesEpisodesModel"/>
 <c:set var="seriesEpisode" value='<%=SeriesEpisodesTools.getSeriesEpisodeById(Integer.valueOf(request.getParameter("seriesEpisodeId")))%>'/>
 <div class="row">

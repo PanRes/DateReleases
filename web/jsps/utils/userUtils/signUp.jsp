@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -6,7 +7,7 @@
   Time: 1:05 μμ
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
     <head>
         <title>Sign Up</title>
@@ -42,7 +43,6 @@
                 </c:when>
             </c:choose>
             <form class="form-horizontal" action="/SignUpServlet" name="loginForm" method="post">
-                <input type="hidden" class="form-control" name="page" value="${page}">
                 <div class="text-center">
                     <div class="row form-group">
                         <div class="input-group text-center col-lg-4 col-lg-offset-4">
@@ -79,21 +79,21 @@
                     </div>
                     <div class="row form-group">
                         <div class="input-group text-center col-lg-4 col-lg-offset-4">
-                            <span class="input-group-addon"><i class="fa fa-fw"></i></span>
+                            <span class="input-group-addon">FN</span>
                             <input type="text" name="firstName" class="form-control"
                                    placeholder="First Name" >
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="input-group text-center col-lg-4 col-lg-offset-4">
-                            <span class="input-group-addon"><i class="fa fa-fw"></i></span>
+                            <span class="input-group-addon">MN</span>
                             <input type="text" name="middleName" class="form-control"
                                    placeholder="Middle Name" >
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="input-group text-center col-lg-4 col-lg-offset-4">
-                            <span class="input-group-addon"><i class="fa fa-fw"></i></span>
+                            <span class="input-group-addon">LN</span>
                             <input type="text" name="lastName" class="form-control"
                                    placeholder="Last Name" >
                         </div>
@@ -102,6 +102,13 @@
                         <div class="text-center col-lg-4 col-lg-offset-4">
                             <input type="submit" name="btnSubmit" id="btnSubmitSignUp" value="Sign Up"
                                    class="btn btn-primary btn-lg">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="text-center col-lg-4 col-lg-offset-4">
+                            <a href="/login">
+                                <fmt:message key="signUp.href.login"/>
+                            </a>
                         </div>
                     </div>
                 </div>

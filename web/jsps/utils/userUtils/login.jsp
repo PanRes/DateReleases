@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -6,7 +7,7 @@
   Time: 9:52 πμ
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
     <head>
         <title>Welcome</title>
@@ -30,7 +31,6 @@
                 </div>
             </c:if>
             <form class="form-horizontal" action="/Authenticate" name="loginForm" method="post">
-                <input type="hidden" class="form-control" name="page" value="${page}">
                 <div class="text-center">
                     <div class="row form-group">
                         <div class="input-group text-center col-lg-4 col-lg-offset-4">
@@ -47,8 +47,15 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="text-center col-lg-3 col-lg-offset-4">
+                        <div class="text-center col-lg-4 col-lg-offset-4">
                             <input type="submit" name="btnSubmit" class="btn btn-primary btn-lg" value="Login">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="text-center col-lg-4 col-lg-offset-4">
+                            <a href="/signUp">
+                                <fmt:message key="login.href.signUp"/>
+                            </a>
                         </div>
                     </div>
                 </div>
