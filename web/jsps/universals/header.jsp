@@ -13,22 +13,22 @@
 <%@include file="inclusions.jsp"%>
 
 <c:set var="servletPath" value="${pageContext.request.servletPath}"/>
-
-<fmt:setLocale value="${sessionScope.language}" scope="session"/>
-<fmt:setBundle basename="language" scope="session"/>
+<fmt:requestEncoding value="UTF-8"/>
+<fmt:setLocale value="${sessionScope.language == null ? 'el' : sessionScope.language}"/>
+<fmt:setBundle basename="language"/>
 <header>
     <div class="row">
 
         <div class="col-lg-8 col-lg-offset-2 h1 text-center">
-            Date Releases
+            <fmt:message key="header.mainTitle" />
         </div>
            <%-- <div class="col-lg-2 form-group">
 
             </div>--%>
     </div>
+    ${sessionScope.language == null ? 'testel' : sessionScope.language}<br>
+    <fmt:message key="hello" /><br>
 
-    ${param.language}
-    <fmt:message key="hello"/>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
