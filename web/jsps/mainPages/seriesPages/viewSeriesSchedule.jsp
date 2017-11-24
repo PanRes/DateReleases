@@ -23,9 +23,12 @@
         <%
 
             String seriesIdString = (String) request.getParameter("seriesId");
-            int seriesId = 0;
+            int seriesId = -1;
             if (seriesIdString != null) {
                 seriesId = Integer.valueOf(seriesIdString);
+            }
+            else if (seriesIdString.equals("0")){
+                seriesId = 0;
             }
             Calendar now = Calendar.getInstance(Locale.US);
             now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,

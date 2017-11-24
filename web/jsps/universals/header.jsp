@@ -26,8 +26,6 @@
 
             </div>--%>
     </div>
-    ${sessionScope.language == null ? 'testel' : sessionScope.language}<br>
-    <fmt:message key="hello" /><br>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -61,7 +59,9 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Schedule</a>
                             <ul class="dropdown-menu scrollable-menu">
                                 <li class="${(servletPath == '/jsps/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule') and
-                                param.seriesId == null ? 'active' : ''}"><a href="/viewSeriesSchedule">All Series</a></li>
+                                        param.seriesId == null ? 'active' : ''}"><a href="/viewSeriesSchedule">All Series</a></li>
+                                <li class="${(servletPath == '/jsps/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule') and
+                                        param.seriesId == 0 ? 'active' : ''}"><a href="/viewSeriesSchedule?seriesId=0">Favorite Series</a></li>
                                 <c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
                                     <c:set var="activeScheduleSeries" value=""/>
                                     <c:if test="${(servletPath == '/jsps/seriesPages/viewSeriesSchedule.jsp' or

@@ -14,7 +14,7 @@ public class SeriesEpisodesTools {
         Session session = HibernateTools.getSession();
         session.beginTransaction();
         List<SeriesEpisodesModel> seriesEpisodes = null;
-        if (seriesId == 0){
+        if (seriesId == -1){
             seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).list();
         }
         else{

@@ -36,5 +36,7 @@
     <orderEntry type="library" name="mysql-connector-java-5.1.41" level="project" />
     <orderEntry type="library" name="commons-collections4-4.1" level="project" />
     <orderEntry type="library" name="poi-3.17" level="project" />
+    <orderEntry type="library" name="javax.faces-api-2.2" level="project" />
+    <orderEntry type="library" name="jsf-facelets" level="project" />
   </component>
 </module>
