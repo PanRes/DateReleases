@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="DateReleases:war">
-    <output-path>$PROJECT_DIR$/out/artifacts/DateReleases_war</output-path>
-    <root id="archive" name="DateReleases_war.war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="DateReleases-0.0.1.war">
       <element id="artifact" artifact-name="DateReleases:war exploded" />
     </root>
   </artifact>
