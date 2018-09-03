@@ -1,6 +1,6 @@
 create
 
-create table roles
+create table date_releases.roles
 (
 	id        int auto_increment
 		primary key,
@@ -9,7 +9,7 @@ create table roles
 	unique (role_name)
 );
 
-create table series
+create table date_releases.series
 (
 	id           int auto_increment
 		primary key,
@@ -22,7 +22,7 @@ create table series
 	unique (name)
 );
 
-create table series_episodes
+create table date_releases.series_episodes
 (
 	series_episodes_id int auto_increment
 		primary key,
@@ -36,7 +36,7 @@ create table series_episodes
 create index series_id
 	on series_episodes (series_id);
 
-create table users
+create table date_releases.users
 (
 	id          int auto_increment
 		primary key,
@@ -53,7 +53,7 @@ create table users
 	unique (user_name)
 );
 
-create table user_favorites_series
+create table date_releases.user_favorites_series
 (
 	user_id   int null,
 	series_id int null,
@@ -69,7 +69,7 @@ create table user_favorites_series
 		on delete cascade
 );
 
-create table user_role
+create table date_releases.user_role
 (
 	user_id int not null,
 	role_id int not null,

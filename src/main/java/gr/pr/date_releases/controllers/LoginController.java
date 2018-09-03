@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
 	@RequestMapping("/login")
-	public static String login() {
-		return "utils/userUtils/";
+	public String login() {
+		return "utils/userUtils/login";
 	}
 }

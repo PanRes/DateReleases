@@ -1,7 +1,7 @@
 package gr.pr.date_releases.entity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(schema = "date_releases", name = "users")
@@ -40,13 +40,21 @@ public class UserEntity {
 	@Column(name = "email", unique = true)
 	private String email;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 	)
-	private List<RolesEntity> roles;
+	private Set<RolesEntity> roles;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "user_series_favorites",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "series_id")
+	)
+	private Set<SeriesEntity> favoriteSeries;
 
 	public UserEntity() {
 	}
@@ -131,7 +139,39 @@ public class UserEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	public Set<RolesEntity> getRoles() {
+		return roles;
+	}
+	
+	public void setRoles(Set<RolesEntity> roles) {
+		this.roles = roles;
+	}
+	
+	public void addRole(RolesEntity role) {
+		this.roles.add(role);
+	}
+	
+	public void addRoles(Set<RolesEntity> roles) {
+		this.roles.addAll(roles);
+	}
+	
+	public Set<SeriesEntity> getFavoriteSeries() {
+		return favoriteSeries;
+	}
+	
+	public void setFavoriteSeries(Set<SeriesEntity> favoriteSeries) {
+		this.favoriteSeries = favoriteSeries;
+	}
+	
+	public void addSeries(SeriesEntity series) {
+		this.favoriteSeries.add(series);
+	}
+	
+	public void addSeries(Set<SeriesEntity> series) {
+		this.favoriteSeries.addAll(series);
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

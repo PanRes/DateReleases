@@ -2,6 +2,7 @@ package gr.pr.date_releases.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "series", schema = "date_releases")
@@ -17,7 +18,7 @@ public class SeriesEntity {
 	private String name;
 
 	@Basic
-	@Column(name = "date_started", nullable = true)
+	@Column(name = "date_started")
 	private Date dateStarted;
 
 	@Basic
@@ -25,10 +26,37 @@ public class SeriesEntity {
 	private boolean ended;
 
 	@Basic
-	@Column(name = "imageUrl", nullable = true, length = 255)
+	@Column(name = "img_url")
 	private String imageUrl;
+	
+	@Basic
+	@Column(name = "channel")
 	private String channel;
-
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "user_series_favorites",
+			joinColumns = @JoinColumn(name = "series_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	private List<UserEntity> usersFavorite;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "series")
+	private List<SeriesEpisodesEntity> seriesEpisodes;
+	
+	public SeriesEntity() {
+	}
+	
+	public SeriesEntity(String name) {
+		this.name = name;
+		this.ended = false;
+	}
+	
+	public SeriesEntity(String name, boolean ended) {
+		this.name = name;
+		this.ended = ended;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -52,8 +80,8 @@ public class SeriesEntity {
 	public void setDateStarted(Date dateStarted) {
 		this.dateStarted = dateStarted;
 	}
-
-	public boolean hasEnded() {
+	
+	public boolean isEnded() {
 		return ended;
 	}
 
@@ -68,9 +96,7 @@ public class SeriesEntity {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-
-	@Basic
-	@Column(name = "channel", nullable = true, length = 45)
+	
 	public String getChannel() {
 		return channel;
 	}
@@ -78,16 +104,32 @@ public class SeriesEntity {
 	public void setChannel(String channel) {
 		this.channel = channel;
 	}
-
+	
+	public List<UserEntity> getUsersFavorite() {
+		return usersFavorite;
+	}
+	
+	public void setUsersFavorite(List<UserEntity> usersFavorite) {
+		this.usersFavorite = usersFavorite;
+	}
+	
+	public void addUser(UserEntity user) {
+		this.usersFavorite.add(user);
+	}
+	
+	public void addUsers(List<UserEntity> users) {
+		this.usersFavorite.addAll(users);
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
+		
 		SeriesEntity that = (SeriesEntity) o;
-
+		
 		if (getId() != that.getId()) return false;
-		if (ended != that.ended) return false;
+		if (isEnded() != that.isEnded()) return false;
 		if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
 		if (getDateStarted() != null ? !getDateStarted().equals(that.getDateStarted()) : that.getDateStarted() != null)
 			return false;
@@ -95,13 +137,13 @@ public class SeriesEntity {
 			return false;
 		return getChannel() != null ? getChannel().equals(that.getChannel()) : that.getChannel() == null;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = getId();
 		result = 31 * result + (getName() != null ? getName().hashCode() : 0);
 		result = 31 * result + (getDateStarted() != null ? getDateStarted().hashCode() : 0);
-		result = 31 * result + (ended ? 1 : 0);
+		result = 31 * result + (isEnded() ? 1 : 0);
 		result = 31 * result + (getImageUrl() != null ? getImageUrl().hashCode() : 0);
 		result = 31 * result + (getChannel() != null ? getChannel().hashCode() : 0);
 		return result;

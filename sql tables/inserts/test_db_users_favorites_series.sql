@@ -1,1 +1,0 @@
-INSERT INTO test_db.users_favorites_series (user_id, series_id) VALUES (1, 2);

@@ -1,2 +1,0 @@
-UPDATE test_db.users SET user_name = 'PR', password = 'test123', img_url = null, first_name = '', middle_name = '', last_name = '', email = 'p.ressos@hotmail.com' WHERE id = 1;
-UPDATE test_db.users SET user_name = 'PanRes', password = 'test123', img_url = null, first_name = null, middle_name = null, last_name = null, email = 'panres13@gmail.com' WHERE id = 2;

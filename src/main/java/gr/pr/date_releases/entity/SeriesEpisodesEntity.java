@@ -4,38 +4,51 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "series_episodes", schema = "date_releases", catalog = "")
+@Table(name = "series_episodes", schema = "date_releases")
 public class SeriesEpisodesEntity {
-
-	private int seriesEpisodesId;
-	private int seriesId;
-	private int season;
-	private int episode;
-	private Date releaseDate;
-	private String notes;
-
+	
 	@Id
-	@Column(name = "series_episodes_id", nullable = false)
-	public int getSeriesEpisodesId() {
-		return seriesEpisodesId;
-	}
-
-	public void setSeriesEpisodesId(int seriesEpisodesId) {
-		this.seriesEpisodesId = seriesEpisodesId;
-	}
-
-	@Basic
-	@Column(name = "series_id", nullable = false)
-	public int getSeriesId() {
-		return seriesId;
-	}
-
-	public void setSeriesId(int seriesId) {
-		this.seriesId = seriesId;
-	}
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private int id;
+	
 	@Basic
 	@Column(name = "season", nullable = false)
+	private int season;
+	
+	@Basic
+	@Column(name = "episode", nullable = false)
+	private int episode;
+	
+	@Basic
+	@Column(name = "release_date")
+	private Date releaseDate;
+	
+	@Basic
+	@Column(name = "notes", length = 45)
+	private String notes;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "series_id")
+	private SeriesEntity series;
+	
+	public SeriesEpisodesEntity() {
+	}
+	
+	public SeriesEpisodesEntity(int season, int episode, SeriesEntity series) {
+		this.season = season;
+		this.episode = episode;
+		this.series = series;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = this.id;
+	}
+	
 	public int getSeason() {
 		return season;
 	}
@@ -44,8 +57,6 @@ public class SeriesEpisodesEntity {
 		this.season = season;
 	}
 
-	@Basic
-	@Column(name = "episode", nullable = false)
 	public int getEpisode() {
 		return episode;
 	}
@@ -54,8 +65,6 @@ public class SeriesEpisodesEntity {
 		this.episode = episode;
 	}
 
-	@Basic
-	@Column(name = "release_date", nullable = true)
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
@@ -64,8 +73,6 @@ public class SeriesEpisodesEntity {
 		this.releaseDate = releaseDate;
 	}
 
-	@Basic
-	@Column(name = "notes", nullable = true, length = 45)
 	public String getNotes() {
 		return notes;
 	}
@@ -73,32 +80,37 @@ public class SeriesEpisodesEntity {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
+	
+	public SeriesEntity getSeries() {
+		return series;
+	}
+	
+	public void setSeries(SeriesEntity series) {
+		this.series = series;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
+		
 		SeriesEpisodesEntity that = (SeriesEpisodesEntity) o;
-
-		if (seriesEpisodesId != that.seriesEpisodesId) return false;
-		if (seriesId != that.seriesId) return false;
-		if (season != that.season) return false;
-		if (episode != that.episode) return false;
-		if (releaseDate != null ? !releaseDate.equals(that.releaseDate) : that.releaseDate != null) return false;
-		if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
-
-		return true;
+		
+		if (id != that.id) return false;
+		if (getSeason() != that.getSeason()) return false;
+		if (getEpisode() != that.getEpisode()) return false;
+		if (getReleaseDate() != null ? !getReleaseDate().equals(that.getReleaseDate()) : that.getReleaseDate() != null)
+			return false;
+		return getNotes() != null ? getNotes().equals(that.getNotes()) : that.getNotes() == null;
 	}
-
+	
 	@Override
 	public int hashCode() {
-		int result = seriesEpisodesId;
-		result = 31 * result + seriesId;
-		result = 31 * result + season;
-		result = 31 * result + episode;
-		result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
-		result = 31 * result + (notes != null ? notes.hashCode() : 0);
+		int result = id;
+		result = 31 * result + getSeason();
+		result = 31 * result + getEpisode();
+		result = 31 * result + (getReleaseDate() != null ? getReleaseDate().hashCode() : 0);
+		result = 31 * result + (getNotes() != null ? getNotes().hashCode() : 0);
 		return result;
 	}
 }

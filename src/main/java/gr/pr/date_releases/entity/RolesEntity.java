@@ -1,7 +1,7 @@
 package gr.pr.date_releases.entity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles", schema = "date_releases")
@@ -13,17 +13,24 @@ public class RolesEntity {
 	private int id;
 
 	@Basic
-	@Column(name = "role_name", unique = true, nullable = false, length = 20)
+	@Column(name = "name", unique = true, nullable = false, length = 20)
 	private String roleName;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "role_id"),
 			inverseJoinColumns = @JoinColumn(name = "user_id")
 	)
-	private List<UserEntity> users;
-
+	private Set<UserEntity> users;
+	
+	public RolesEntity() {
+	}
+	
+	public RolesEntity(String roleName) {
+		this.roleName = roleName;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -39,7 +46,23 @@ public class RolesEntity {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-
+	
+	public Set<UserEntity> getUsers() {
+		return users;
+	}
+	
+	public void setUsers(Set<UserEntity> users) {
+		this.users = users;
+	}
+	
+	public void addUser(UserEntity user) {
+		this.users.add(user);
+	}
+	
+	public void addUsers(Set<UserEntity> users) {
+		this.users.addAll(users);
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
