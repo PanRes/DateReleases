@@ -1,6 +1,5 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.HibernateTools;
 import gr.pr.date_releases.hibernatetools.UserTools;
 import gr.pr.date_releases.models.UsersModel;
 import gr.pr.date_releases.utils.GenericUtils;

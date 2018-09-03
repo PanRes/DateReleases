@@ -1,7 +1,5 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.HibernateTools;
-import gr.pr.date_releases.hibernatetools.SeriesTools;
 import gr.pr.date_releases.models.SeriesModel;
 import gr.pr.date_releases.utils.GenericUtils;
 import org.hibernate.HibernateException;

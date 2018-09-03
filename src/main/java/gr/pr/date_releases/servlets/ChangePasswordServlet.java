@@ -1,6 +1,5 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.HibernateTools;
 import gr.pr.date_releases.models.UsersModel;
 
 import javax.servlet.ServletException;

@@ -5,6 +5,10 @@ import java.util.Set;
 
 @Entity
 @Table(schema = "date_releases", name = "users")
+@NamedQueries({
+		@NamedQuery(name = "User.findAll", query = "FROM UserEntity u"),
+		@NamedQuery(name = "User.findUserByUserName", query = "FROM UserEntity u WHERE u.userName = :userName")
+})
 public class UserEntity {
 
 	@Id
@@ -39,6 +43,10 @@ public class UserEntity {
 	@Basic
 	@Column(name = "email", unique = true)
 	private String email;
+	
+	@Basic
+	@Column(name = "enabled", nullable = false)
+	private boolean enabled;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
@@ -63,6 +71,7 @@ public class UserEntity {
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
+		enabled = true;
 	}
 
 	public UserEntity(String userName, String password, String userImgUrl,
@@ -74,6 +83,7 @@ public class UserEntity {
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.email = email;
+		enabled = true;
 	}
 
 	public int getId() {
@@ -140,6 +150,14 @@ public class UserEntity {
 		this.email = email;
 	}
 	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 	public Set<RolesEntity> getRoles() {
 		return roles;
 	}
@@ -176,10 +194,11 @@ public class UserEntity {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
+		
 		UserEntity that = (UserEntity) o;
-
+		
 		if (getId() != that.getId()) return false;
+		if (isEnabled() != that.isEnabled()) return false;
 		if (getUserName() != null ? !getUserName().equals(that.getUserName()) : that.getUserName() != null)
 			return false;
 		if (getPassword() != null ? !getPassword().equals(that.getPassword()) : that.getPassword() != null)
@@ -194,7 +213,7 @@ public class UserEntity {
 			return false;
 		return getEmail() != null ? getEmail().equals(that.getEmail()) : that.getEmail() == null;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		int result = getId();
@@ -205,13 +224,14 @@ public class UserEntity {
 		result = 31 * result + (getMiddleName() != null ? getMiddleName().hashCode() : 0);
 		result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
 		result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+		result = 31 * result + (isEnabled() ? 1 : 0);
 		return result;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "UserEntity{ userName: " + userName +
-				" full name" + firstName + " " + middleName != null ? middleName + " " : lastName +
-				"email: " + email + "}";
+				", full name" + firstName + " " + middleName != null ? middleName + " " : lastName +
+				", email: " + email + ", isEnabled: " + enabled + "}";
 	}
 }

@@ -1,6 +1,5 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.HibernateTools;
 import gr.pr.date_releases.hibernatetools.SeriesEpisodesTools;
 import gr.pr.date_releases.models.SeriesEpisodesModel;
 import gr.pr.date_releases.utils.AddDatesUtil;

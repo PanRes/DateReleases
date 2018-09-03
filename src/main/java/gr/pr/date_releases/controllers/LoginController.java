@@ -10,4 +10,9 @@ public class LoginController {
 	public String login() {
 		return "utils/userUtils/login";
 	}
+	
+	@RequestMapping("/signUp")
+	public String signUp() {
+		return "utils/userUtils/signUp";
+	}
 }
