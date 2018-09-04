@@ -5,6 +5,10 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "series_episodes", schema = "date_releases")
+@NamedQueries({
+		@NamedQuery(name = "SeriesEpisodes.findAll", query = "FROM SeriesEpisodesEntity se"),
+		@NamedQuery(name = "SeriesEpisodes.findEpisodesBySeries", query = "FROM SeriesEpisodesEntity se where se.series = :series")
+})
 public class SeriesEpisodesEntity {
 	
 	@Id

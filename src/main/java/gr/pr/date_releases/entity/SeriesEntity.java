@@ -6,6 +6,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "series", schema = "date_releases")
+@NamedQueries({
+		@NamedQuery(name = "Series.findAll", query = "FROM SeriesEntity s"),
+		@NamedQuery(name = "Series.findSeriesByName", query = "FROM SeriesEntity s where s.name = :name")
+})
 public class SeriesEntity {
 
 	@Id
@@ -33,7 +37,7 @@ public class SeriesEntity {
 	@Column(name = "channel")
 	private String channel;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "user_series_favorites",
 			joinColumns = @JoinColumn(name = "series_id"),
@@ -41,7 +45,7 @@ public class SeriesEntity {
 	)
 	private List<UserEntity> usersFavorite;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "series")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "series", orphanRemoval = true)
 	private List<SeriesEpisodesEntity> seriesEpisodes;
 	
 	public SeriesEntity() {
@@ -119,6 +123,11 @@ public class SeriesEntity {
 	
 	public void addUsers(List<UserEntity> users) {
 		this.usersFavorite.addAll(users);
+	}
+	
+	//TODO : check if entry is removed from user_series_favorite table
+	public void removeUserFavorite(UserEntity user) {
+		usersFavorite.remove(user);
 	}
 	
 	@Override

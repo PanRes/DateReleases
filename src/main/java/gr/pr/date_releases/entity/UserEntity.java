@@ -47,8 +47,8 @@ public class UserEntity {
 	@Basic
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
-
-	@ManyToMany(fetch = FetchType.LAZY)
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "user_id"),
@@ -56,7 +56,7 @@ public class UserEntity {
 	)
 	private Set<RolesEntity> roles;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "user_series_favorites",
 			joinColumns = @JoinColumn(name = "user_id"),
@@ -174,6 +174,11 @@ public class UserEntity {
 		this.roles.addAll(roles);
 	}
 	
+	//TODO : check if entry is removed from user_roles table
+	public void removeRole(RolesEntity role) {
+		this.roles.remove(role);
+	}
+	
 	public Set<SeriesEntity> getFavoriteSeries() {
 		return favoriteSeries;
 	}
@@ -188,6 +193,11 @@ public class UserEntity {
 	
 	public void addSeries(Set<SeriesEntity> series) {
 		this.favoriteSeries.addAll(series);
+	}
+	
+	//TODO : check if entry is removed from user_series_favorite table
+	public void removeFavortieSeries(SeriesEntity series) {
+		favoriteSeries.remove(series);
 	}
 	
 	@Override

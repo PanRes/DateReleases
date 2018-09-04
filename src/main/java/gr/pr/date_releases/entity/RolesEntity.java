@@ -15,8 +15,8 @@ public class RolesEntity {
 	@Basic
 	@Column(name = "name", unique = true, nullable = false, length = 20)
 	private String roleName;
-
-	@ManyToMany(fetch = FetchType.LAZY)
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "role_id"),
