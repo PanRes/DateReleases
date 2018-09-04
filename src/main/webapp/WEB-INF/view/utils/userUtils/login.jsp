@@ -60,6 +60,6 @@
 					</div>
 				</div>
 			</form>
-			<%@include file="/jsps/universals/footer.jsp"%>
+			<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

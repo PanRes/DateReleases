@@ -12,7 +12,7 @@
 		<title>Add New Series</title>
 	</head>
 	<body>
-		<%@include file="/jsps/universals/header.jsp"%>
+		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<c:choose>
 			<c:when test="${successCreation == 'success'}">
 				<div class="alert alert-success text-center">
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 		</form>
-		<%@include file="/jsps/universals/footer.jsp"%>
+		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>
 

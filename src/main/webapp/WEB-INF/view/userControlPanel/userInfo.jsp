@@ -11,7 +11,7 @@
 		<title>Personal Info</title>
 	</head>
 	<body>
-		<%@include file="/jsps/universals/header.jsp"%>
+		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<jsp:useBean id="user" class="gr.pr.date_releases.models.UsersModel"/>
 		<c:set var="user" value='<%=session.getAttribute("user")%>'/>
 		<div class="container">
@@ -83,6 +83,6 @@
 				</div>
 			</div>
 		</div>
-		<%@include file="/jsps/universals/footer.jsp"%>
+		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

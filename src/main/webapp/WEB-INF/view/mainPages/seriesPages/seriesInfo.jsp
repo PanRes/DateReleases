@@ -14,7 +14,7 @@
 		<title><%=SeriesTools.getSeriesNameBySeriesId(Integer.valueOf(request.getParameter("seriesId")))%> Info</title>
 	</head>
 	<body>
-		<%@include file="/jsps/universals/header.jsp"%>
+		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<jsp:useBean id="series" scope="page" class="gr.pr.date_releases.models.SeriesModel"/>
 		<jsp:useBean id="UserFavoriteSeriesTools" class="gr.pr.date_releases.hibernatetools.UserFarvoriteSeriesTools"/>
 		<c:set var="series" value='<%=SeriesTools.getSeriesById(Integer.valueOf(request.getParameter("seriesId")))%>'/>
@@ -86,6 +86,6 @@
 				</div>
 			</div>
 		</div>
-		<%@include file="/jsps/universals/footer.jsp"%>
+		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

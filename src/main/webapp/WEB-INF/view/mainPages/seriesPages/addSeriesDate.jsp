@@ -12,7 +12,7 @@
 		<title>${pageContext.request.servletPath == 'edit' ? "Edit" : "Add"} Date for Episode</title>
 	</head>
 	<body>
-		<%@include file="/jsps/universals/header.jsp"%>
+		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 
 		<c:choose>
 			<c:when test="${pageContext.request.servletPath == '/editSeriesDate'}">
@@ -70,13 +70,13 @@
 			</div>
 			<c:choose>
 				<c:when test="${pageContext.request.servletPath == '/editSeriesDate'}">
-					<%@include file="/jsps/utils/seriesUtil/editSeriesDate.jsp"%>
+					<%@include file="/WEB-INF/view/utils/seriesUtil/editSeriesDate.jsp"%>
 				</c:when>
 				<c:otherwise>
-					<jsp:include page="/jsps/utils/seriesUtil/addSeriesDateForms.jsp"/>
+					<jsp:include page="/WEB-INF/view/utils/seriesUtil/addSeriesDateForms.jsp"/>
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<%@include file="/jsps/universals/footer.jsp"%>
+		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

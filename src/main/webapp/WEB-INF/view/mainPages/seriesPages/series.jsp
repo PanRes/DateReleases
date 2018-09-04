@@ -12,7 +12,7 @@
 	<title>Main Menu</title>
 </head>
 <body>
-	<%@include file="/jsps/universals/header.jsp"%>
+	<%@include file="/WEB-INF/view/universals/header.jsp"%>
 	<div class="row text-center">
 		<p>
 			<a href="/viewSeriesSchedule" class="btn btn-default text-center">
@@ -21,8 +21,8 @@
 		</p>
 
 
-		<jsp:include page="/jsps/utils/seriesUtil/series.jsp"/>
+		<jsp:include page="/WEB-INF/view/utils/seriesUtil/series.jsp"/>
 	</div>
-	<%@include file="/jsps/universals/footer.jsp"%>
+	<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 </body>
 </html>

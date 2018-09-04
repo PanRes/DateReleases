@@ -17,7 +17,7 @@
 		<c:if test="${user != null}">
 			<c:redirect url="/"/>
 		</c:if>
-		<%@include file="/jsps/universals/inclusions.jsp"%>
+		<%@include file="/WEB-INF/view/universals/inclusions.jsp"%>
 
 		<h1 align="center">
 			Date Releases
@@ -113,6 +113,6 @@
 					</div>
 				</div>
 			</form>
-			<%@include file="/jsps/universals/footer.jsp"%>
+			<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

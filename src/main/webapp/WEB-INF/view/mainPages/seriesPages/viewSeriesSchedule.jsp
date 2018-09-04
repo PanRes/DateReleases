@@ -17,7 +17,7 @@
 		<title>Schedule</title>
 	</head>
 	<body>
-		<%@include file="/jsps/universals/header.jsp"%>
+		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<jsp:useBean id="SeriesEpisodesTools" class="gr.pr.date_releases.hibernatetools.SeriesEpisodesTools"/>
 		<jsp:useBean id="SeriesTools" class="gr.pr.date_releases.hibernatetools.SeriesTools"/>
 		<%
@@ -112,6 +112,6 @@
 				</table>
 			</c:otherwise>
 		</c:choose>
-		<%@include file="/jsps/universals/footer.jsp"%>
+		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

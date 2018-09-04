@@ -11,7 +11,7 @@
 		<title>Change Password</title>
 	</head>
 	<body>
-		<%@ include file="/jsps/universals/header.jsp"%>
+		<%@ include file="/WEB-INF/view/universals/header.jsp"%>
 		<div class="container text-center">
 			<h4>${user.getUserName()} Change Password</h4>
 			<c:choose>
@@ -70,7 +70,7 @@
 			</form>
 		</div>
 
-		<%@include file="/jsps/universals/footer.jsp"%>
+		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>
 
