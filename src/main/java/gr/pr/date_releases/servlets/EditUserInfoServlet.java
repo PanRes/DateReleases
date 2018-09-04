@@ -1,14 +1,11 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.UserTools;
-import gr.pr.date_releases.models.UsersModel;
-import gr.pr.date_releases.utils.GenericUtils;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.File;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "EditUserInfoServlet", value = "/EditUserInfoServlet")
@@ -16,7 +13,7 @@ import java.io.IOException;
 		maxFileSize = 1024*1024*10,
 		maxRequestSize = 1024*1024*50)
 public class EditUserInfoServlet extends HttpServlet{
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
 
 		String success = "fail";
@@ -76,7 +73,7 @@ public class EditUserInfoServlet extends HttpServlet{
 
 		response.sendRedirect("/editUserInfo?success=" + success);
 	}
-
+*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
 		response.sendRedirect("/editUserInfo");

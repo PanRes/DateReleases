@@ -17,7 +17,7 @@ public class AddRemoveFavoritesServlet extends HttpServlet{
 		doGet(request, response);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+/*	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
 		HttpSession session = request.getSession();
 
@@ -27,5 +27,5 @@ public class AddRemoveFavoritesServlet extends HttpServlet{
 		boolean removedFromFavorite = UserFarvoriteSeriesTools.addRemoveUsersFavoritesFavorites(seriesId,userId);
 		String redirectPage = request.getHeader("referer");
 		response.sendRedirect(redirectPage);
-	}
+	}*/
 }

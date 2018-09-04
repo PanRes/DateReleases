@@ -1,27 +1,11 @@
 package gr.pr.date_releases.utils;
 
-import gr.pr.date_releases.models.SeriesEpisodesModel;
-import gr.pr.date_releases.models.SeriesModel;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
-
 public class XlsxUtils {
 
-	//need fix to check if series does not exist to insert it, add series from addDate, add notes on seriesEpisodes
-	public static List<SeriesEpisodesModel> readFromXlsx(File xlsxFile) throws Exception {
+/*	//need fix to check if series does not exist to insert it, add series from addDate, add notes on seriesEpisodes
+	public static List<SeriesEntity> readFromXlsx(File xlsxFile) throws Exception {
 
-		List<SeriesEpisodesModel> seriesEpisodesModels = new ArrayList<>();
+		List<SeriesEntity> seriesEpisodesModels = new ArrayList<>();
 
 		FileInputStream fileInputStream = new FileInputStream(xlsxFile);
 		XSSFWorkbook xssfWorkbook = new XSSFWorkbook(fileInputStream);
@@ -80,8 +64,8 @@ public class XlsxUtils {
 					}
 				}
 			}
-
-			SeriesModel seriesModel = SeriesTools.getSeriesByName(series);
+			
+			SeriesEntity seriesModel = SeriesTools.getSeriesByName(series);
 			SeriesEpisodesModel seriesEpisode = new SeriesEpisodesModel();
 			seriesEpisode.setSeason(season);
 			seriesEpisode.setEpisode(episode);
@@ -92,5 +76,5 @@ public class XlsxUtils {
 		}
 
 		return seriesEpisodesModels;
-	}
+	}*/
 }

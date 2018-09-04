@@ -1,13 +1,7 @@
 package gr.pr.date_releases.hibernatetools;
 
-import gr.pr.date_releases.models.SeriesEpisodesModel;
-import gr.pr.date_releases.models.SeriesModel;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
-import java.util.List;
-
 public class SeriesEpisodesTools {
+/*
 
 	public static List<SeriesEpisodesModel> getSeriesEpisodeBySeriesId(int seriesId){
 		Session session = null;
@@ -26,9 +20,11 @@ public class SeriesEpisodesTools {
 			seriesEpisodes = session.createCriteria(SeriesEpisodesModel.class).
 					add(Restrictions.eq("seriesBySeriesId",series)).list();
 		}
-		/*
+		*/
+/*
 		* Leave System.out.println be there, alternative it is not return anything, needs investigation
-		* */
+		* *//*
+
 		System.out.println(seriesEpisodes);
 		session.close();
 		return seriesEpisodes;
@@ -146,5 +142,6 @@ public class SeriesEpisodesTools {
 		session.close();
 		return seriesEpisode;
 	}
+*/
 
 }

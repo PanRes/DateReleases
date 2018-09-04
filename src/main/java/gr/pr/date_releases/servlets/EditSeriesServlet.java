@@ -1,27 +1,19 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.models.SeriesModel;
-import gr.pr.date_releases.utils.GenericUtils;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @WebServlet(name = "EditSeriesServlet")
 @MultipartConfig(fileSizeThreshold = 1024*1024*2,
 				maxFileSize = 1024*1024*10,
 				maxRequestSize = 1024*1024*50)
 public class EditSeriesServlet extends HttpServlet {
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		int seriesId = Integer.valueOf(request.getParameter("seriesId"));
@@ -70,7 +62,7 @@ public class EditSeriesServlet extends HttpServlet {
 			request.getServletContext().getRequestDispatcher("/editSeries").forward(request,response);
 		}
 	}
-
+*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("/");

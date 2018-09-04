@@ -1,8 +1,5 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.UserTools;
-import gr.pr.date_releases.models.UsersModel;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +9,7 @@ import java.io.IOException;
 
 @WebServlet(name = "SignUpServlet", value = "/SignUpServlet")
 public class SignUpServlet extends HttpServlet{
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
 		String email = request.getParameter("email");
 		String userName = request.getParameter("userName");
@@ -50,7 +47,7 @@ public class SignUpServlet extends HttpServlet{
 			request.getRequestDispatcher("/Authenticate").forward(request,response);
 		}
 	}
-
+*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
 		response.sendRedirect("");

@@ -1,15 +1,8 @@
 package gr.pr.date_releases.hibernatetools;
 
-import gr.pr.date_releases.models.UsersModel;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
-import java.util.List;
-
-
 public class UserTools {
 
-
+/*
 	public static UsersModel isValidUser(String userName,String password){
 		int id = -1;
 		Session session = null;
@@ -113,5 +106,5 @@ public class UserTools {
 		session.flush();
 		session.close();
 		return !users.isEmpty();
-	}
+	}*/
 }

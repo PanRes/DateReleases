@@ -1,16 +1,7 @@
 package gr.pr.date_releases.hibernatetools;
 
-import gr.pr.date_releases.models.SeriesModel;
-import gr.pr.date_releases.models.UsersFavoritesSeriesModel;
-import gr.pr.date_releases.models.UsersModel;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
-
-import java.util.List;
-
-
 public class UserFarvoriteSeriesTools{
+/*
 
 	public static boolean addRemoveUsersFavoritesFavorites(int seriesId, int userId){
 		if(isUsersFavoriteSeries(seriesId, userId)){
@@ -77,5 +68,6 @@ public class UserFarvoriteSeriesTools{
 		session.close();
 		return userFavoritesSeries;
 	}
+*/
 
 }

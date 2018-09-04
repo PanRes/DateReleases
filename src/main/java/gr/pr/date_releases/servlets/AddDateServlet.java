@@ -1,31 +1,19 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.SeriesEpisodesTools;
-import gr.pr.date_releases.models.SeriesEpisodesModel;
-import gr.pr.date_releases.utils.AddDatesUtil;
-import gr.pr.date_releases.utils.GenericUtils;
-import gr.pr.date_releases.utils.XlsxUtils;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 @WebServlet(name = "AddDateServlet", value = "/AddDateServlet")
 @MultipartConfig(fileSizeThreshold = 1024*1024*2,
 				maxFileSize = 1024*1024*10,
 				maxRequestSize = 1024*1024*50)
 public class AddDateServlet extends HttpServlet {
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		boolean success = false;
 		String redirect = "/addSeriesDate" + "?success=";
@@ -82,7 +70,7 @@ public class AddDateServlet extends HttpServlet {
 		response.sendRedirect(redirect + success);
 
 	}
-
+*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.sendRedirect("/addSeriesDate");

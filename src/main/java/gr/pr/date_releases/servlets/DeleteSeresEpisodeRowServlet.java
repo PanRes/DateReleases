@@ -1,7 +1,5 @@
 package gr.pr.date_releases.servlets;
 
-import gr.pr.date_releases.hibernatetools.SeriesEpisodesTools;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +14,11 @@ public class DeleteSeresEpisodeRowServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int seriesEpisodeId = Integer.valueOf(request.getParameter("seriesEpisodeId"));
 		int seriesId = Integer.valueOf(request.getParameter("seriesId"));
 		SeriesEpisodesTools.deleteSeriesEpisodeRow(seriesEpisodeId);
 		response.sendRedirect("/viewSeriesSchedule?seriesId=" + seriesId);
-	}
+	}*/
 }
