@@ -37,18 +37,4 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 	
-	@Override
-	public void removeFavoriteSeriesBySeries(SeriesEntity series) {
-
-	}
-	
-	@Override
-	public void removeFavoriteSeriesBySeriesId(int seriesId) {
-	
-	}
-	
-	@Override
-	public void removeFavoriteSeriesBySeriesName(String seriesName) {
-	
-	}
 }

@@ -30,16 +30,16 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/**").authenticated()
-		.and()
-		.formLogin()
-				.loginPage("/login")
-				.loginProcessingUrl("/authenticateTheUser")
-				.permitAll()
-		.and()
-		.logout().permitAll()
-		.and()
-		.exceptionHandling().accessDeniedPage("/error/403")
-		;
+				.antMatchers("user/**").authenticated()
+				.antMatchers("/**").permitAll()
+				.and()
+				.formLogin()
+						.loginPage("/login")
+						.loginProcessingUrl("/authenticateTheUser")
+						.permitAll()
+				.and()
+				.logout().permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/error/403");
 	}
 }

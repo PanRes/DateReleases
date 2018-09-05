@@ -1,14 +1,15 @@
 package gr.pr.date_releases.utils;
 
-import javax.servlet.ServletException;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.Part;
 import java.io.*;
 
 public class GenericUtils {
 
-	public static File uploadFile(Part filePart, File saveDir,String filePrefix)
-			throws IOException, ServletException {
-		String fileName = extractFileName(filePart);
+	public static String uploadFile(MultipartFile filePart, String saveDir, String filePrefix)
+			throws IOException {
+		String fileName = filePart.getName();
 		File uploadedFile = new File(saveDir + File.separator + filePrefix + fileName);
 
 		if(!uploadedFile.getParentFile().exists()){
@@ -24,19 +25,18 @@ public class GenericUtils {
 		try {
 			OutputStream out = new FileOutputStream(uploadedFile);
 			InputStream fileContent = filePart.getInputStream();
-			int read = 0;
+			int read;
 			byte[] bytes = new byte[1024];
 
 			while((read = fileContent.read(bytes)) != -1){
 				out.write(bytes,0,read);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw e;
 		}
 
-		return uploadedFile;
+		return uploadedFile.getAbsolutePath();
 	}
 
 

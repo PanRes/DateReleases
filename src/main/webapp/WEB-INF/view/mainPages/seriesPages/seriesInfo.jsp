@@ -11,19 +11,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 	<head>
-		<title><%=SeriesTools.getSeriesNameBySeriesId(Integer.valueOf(request.getParameter("seriesId")))%> Info</title>
+		<%--TODO : show series name in the title --%>
+		<title>Series Info</title>
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
-		<jsp:useBean id="series" scope="page" class="gr.pr.date_releases.models.SeriesModel"/>
-		<jsp:useBean id="UserFavoriteSeriesTools" class="gr.pr.date_releases.hibernatetools.UserFarvoriteSeriesTools"/>
-		<c:set var="series" value='<%=SeriesTools.getSeriesById(Integer.valueOf(request.getParameter("seriesId")))%>'/>
+		<jsp:useBean id="userService" class="gr.pr.date_releases.service.UserAuthenticationService"/>
 		<div class="panel panel-info">
 			<p class="panel-heading">
 				${series.name} Information &nbsp;
 				<a href="/AddRemoveFavoritesServlet?seriesId=${series.seriesId}" class="favoritesBtn">
 					<c:choose>
-						<c:when test="${UserFavoriteSeriesTools.isUsersFavoriteSeries(series.seriesId,userId)}">
+						<c:when test="${userService.hasUserFavoriteSeries(series)}">
 							<abbr title="Remove from favorites">
 								<i class="glyphicon glyphicon-heart"></i>
 							</abbr>
@@ -44,6 +43,7 @@
 								<img src="${series.imageUrl}" class="thumbnail text-center"/>
 							</c:when>
 							<c:otherwise>
+								<%--FIXME : fix url to new one--%>
 								<img src="${initParam['seriesImgs']}/not-found.png" class="thumbnail text-center"
 									 style="height: auto;" width="300"/>
 							</c:otherwise>
@@ -72,13 +72,14 @@
 						</p>
 						<c:if test="${!series.ended}">
 							<p>
+								<%--FIXME : change url when viewSeriesSchedule contoller is ready--%>
 								<a href="/viewSeriesSchedule?seriesId=${series.seriesId}" class="btn btn-default">
 									View ${series.name} Schedule
 								</a>
 							</p>
 						</c:if>
 						<p>
-							<a href="/editSeries?seriesId=${series.seriesId}" class="btn btn-primary">
+							<a href="/${series.name}/editSeries" class="btn btn-primary">
 								Edit ${series.name} Info
 							</a>
 						</p>

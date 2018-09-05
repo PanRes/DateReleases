@@ -9,8 +9,5 @@ public interface UserDao {
 	
 	List<UserEntity> getAllUsers();
 	UserEntity getUserByUserName(String userName);
-	void removeFavoriteSeriesBySeries(SeriesEntity series);
-	void removeFavoriteSeriesBySeriesId(int seriesId);
-	void removeFavoriteSeriesBySeriesName(String seriesName);
 	
 }

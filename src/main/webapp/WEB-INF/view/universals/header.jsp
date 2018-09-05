@@ -1,6 +1,8 @@
-<%@ page import="gr.pr.date_releases.hibernatetools.SeriesTools"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -12,11 +14,14 @@
 
 <%@include file="inclusions.jsp"%>
 
-<c:set var="servletPath" value="${pageContext.request.servletPath}"/>
+<c:set var="pageURI" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${sessionScope.language == null ? 'el' : sessionScope.language}"/>
 <fmt:setBundle basename="language"/>
 <header>
+
+	<jsp:useBean id="seriesService" class="gr.pr.date_releases.service.SeriesService"/>
+
 	<div class="row">
 
 		<div class="col-lg-8 col-lg-offset-2 h1 text-center">
@@ -33,68 +38,57 @@
 				<a class="navbar-brand" href="/">Date Releases</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="dropdown ${servletPath.startsWith("/WEB-INF/view/seriesPages") ? 'active' : ''}">
+				<li class="dropdown ${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Series <b class="caret"></b></a>
 					<ul class="dropdown-menu multi-level">
-						<li class="${servletPath == '/series' || servletPath == '/WEB-INF/view/mainPages/seriesPages/series.jsp' ?
-									'active' : ''}">
+						<li class="${fn:contains(pageURI, 'series/' + series.name ) ? 'active' : ''}">
 							<a href="/series">All Series</a>
 						</li>
-						<li class="dropdown-submenu ${servletPath == '/WEB-INF/view/mainPages/seriesInfo.jsp' or servletPath == '/seriesInfo' ? 'active' : ''}">
+						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/' + series.name + '/info') ? 'active' : ''}">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Info</a>
 							<ul class="dropdown-menu scrollable-menu" role="menu">
-								<c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-									<c:set var="activeInfoSeries" value=""/>
-									<c:if test="${(servletPath == '/WEB-INF/view/maiPages/seriesInfo.jsp' or
-									servletPath == '/seriesInfo') and series.seriesId == param.seriesId}">
-										<c:set var="activeInfoSeries" value="active"/>
-									</c:if>
-									<li class="${activeInfoSeries}">
-										<a href="seriesInfo?seriesId=${series.seriesId}">${series.name}</a>
+								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
+									<%--TODO : check if validation works correctly--%>
+									<li class="${fn:contains(pageURI, 'series/' + series.name + '/info') ? 'active' : ''}">
+										<a href="${'/series/' + series.name + '/info'}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="dropdown-submenu ${servletPath == '/WEB-INF/view/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule' ? 'active' : ''}">
+						<li class="dropdown-submenu <li class="${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Schedule</a>
 							<ul class="dropdown-menu scrollable-menu">
-								<li class="${(servletPath == '/WEB-INF/view/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule') and
-										param.seriesId == null ? 'active' : ''}"><a href="/viewSeriesSchedule">All Series</a></li>
-								<li class="${(servletPath == '/WEB-INF/view/seriesPages/viewSeriesSchedule.jsp' or servletPath == '/viewSeriesSchedule') and
-										param.seriesId == 0 ? 'active' : ''}"><a href="/viewSeriesSchedule?seriesId=0">Favorite Series</a></li>
-								<c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-									<c:set var="activeScheduleSeries" value=""/>
-									<c:if test="${(servletPath == '/WEB-INF/view/seriesPages/viewSeriesSchedule.jsp' or
-									servletPath == '/viewSeriesSchedule') and series.seriesId == param.seriesId}">
-										<c:set var="activeScheduleSeries" value="active"/>
-									</c:if>
-									<li class="${activeScheduleSeries}">
-										<a href="/viewSeriesSchedule?seriesId=${series.seriesId}">${series.name}</a>
+								<li class="${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
+									<a href="/series/schedule">All Series</a>
+								</li>
+								<li class="${fn:contains(pageURI,'/series/schedule/favorites') ? 'active' : ''}">
+									<a href="/series/favorites">Favorite Series</a>
+								</li>
+								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
+									<%--TODO : check if validation works correctly--%>
+									<li class="${fn:contains(pageURI, 'series/schedule/' + series.name) ? 'active' : ''}">
+										<a href="${'/series/schedule/' + series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="dropdown-submenu ${servletPath == '/WEB-INF/view/maiPages/editSeriesDate.jsp' or
-						servletPath == '/editSeries' ? 'active' : ''}">
+						<%--FIXME : find out wich page needs to be redirected--%>
+						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/editSeriesDate') ? 'active' : ''}">
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
-								<c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
-									<c:set var="activeEditSeries" value=""/>
-									<c:if test="${(servletPath == '/WEB-INF/view/maiPages/editSeriesDate.jsp' or
-									servletPath == '/editSeries') and series.seriesId == param.seriesId}">
-										<c:set var="activeEditSeries" value="active"/>
-									</c:if>
-									<li class="${activeEditSeries}">
-										<a href="/editSeries?seriesId=${series.seriesId}">Edit ${series.name}</a>
+								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
+									<%--TODO : check if validation works correctly--%>
+									<li class="${fn:contains(pageURI, 'series/editSeriesDate/' + series.name) ? 'active' : ''}">
+										<a href="${'series/' + series.name + '/editSeries'}">Edit ${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
 						</li>
 						<li class="${servletPath == '/WEB-INF/view/mainPages/seriesPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
-							<a href="/addSeriesDate">Add Episode Date</a>
+							<a href="${'/series/addSeriesDate/' + series.name}">Add Episode Date</a>
 						</li>
-						<li class="${servletPath == '/WEB-INF/view/mainPages/seriesPages/addSeries.jsp' or servletPath == '/addSeries' ? 'active' : ''}">
-							<a href="/addSeries">Add Series</a>
+						<li class="${fn:contains(pageURI, '/series/addSeries') ? 'active' : ''}">
+							<a href="/series/addSeries">Add Series</a>
 						</li>
 					</ul>
 				</li>
@@ -133,8 +127,13 @@
 							</li>
 							<li class="divider"></li>
 							<li>
+								<form:form method="post" action="${pageContext.request.contextPath}/logout">
+									<%--FIXME : fix view of logout button--%>
+									<input type="submit" class="btn btn-primary" value="Logout"><i class="fa fa-sign-out"></i>
+								</form:form>
+
 								<a href="/WEB-INF/view/utils/userUtils/logout.jsp">
-									sign out? <i class="fa fa-sign-out"></i>
+									Log out? <i class="fa fa-sign-out"></i>
 								</a>
 							</li>
 						</ul>
