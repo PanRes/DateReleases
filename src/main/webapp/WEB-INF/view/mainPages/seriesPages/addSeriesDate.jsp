@@ -10,6 +10,42 @@
 <html>
 	<head>
 		<title>${pageContext.request.servletPath == 'edit' ? "Edit" : "Add"} Date for Episode</title>
+
+
+		<script type="application/javascript">
+
+
+			/*$(document).ready(function () {
+				$("#addSingleEpisodeBtn").addClass("disabled");
+				$("#addSingleEpisodeBtn").prop("disabled", true);
+				if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+					console.log("in if");
+					$("#addSingleEpisodeBtn").removeClass("disabled");
+					$("#addSingleEpisodeBtn").prop("disabled",false);
+				}
+			});*/
+			$("#season").change(function() {
+				if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+					$("#addSingleEpisodeBtn").removeClass("disabled");
+					$("#addSingleEpisodeBtn").prop("disabled",false);
+				}
+
+			});
+
+			$("#episode").change(function() {
+				if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+					$("#addSingleEpisodeBtn").removeClass("disabled");
+					$("#addSingleEpisodeBtn").prop("disabled",false);
+				}
+			});
+
+			$("#date").change(function() {
+				if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
+					$("#addSingleEpisodeBtn").removeClass("disabled");
+					$("#addSingleEpisodeBtn").prop("disabled",false);
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
@@ -68,14 +104,53 @@
 					<h4>Submit</h4>
 				</div>
 			</div>
-			<c:choose>
-				<c:when test="${pageContext.request.servletPath == '/editSeriesDate'}">
-					<%@include file="/WEB-INF/view/utils/seriesUtil/editSeriesDate.jsp"%>
-				</c:when>
-				<c:otherwise>
-					<jsp:include page="/WEB-INF/view/utils/seriesUtil/addSeriesDateForms.jsp"/>
-				</c:otherwise>
-			</c:choose>
+			<div class="row">
+				<form:form action="/series/saveOrUpdateSeriesEpisode" method="post" modelAttribute="seriesEpisode">
+					<input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
+					<div class="form-group col-lg-3">
+						<select name="seriesId" class="form-control text-center" required="required">
+							<c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+								<option value="${series.seriesId}">${series.name}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group col-lg-1">
+						<input type="number" class="form-control text-center" min="1" name="season" id="season"
+							   required="required">
+					</div>
+					<div class="form-group col-lg-1">
+						<input type="number" class="form-control text-center" min="0" name="episode" id="episode"
+							   required="required">
+					</div>
+					<div class="form-group col-lg-2">
+						<input type="date" class="date form-control text-center" name="date" id="date">
+					</div>
+					<div class="form-group col-lg-4">
+						<input type="text" class="form-control text-center" name="notes">
+					</div>
+					<div class="form-group col-lg-1">
+						<input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
+							   class="btn btn-success">
+					</div>
+				</form:form>
+			</div>
+			<%--FIXME : fix upload from xlsx--%>
+<%--
+			<div class="row">
+				<form action="/AddDateServlet" method="post" name="frmAddDatesWithXlsx" enctype="multipart/form-data">
+					<input type="hidden" name="formName" value="frmAddDatesWithXlsx">
+					<div align="center">
+						<label class="btn btn-default">
+							<span class="fa  fa-file-excel-o"></span> Browse Xlsx
+							<input type="file" id="uploadXlsx" name="uploadXlsx" class="labelBtn"
+								   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+						</label>
+						<input type="submit" id="xlsxSubmitBtn" class="btn btn-success disabled"
+							   value="Submit from Xlsx" disabled>
+					</div>
+				</form>
+			</div>
+--%>
 		</div>
 		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>

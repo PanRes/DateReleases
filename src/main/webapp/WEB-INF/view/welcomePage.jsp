@@ -13,7 +13,7 @@
 	<body>
 
 		<%@include file="universals/header.jsp"%>
-		<jsp:useBean id="user" class="gr.pr.date_releases.models.UsersModel"/>
+		<jsp:useBean id="user" class="gr.pr.date_releases.entity.UserEntity"/>
 		<c:set var="user" value='<%=session.getAttribute("user")%>'/>
 		<div class="container text-center">
 			<c:choose>

@@ -44,13 +44,13 @@
 						<li class="${fn:contains(pageURI, 'series/' + series.name ) ? 'active' : ''}">
 							<a href="/series">All Series</a>
 						</li>
-						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/' + series.name + '/info') ? 'active' : ''}">
+						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/info') ? 'active' : ''}">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Info</a>
 							<ul class="dropdown-menu scrollable-menu" role="menu">
 								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
 									<%--TODO : check if validation works correctly--%>
-									<li class="${fn:contains(pageURI, 'series/' + series.name + '/info') ? 'active' : ''}">
-										<a href="${'/series/' + series.name + '/info'}">${series.name}</a>
+									<li class="${fn:contains(pageURI, 'series/info') ? 'active' : ''}">
+										<a href="${'/series/info/' + series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -58,10 +58,10 @@
 						<li class="dropdown-submenu <li class="${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Schedule</a>
 							<ul class="dropdown-menu scrollable-menu">
-								<li class="${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
+								<li class="${fn:contains(pageURI,'series/schedule') ? 'active' : ''}">
 									<a href="/series/schedule">All Series</a>
 								</li>
-								<li class="${fn:contains(pageURI,'/series/schedule/favorites') ? 'active' : ''}">
+								<li class="${fn:contains(pageURI,'series/schedule/favorites') ? 'active' : ''}">
 									<a href="/series/favorites">Favorite Series</a>
 								</li>
 								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
@@ -72,27 +72,27 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<%--FIXME : find out wich page needs to be redirected--%>
 						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/editSeriesDate') ? 'active' : ''}">
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
 									<%--TODO : check if validation works correctly--%>
-									<li class="${fn:contains(pageURI, 'series/editSeriesDate/' + series.name) ? 'active' : ''}">
-										<a href="${'series/' + series.name + '/editSeries'}">Edit ${series.name}</a>
+									<li class="${fn:contains(pageURI, 'series/' + series.name + '/editSeries') ? 'active' : ''}">
+										<a href="${'/series/' + series.name + '/editSeries'}">Edit ${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="${servletPath == '/WEB-INF/view/mainPages/seriesPages/addSeriesDate.jsp' or servletPath == '/addSeriesDate' ? 'active' : ''}">
-							<a href="${'/series/addSeriesDate/' + series.name}">Add Episode Date</a>
+						<li class="${fn:contains(pageURI, 'series/' + series.name + '/addSeriesDate') ? 'active' : ''}">
+							<a href="${'/series/' + series.name + '/addSeriesDate'}">Add Episode Date</a>
 						</li>
-						<li class="${fn:contains(pageURI, '/series/addSeries') ? 'active' : ''}">
+						<li class="${fn:contains(pageURI, 'series/addSeries') ? 'active' : ''}">
 							<a href="/series/addSeries">Add Series</a>
 						</li>
 					</ul>
 				</li>
 			</ul>
+			<%--TODO : add spring localization--%>
 			<ul class="nav navbar-nav navbar-right">
 				<form class="navbar-form navbar-left" action="/LanguageServlet" method="post">
 					<select class="selectpicker btn-black" data-width="fit" id="language" name="language"

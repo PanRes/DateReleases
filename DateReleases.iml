@@ -7,9 +7,9 @@
           <unit-entry name="getSessionFactory" value="91ce1064-174d-4924-bcb9-c348a4b0d3a8" />
         </datasource-map>
         <naming-strategy-map>
+          <unit-entry name="getSessionFactory" />
           <unit-entry name="hibernate.cfg.xml" />
         </naming-strategy-map>
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">

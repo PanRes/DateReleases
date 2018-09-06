@@ -46,8 +46,14 @@ public class SeriesController {
 		return "mainPages/seriesPages/addSeries";
 	}
 	
-	@RequestMapping("/addSeriesDate")
-	public String addSeriesDate() {
+	@RequestMapping("{seriesName}/addSeriesDate")
+	public String addSeriesDate(@PathVariable("seriesName") String seriesName, Model model) {
+		
+		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
+		SeriesEpisodesEntity seriesEpisodes = new SeriesEpisodesEntity();
+		model.addAttribute("series", series);
+		model.addAttribute("seriesEpisodes", seriesEpisodes);
+		
 		return "mainPages/seriesPages/addSeriesDate";
 	}
 	
@@ -55,7 +61,9 @@ public class SeriesController {
 	public String editSeriesDate(@PathVariable("seriesName") String name,
 								 @PathVariable("seriesEpisode") String seriesEpisodeString, Model model) {
 		
+/*
 		SeriesEpisodesEntity =
+*/
 		
 		return "";
 	}
@@ -81,7 +89,7 @@ public class SeriesController {
 		return "mainPages/seriesPages/viewSeriesSchedule";
 	}
 	
-	@RequestMapping("/{seriesName}/info")
+	@RequestMapping("/info/{seriesName}")
 	public String seriesInfo(@PathVariable("seriesName") String seriesName, Model model) {
 		
 		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
@@ -109,6 +117,12 @@ public class SeriesController {
 		}
 		
 		return "/{" + series.getName() + "}/info";
+	}
+	
+	@PostMapping("/saveOrUpdateSeriesEpisode")
+	public String saveOrUpdateSeriesEpisode(@ModelAttribute("seriesEpisode") SeriesEpisodesEntity seriesEpisode, Model model) {
+		
+		return "";
 	}
 	
 }
