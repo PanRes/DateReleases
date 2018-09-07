@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "roles", schema = "date_releases")
+@Table(name = "roles", schema = "date_releases", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "name")
+})
 public class RolesEntity {
 
 	@Id

@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "series_episodes", schema = "date_releases")
+@Table(name = "series_episodes", schema = "date_releases", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"series_id", "season", "episode"})
+})
 @NamedQueries({
 		@NamedQuery(name = "SeriesEpisodes.findAll", query = "FROM SeriesEpisodesEntity se"),
 		@NamedQuery(name = "SeriesEpisodes.findEpisodesBySeries", query = "FROM SeriesEpisodesEntity se where se.series = :series")

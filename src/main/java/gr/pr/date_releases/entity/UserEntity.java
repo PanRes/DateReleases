@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(schema = "date_releases", name = "users")
+@Table(schema = "date_releases", name = "users", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "user_name"),
+		@UniqueConstraint(columnNames = "email")
+})
 @NamedQueries({
 		@NamedQuery(name = "User.findAll", query = "FROM UserEntity u"),
 		@NamedQuery(name = "User.findUserByUserName", query = "FROM UserEntity u WHERE u.userName = :userName")

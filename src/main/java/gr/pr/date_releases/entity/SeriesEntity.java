@@ -5,7 +5,9 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "series", schema = "date_releases")
+@Table(name = "series", schema = "date_releases", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "name")
+})
 @NamedQueries({
 		@NamedQuery(name = "Series.findAll", query = "FROM SeriesEntity s"),
 		@NamedQuery(name = "Series.findSeriesByName", query = "FROM SeriesEntity s where s.name = :name")
