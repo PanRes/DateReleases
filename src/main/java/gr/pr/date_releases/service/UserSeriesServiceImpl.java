@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class UserSeriesService {
+public class UserSeriesServiceImpl {
 	
 	@Autowired
 	private UserDao userDao;

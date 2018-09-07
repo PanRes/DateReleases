@@ -20,7 +20,7 @@
 <fmt:setBundle basename="language"/>
 <header>
 
-	<jsp:useBean id="seriesService" class="gr.pr.date_releases.service.SeriesService"/>
+	<jsp:useBean id="seriesService" class="gr.pr.date_releases.service.SeriesServiceImpl"/>
 
 	<div class="row">
 

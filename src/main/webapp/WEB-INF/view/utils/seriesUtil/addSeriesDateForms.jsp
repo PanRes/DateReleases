@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="gr.pr.date_releases.hibernatetools.SeriesTools" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: pressos
   Date: 20/10/2017
@@ -53,36 +53,3 @@
 </div>
 
 <script type="application/javascript">
-
-
-	/*$(document).ready(function () {
-		$("#addSingleEpisodeBtn").addClass("disabled");
-		$("#addSingleEpisodeBtn").prop("disabled", true);
-		if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
-			console.log("in if");
-			$("#addSingleEpisodeBtn").removeClass("disabled");
-			$("#addSingleEpisodeBtn").prop("disabled",false);
-		}
-	});*/
-	$("#season").change(function() {
-		if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
-			$("#addSingleEpisodeBtn").removeClass("disabled");
-			$("#addSingleEpisodeBtn").prop("disabled",false);
-		}
-
-	});
-
-	$("#episode").change(function() {
-		if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
-			$("#addSingleEpisodeBtn").removeClass("disabled");
-			$("#addSingleEpisodeBtn").prop("disabled",false);
-		}
-	});
-
-	$("#date").change(function() {
-		if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
-			$("#addSingleEpisodeBtn").removeClass("disabled");
-			$("#addSingleEpisodeBtn").prop("disabled",false);
-		}
-	});
-</script>

@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
-		<jsp:useBean id="userService" class="gr.pr.date_releases.service.UserAuthenticationService"/>
+		<jsp:useBean id="userService" class="gr.pr.date_releases.service.UserServiceImpl"/>
 		<div class="panel panel-info">
 			<p class="panel-heading">
 				${series.name} Information &nbsp;

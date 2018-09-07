@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @PropertySource("classpath:fileUrls.properties")
-public class SeriesService {
+public class SeriesServiceImpl {
 
 	@Autowired
 	private SeriesDao seriesDao;
