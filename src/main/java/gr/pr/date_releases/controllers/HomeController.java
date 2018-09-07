@@ -1,13 +1,22 @@
 package gr.pr.date_releases.controllers;
 
+import gr.pr.date_releases.service.SeriesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private SeriesService seriesService;
+	
 	@RequestMapping("/")
-	public String mainMenu() {
+	public String mainMenu(Model model) {
+		
+		model.addAttribute("allSeries", seriesService.getAllSeries());
+		
 		return "welcomePage";
 	}
 
