@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class UserSeriesServiceImpl {
+public class UserSeriesServiceImpl implements UserSeriesService {
 	
 	@Autowired
 	private UserDao userDao;
@@ -22,6 +22,7 @@ public class UserSeriesServiceImpl {
 	@Autowired
 	private GenericDao genericDao;
 	
+	@Override
 	@Transactional
 	public void removeUserFavoriteByUserName(SeriesEntity series, String userName) {
 		UserEntity user = userDao.getUserByUserName(userName);

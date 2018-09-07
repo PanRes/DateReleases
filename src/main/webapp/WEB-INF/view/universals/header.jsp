@@ -41,7 +41,7 @@
 				<li class="dropdown ${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Series <b class="caret"></b></a>
 					<ul class="dropdown-menu multi-level">
-						<li class="${fn:contains(pageURI, 'series/' + series.name ) ? 'active' : ''}">
+						<li class="${fn:contains(pageURI, 'series') ? 'active' : ''}">
 							<a href="/series">All Series</a>
 						</li>
 						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/info') ? 'active' : ''}">

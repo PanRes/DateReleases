@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @PropertySource("classpath:fileUrls.properties")
-public class SeriesServiceImpl {
+public class SeriesServiceImpl implements SeriesService {
 
 	@Autowired
 	private SeriesDao seriesDao;
@@ -28,21 +28,25 @@ public class SeriesServiceImpl {
 	@Autowired
 	private Environment environment;
 	
+	@Override
 	@Transactional
 	public List<SeriesEntity> getAllSeries() {
 		return seriesDao.getAllSeries();
 	}
 	
+	@Override
 	@Transactional
 	public SeriesEntity getSeriesBySeriesName(String name) {
 		return seriesDao.getSeriesByName(name);
 	}
 	
+	@Override
 	@Transactional
 	public void saveOrUpdateSeries(SeriesEntity series) {
 		genericDao.saveOrUpdate(series);
 	}
 	
+	@Override
 	public String uploadImgUrl(MultipartFile multipartFile, String seriesName) {
 		
 		try {

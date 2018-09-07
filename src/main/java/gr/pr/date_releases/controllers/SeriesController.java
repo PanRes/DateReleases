@@ -3,8 +3,8 @@ package gr.pr.date_releases.controllers;
 import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.SeriesEpisodesEntity;
 import gr.pr.date_releases.entity.UserEntity;
-import gr.pr.date_releases.service.SeriesServiceImpl;
-import gr.pr.date_releases.service.UserServiceImpl;
+import gr.pr.date_releases.service.SeriesService;
+import gr.pr.date_releases.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class SeriesController {
 	
 	@Autowired
-	private SeriesServiceImpl seriesService;
+	private SeriesService seriesService;
 	
 	@Autowired
-	private UserServiceImpl userService;
+	private UserService userService;
 	
 	@RequestMapping("/")
 	public String seeAllSeries() {
