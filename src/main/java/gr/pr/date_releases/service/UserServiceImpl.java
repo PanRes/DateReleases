@@ -1,5 +1,6 @@
 package gr.pr.date_releases.service;
 
+import gr.pr.date_releases.dao.GenericDao;
 import gr.pr.date_releases.dao.UserDao;
 import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.UserEntity;
@@ -14,6 +15,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private GenericDao genericDao;
 	
 	@Override
 	public boolean hasUserFavoriteSeries(SeriesEntity series) {
@@ -30,5 +34,17 @@ public class UserServiceImpl implements UserService {
 			userName = authentication.getName();
 		}
 		return userDao.getUserByUserName(userName);
+	}
+	
+	@Override
+	public boolean createUser(UserEntity user) {
+		try {
+			genericDao.save(user);
+			return true;
+		} catch (Exception e) {
+//			TODO : fix different messages if email exists or userName
+			System.out.println("User already exists");
+			return false;
+		}
 	}
 }

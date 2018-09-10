@@ -1,5 +1,6 @@
 package gr.pr.date_releases.controllers;
 
+import gr.pr.date_releases.entity.UserEntity;
 import gr.pr.date_releases.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/signUp")
-	public String signUp() {
+	public String signUp(Model model) {
+		
+		UserEntity user = new UserEntity();
+		model.addAttribute("user",user);
+		
 		return "utils/userUtils/signUp";
 	}
 }

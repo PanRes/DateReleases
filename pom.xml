@@ -97,6 +97,11 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate.common</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>5.0.4.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>${hibernate.version}</version>

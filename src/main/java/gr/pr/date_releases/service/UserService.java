@@ -6,6 +6,6 @@ import gr.pr.date_releases.entity.UserEntity;
 public interface UserService {
 	
 	boolean hasUserFavoriteSeries(SeriesEntity series);
-	
 	UserEntity getLoggedInUser();
+	boolean createUser(UserEntity user);
 }

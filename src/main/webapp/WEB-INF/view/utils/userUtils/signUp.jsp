@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -42,34 +43,36 @@
 					</div>
 				</c:when>
 			</c:choose>
-			<form class="form-horizontal" action="/SignUpServlet" name="loginForm" method="post">
+			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/user/createUser"
+						modelAttribute="user" name="loginForm" method="post">
 				<div class="text-center">
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
-							<input type="text" name="userName" class="form-control" required
-								   placeholder="UserName"/>
+							<form:input path="userName" class="form-control" required="true"
+									placeholder="UserName" />
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-							<input type="email" name="email" class="form-control" required
-								   placeholder="Email"/>
+							<form:input path="email" type="email" class="form-control" required="true"
+									placeholder="Email"/>
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-							<input type="password" name="password" id="passwordSignUp" class="form-control" required
-								   placeholder="Password">
+							<form:input path="password" type="password" id="passwordSignUp" class="form-control"
+									required="true" placeholder="Password"/>
 						</div>
 					</div>
+					<%--TODO : check password validation--%>
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 							<input type="password" name="passwordVerify" id="passwordVerifySignUp" class="form-control" required
-								   placeholder="Verify Password" >
+									placeholder="Verify Password" >
 						</div>
 						<div class="col-lg-3">
 							<div class="pull-left">
@@ -80,22 +83,19 @@
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon">FN</span>
-							<input type="text" name="firstName" class="form-control"
-								   placeholder="First Name" >
+							<form:input path="firstName" class="form-control" placeholder="First Name" />
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon">MN</span>
-							<input type="text" name="middleName" class="form-control"
-								   placeholder="Middle Name" >
+							<form:input path="middleName" class="form-control" placeholder="Middle Name" />
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon">LN</span>
-							<input type="text" name="lastName" class="form-control"
-								   placeholder="Last Name" >
+							<form:input path="lastName" class="form-control" placeholder="Last Name" />
 						</div>
 					</div>
 					<div class="row form-group">
@@ -112,7 +112,7 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			</form:form>
 			<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

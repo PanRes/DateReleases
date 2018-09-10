@@ -27,6 +27,13 @@ public class GenericDaoImpl implements GenericDao {
 	}
 	
 	@Override
+	public void save(Object entity) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.save(entity);
+	}
+	
+	@Override
 	public void saveOrUpdate(Object entity) {
 		Session session = sessionFactory.getCurrentSession();
 		

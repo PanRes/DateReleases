@@ -112,6 +112,7 @@
 						<a href="#" class="data-toggle" data-toggle="dropdown">
 							<i class="fa fa-user fa-fw"></i> Welcome ${user.userName}<span class="caret"></span>
 						</a>
+						<%--FIXME : correct urls for user--%>
 						<ul class="dropdown-menu scrollable-menu">
 							<li class="${servletPath == '/userInfo' || servletPath == '/WEB-INF/view/userControlPanel/userInfo.jsp' ?
 									'active' : ''}">
