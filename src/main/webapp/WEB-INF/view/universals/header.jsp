@@ -35,22 +35,22 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Date Releases</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Date Releases</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="dropdown ${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Series <b class="caret"></b></a>
 					<ul class="dropdown-menu multi-level">
 						<li class="${fn:contains(pageURI, 'series') ? 'active' : ''}">
-							<a href="/series">All Series</a>
+							<a href="${pageContext.request.contextPath}/series">All Series</a>
 						</li>
 						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/info') ? 'active' : ''}">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Info</a>
 							<ul class="dropdown-menu scrollable-menu" role="menu">
-								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
+								<c:forEach var="series" items="${allSeries}">
 									<%--TODO : check if validation works correctly--%>
 									<li class="${fn:contains(pageURI, 'series/info') ? 'active' : ''}">
-										<a href="${'/series/info/' + series.name}">${series.name}</a>
+										<a href="${pageContext.request.contextPath}/series/info/${series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -59,15 +59,15 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Schedule</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<li class="${fn:contains(pageURI,'series/schedule') ? 'active' : ''}">
-									<a href="/series/schedule">All Series</a>
+									<a href="${pageContext.request.contextPath}/series/schedule">All Series</a>
 								</li>
 								<li class="${fn:contains(pageURI,'series/schedule/favorites') ? 'active' : ''}">
-									<a href="/series/favorites">Favorite Series</a>
+									<a href="${pageContext.request.contextPath}/series/favorites">Favorite Series</a>
 								</li>
-								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
+								<c:forEach var="series" items="${allSeries}">
 									<%--TODO : check if validation works correctly--%>
-									<li class="${fn:contains(pageURI, 'series/schedule/' + series.name) ? 'active' : ''}">
-										<a href="${'/series/schedule/' + series.name}">${series.name}</a>
+									<li class="${fn:contains(pageURI, 'series/schedule/') ? 'active' : ''}">
+										<a href="${pageContext.request.contextPath}/series/schedule/${series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -75,19 +75,19 @@
 						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/editSeriesDate') ? 'active' : ''}">
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
-								<c:forEach var="series" items="<%=seriesService.getAllSeries()%>">
+								<c:forEach var="series" items="${allSeries}">
 									<%--TODO : check if validation works correctly--%>
-									<li class="${fn:contains(pageURI, 'series/' + series.name + '/editSeries') ? 'active' : ''}">
-										<a href="${'/series/' + series.name + '/editSeries'}">Edit ${series.name}</a>
+									<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, '/editSeries') ? 'active' : ''}">
+										<a href="${pageContext.request.contextPath}/series/${series.name}/editSeries">Edit ${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="${fn:contains(pageURI, 'series/' + series.name + '/addSeriesDate') ? 'active' : ''}">
-							<a href="${'/series/' + series.name + '/addSeriesDate'}">Add Episode Date</a>
+						<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, '/addSeriesDate') ? 'active' : ''}">
+							<a href="${pageContext.request.contextPath}/series/${series.name}/addSeriesDate">Add Episode Date</a>
 						</li>
 						<li class="${fn:contains(pageURI, 'series/addSeries') ? 'active' : ''}">
-							<a href="/series/addSeries">Add Series</a>
+							<a href="${pageContext.request.contextPath}/series/addSeries">Add Series</a>
 						</li>
 					</ul>
 				</li>
@@ -115,15 +115,15 @@
 						<ul class="dropdown-menu scrollable-menu">
 							<li class="${servletPath == '/userInfo' || servletPath == '/WEB-INF/view/userControlPanel/userInfo.jsp' ?
 									'active' : ''}">
-								<a href="/userInfo">User Info</a>
+								<a href="${pageContext.request.contextPath}/userInfo">User Info</a>
 							</li>
 							<li class="${servletPath == '/editUserInfo' ||
 									servletPath == '/WEB-INF/view/userControlPanel/editUserInfo.jsp' ? 'active' : ''}">
-								<a href="/editUserInfo">Edit User Info</a>
+								<a href="${pageContext.request.contextPath}/editUserInfo">Edit User Info</a>
 							</li>
 							<li class="${servletPath == '/changeUserPassword' ||
 									servletPath == '/WEB-INF/view/userControlPanel/changeUserPassword.jsp' ? 'active' : ''}">
-								<a href="/changeUserPassword">Change Password</a>
+								<a href="${pageContext.request.contextPath}/changeUserPassword">Change Password</a>
 							</li>
 							<li class="divider"></li>
 							<li>

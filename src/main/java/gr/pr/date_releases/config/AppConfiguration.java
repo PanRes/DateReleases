@@ -44,6 +44,8 @@ public class AppConfiguration extends WebMvcConfigurationSupport {
 //		sessionFactory.setAnnotatedClasses(UserEntity.class, Role.class);
 //		sessionFactory.setAnnotatedPackages("gr.pr.udemy.spring.security");
 
+		sessionFactory.setPackagesToScan(new String[] {"gr.pr.date_releases.entity"});
+		
 		Properties hibernateProperties = new Properties();
 
 		hibernateProperties.setProperty("hibernate.connection.driver_class",environment.getProperty("jdbc.driver"));

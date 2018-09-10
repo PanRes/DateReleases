@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -25,17 +26,17 @@
 		</header>
 		<article id="content">
 			<h2 class="page-header" align="center">Please Login</h2>
-			<c:if test="${param.wrongUser == true}">
+			<c:if test="${param.error != null}">
 				<div class="alert alert-danger text-center">
 					<strong>Warning!</strong> The User Name or the Password is incorrect. Please try again.
 				</div>
 			</c:if>
-			<form class="form-horizontal" action="/Authenticate" name="loginForm" method="post">
+			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/authenticateTheUser" method="post">
 				<div class="text-center">
 					<div class="row form-group">
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
-							<input type="text" name="userName" class="form-control" required
+							<input type="text" name="username" class="form-control" required
 								   placeholder="UserName or Email"/>
 						</div>
 					</div>
@@ -53,13 +54,13 @@
 					</div>
 					<div class="row form-group">
 						<div class="text-center col-lg-4 col-lg-offset-4">
-							<a href="/signUp">
+							<a href="${pageContext.request.contextPath}/signUp">
 								<fmt:message key="login.href.signUp"/>
 							</a>
 						</div>
 					</div>
 				</div>
-			</form>
+			</form:form>
 			<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

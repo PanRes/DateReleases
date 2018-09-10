@@ -33,7 +33,15 @@ public class UserDaoImpl implements UserDao {
 				.createNamedQuery("User.findUserByUserName", UserEntity.class)
 				.setParameter("userName", userName);
 		
-		return query.getResultList().get(0);
+		UserEntity user = new UserEntity();
+		try {
+			user = query.getResultList().get(0);
+		}
+		catch (Exception e) {
+			System.out.println("User with user name: " + userName + ", was not found");
+		}
+		
+		return user;
 		
 	}
 	
