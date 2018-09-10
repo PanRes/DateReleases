@@ -67,12 +67,13 @@ public class SeriesController {
 		
 		return "";
 	}
-	
+
+	//TODO : break urls in two
 	@RequestMapping(value = {"/schedule", "/schedule/{seriesName}"})
 	public String viewSeriesSchedule(@PathVariable("seriesName") String name, Model model) {
 		
 		SeriesEntity series = seriesService.getSeriesBySeriesName(name);
-		//TODO : check validation
+		//TODO : check validation, if null push new Series object
 		if (series != null) {
 			model.addAttribute("series",series);
 		}

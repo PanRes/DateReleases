@@ -18,7 +18,7 @@ public class SeriesEntity {
 	private int id;
 
 	@Basic
-	@Column(name = "name", nullable = false, length = 45)
+	@Column(name = "name", nullable = false, length = 45, unique = true)
 	private String name;
 
 	@Basic
@@ -129,7 +129,9 @@ public class SeriesEntity {
 	public void removeUserFavorite(UserEntity user) {
 		usersFavorite.remove(user);
 	}
-	
+
+	//TODO : create methods for seriesEpisodes
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
