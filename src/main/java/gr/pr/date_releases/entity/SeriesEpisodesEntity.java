@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "series_episodes", schema = "date_releases", uniqueConstraints = {
+@Table(name = "series_episodes", schema = "sql7256210", uniqueConstraints = {
 		@UniqueConstraint(columnNames = {"series_id", "season", "episode"})
 })
 @NamedQueries({

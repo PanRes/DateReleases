@@ -20,7 +20,7 @@ import java.util.Properties;
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 @ComponentScan(basePackages = "gr.pr.date_releases")
-@PropertySource("classpath:mysql.properties")
+@PropertySource("classpath:mysql_online.properties")
 public class AppConfiguration extends WebMvcConfigurationSupport {
 
 	@Autowired

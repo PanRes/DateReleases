@@ -1,10 +1,11 @@
 package gr.pr.date_releases.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(schema = "date_releases", name = "users")
+@Table(schema = "sql7256210", name = "users")
 @NamedQueries({
 		@NamedQuery(name = "User.findAll", query = "FROM UserEntity u"),
 		@NamedQuery(name = "User.findUserByUserName", query = "FROM UserEntity u WHERE u.userName = :userName")
@@ -18,6 +19,7 @@ public class UserEntity {
 
 	@Basic
 	@Column(name = "user_name", nullable = false, unique = true,length = 45)
+	@NotNull(message = "UserName is required")
 	private String userName;
 
 	@Basic
@@ -41,7 +43,7 @@ public class UserEntity {
 	private String lastName;
 
 	@Basic
-	@Column(name = "email", unique = true)
+	@Column(name = "email", unique = true, length = 100)
 	private String email;
 	
 	@Basic
