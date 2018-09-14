@@ -15,12 +15,12 @@
 
 <link
 		rel="stylesheet"
-		href="${pageContext.request.contextPath}/WEB-INF/resources/css/styles.css"
+		href="${pageContext.request.contextPath}/resources/css/styles.css"
 		type="text/css"
 />
 
 <script
-		src="${pageContext.request.contextPath}/WEB-INF/resources/js/scripts.js"
+		src="${pageContext.request.contextPath}/resources/js/scripts.js"
 		type="application/javascript">
 </script>
 

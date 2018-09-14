@@ -41,7 +41,7 @@
 							<i class="fa fa-sign-in"></i>
 							Log In
 						</a>
-						<a href="signUp" class="btn btn-primary">
+						<a href="/signUp" class="btn btn-primary">
 							<i class="fa fa-user-plus"></i>
 							Sign Up
 						</a>
