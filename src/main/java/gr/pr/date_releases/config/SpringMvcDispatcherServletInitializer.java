@@ -11,7 +11,7 @@ public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationCon
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] {AppConfiguration.class};
+		return new Class[] {WebConfiguration.class};
 	}
 
 	@Override
