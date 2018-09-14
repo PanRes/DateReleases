@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="73adf267-3222-4759-8236-db17e7fb1397">
-      <driver-ref>mysql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-C:/Users/pressos/IdeaProjects/DateReleases/src/hibernate.cfg.xml</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/test_db?useSSL=false</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="yearIsDateType" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
-    </data-source>
-    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="a0e33ab3-99ab-4a7b-936b-f2bdb3d8130c">
-      <driver-ref>mysql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-C:/Users/pressos/IdeaProjects/DateReleases/src/hibernate.cfg.xml</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/test_db?useSSL=false</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="yearIsDateType" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
-    </data-source>
     <data-source source="LOCAL" name="Personal Online" uuid="bda72594-5577-437b-8412-9651c80cee73">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
