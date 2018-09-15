@@ -56,16 +56,18 @@
 						<li class="dropdown-submenu ${fn:contains(pageURI,'/series/schedule') ? 'active' : ''}">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Schedule</a>
 							<ul class="dropdown-menu scrollable-menu">
-								<li class="${fn:contains(pageURI,'/series/schedule') && param.seriesName == 'allSeries' ? 'active' : ''}">
-									<a href="${pageContext.request.contextPath}/series/schedule?seriesName=allSeries">All Series</a>
+								<li class="${fn:contains(pageURI,'/series/schedule') && param.series == 'allSeries' ? 'active' : ''}">
+									<a href="${pageContext.request.contextPath}/series/schedule?series=allSeries">All Series</a>
 								</li>
-								<li class="${fn:contains(pageURI,'series/schedule/favorites') ? 'active' : ''}">
-									<a href="${pageContext.request.contextPath}/series/schedule/favorites">Favorite Series</a>
-								</li>
+								<security:authorize access="isAuthenticated()">
+									<li class="${fn:contains(pageURI,'series/schedule') && param.series == 'favorites' ? 'active' : ''}">
+										<a href="${pageContext.request.contextPath}/series/schedule?series=favorites">Favorite Series</a>
+									</li>
+								</security:authorize>
 								<c:forEach var="series" items="${allSeries}">
 									<%--TODO : check if validation works correctly--%>
-									<li class="${fn:contains(pageURI, 'series/schedule') && param.seriesName == series.name ? 'active' : ''}">
-										<a href="${pageContext.request.contextPath}/series/schedule?seriesName=${series.name}">${series.name}</a>
+									<li class="${fn:contains(pageURI, 'series/schedule') && param.series == series.name ? 'active' : ''}">
+										<a href="${pageContext.request.contextPath}/series/schedule?series=${series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -81,8 +83,8 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, '/addSeriesEpisodeDate') ? 'active' : ''}">
-							<a href="${pageContext.request.contextPath}/series/${series.name}/addSeriesEpisodeDate">Add Episode Date</a>
+						<li class="${fn:contains(pageURI, 'series/addSeriesEpisodeDate') ? 'active' : ''}">
+							<a href="${pageContext.request.contextPath}/series/addSeriesEpisodeDate">Add Episode Date</a>
 						</li>
 						<li class="${fn:contains(pageURI, 'series/addSeries') ? 'active' : ''}">
 							<a href="${pageContext.request.contextPath}/series/addSeries">Add Series</a>

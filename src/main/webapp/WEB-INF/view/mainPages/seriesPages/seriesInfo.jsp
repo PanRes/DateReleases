@@ -23,14 +23,14 @@
 				<security:authorize access="isAuthenticated()">
 					<c:choose>
 						<c:when test="${series.hasUser()}">
-							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?seriesName=${series.name}" class="favoritesBtn">
+							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?series=${series.name}" class="favoritesBtn">
 								<abbr title="Remove from favorites">
 									<i class="glyphicon glyphicon-heart"></i>
 								</abbr>
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/series/removeSeriesToUserFavorites?seriesName=${series.name}" class="favoritesBtn">
+							<a href="${pageContext.request.contextPath}/series/removeSeriesToUserFavorites?series=${series.name}" class="favoritesBtn">
 								<abbr title="Add to Favorites">
 									<i class="glyphicon glyphicon-heart-empty"></i>
 								</abbr>

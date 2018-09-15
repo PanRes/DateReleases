@@ -115,17 +115,6 @@ public class SeriesController {
 		return "mainPages/seriesPages/viewSeriesSchedule";
 	}
 
-
-	//TODO : perhaps combine with above and add favorites as parameter
-	@RequestMapping("/schedule/favorites")
-	public String viewFavoritesSeries(Model model) {
-		
-		UserEntity userLogged = userService.getLoggedInUser();
-		model.addAttribute("series", userLogged.getFavoriteSeries());
-		
-		return "mainPages/seriesPages/viewSeriesSchedule";
-	}
-	
 	@RequestMapping("/{seriesName}")
 	public String seriesInfo(@PathVariable("seriesName") String seriesName, Model model) {
 		

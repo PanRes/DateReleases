@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class SeriesEpisodesDaoImpl implements SeriesEpisodesDao {
@@ -35,7 +36,13 @@ public class SeriesEpisodesDaoImpl implements SeriesEpisodesDao {
 		
 		return query.getResultList();
 	}
-	
+
+	@Override
+	public List<SeriesEpisodesEntity> getSeriesEpisodesUserFavorites(Set<SeriesEntity> series) {
+
+		return (List<SeriesEpisodesEntity>) series.stream().map(SeriesEntity::getSeriesEpisodes);
+	}
+
 	@Override
 	public SeriesEpisodesEntity getSeriesEpisodeById(int id) {
 		Session session = sessionFactory.getCurrentSession();

@@ -141,6 +141,14 @@ public class SeriesEntity {
 
 	//TODO : create methods for seriesEpisodes
 
+	public List<SeriesEpisodesEntity> getSeriesEpisodes() {
+		return seriesEpisodes;
+	}
+
+	public void setSeriesEpisodes(List<SeriesEpisodesEntity> seriesEpisodes) {
+		this.seriesEpisodes = seriesEpisodes;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

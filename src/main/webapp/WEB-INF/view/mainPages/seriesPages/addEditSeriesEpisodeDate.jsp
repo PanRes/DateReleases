@@ -105,11 +105,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<form:form action="/series/saveOrUpdateSeriesEpisode" method="post" modelAttribute="seriesEpisode">
+				<form:form action="${pageContext.request.contextPath}/series/saveOrUpdateSeriesEpisode" method="post" modelAttribute="seriesEpisode">
 					<input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
 					<div class="form-group col-lg-3">
 						<select name="seriesId" class="form-control text-center" required="required">
-							<c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+							<c:forEach var="series" items="${allSeries}">
 								<option value="${series.seriesId}">${series.name}</option>
 							</c:forEach>
 						</select>

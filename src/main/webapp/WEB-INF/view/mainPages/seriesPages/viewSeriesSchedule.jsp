@@ -60,7 +60,7 @@
 								${seriesEpisodeLine.notes}
 							</td>
 							<td class="text-center" width="50">
-								<a href="/editSeriesEpisodeDate?seriesEpisodeId=${seriesEpisodeLine.id}">
+								<a href="${pageContext.request.contextPath}/series/editSeriesEpisodeDate?seriesEpisodeId=${seriesEpisodeLine.id}">
 									<abbr title="Edit This Row">
 										<span class="glyphicon glyphicon-edit editSeriesEpisodeRowbtn"></span>
 									</abbr>
