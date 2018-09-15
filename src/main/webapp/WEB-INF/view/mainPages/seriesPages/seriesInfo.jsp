@@ -1,4 +1,3 @@
-<%@ page import="gr.pr.date_releases.hibernatetools.SeriesTools" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
@@ -9,43 +8,48 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 	<head>
 		<%--TODO : show series name in the title --%>
-		<title>Series Info</title>
+		<title>${series.name} Info</title>
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
-		<jsp:useBean id="userService" class="gr.pr.date_releases.service.UserServiceImpl"/>
 		<div class="panel panel-info">
 			<p class="panel-heading">
 				${series.name} Information &nbsp;
-				<a href="/AddRemoveFavoritesServlet?seriesId=${series.seriesId}" class="favoritesBtn">
+				<security:authorize access="isAuthenticated()">
 					<c:choose>
-						<c:when test="${userService.hasUserFavoriteSeries(series)}">
-							<abbr title="Remove from favorites">
-								<i class="glyphicon glyphicon-heart"></i>
-							</abbr>
+						<c:when test="${series.hasUser()}">
+							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?seriesName=${series.name}" class="favoritesBtn">
+								<abbr title="Remove from favorites">
+									<i class="glyphicon glyphicon-heart"></i>
+								</abbr>
+							</a>
 						</c:when>
 						<c:otherwise>
-							<abbr title="Add to Favorites">
-								<i class="glyphicon glyphicon-heart-empty"></i>
-							</abbr>
+							<a href="${pageContext.request.contextPath}/series/removeSeriesToUserFavorites?seriesName=${series.name}" class="favoritesBtn">
+								<abbr title="Add to Favorites">
+									<i class="glyphicon glyphicon-heart-empty"></i>
+								</abbr>
+							</a>
 						</c:otherwise>
 					</c:choose>
-				</a>
+				</security:authorize>
 			</p>
 			<div class="panel-body" id="seriesInfoPanelBody">
 				<div class="media">
 					<div class="col-lg-4">
 						<c:choose>
 							<c:when test="${series.imageUrl != null}">
-								<img src="${series.imageUrl}" class="thumbnail text-center"/>
+								<img src="${pageContext.request.contextPath}${series.imageUrl}" class="thumbnail text-center"/>
 							</c:when>
 							<c:otherwise>
-								<%--FIXME : fix url to new one--%>
-								<img src="${initParam['seriesImgs']}/not-found.png" class="thumbnail text-center"
-									 style="height: auto;" width="300"/>
+								<%--TODO : put img url in a init param--%>
+								<img src="${pageContext.request.contextPath}/contentFiles/imgs/series/not-found.png"
+									 class="thumbnail text-center" style="height: auto;" width="300"/>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -63,6 +67,7 @@
 									Still going!
 									</p>
 									<p>
+										<%--TODO : show next episodes date--%>
 										<strong>Next Episode:</strong> TBA
 								</c:when>
 								<c:otherwise>
@@ -72,14 +77,13 @@
 						</p>
 						<c:if test="${!series.ended}">
 							<p>
-								<%--FIXME : change url when viewSeriesSchedule contoller is ready--%>
-								<a href="/viewSeriesSchedule?seriesId=${series.seriesId}" class="btn btn-default">
+								<a href="${pageContext.request.contextPath}/series/schedule?series=${series.name}" class="btn btn-default">
 									View ${series.name} Schedule
 								</a>
 							</p>
 						</c:if>
 						<p>
-							<a href="/${series.name}/editSeries" class="btn btn-primary">
+							<a href="${pageContext.request.contextPath}/series/${series.name}/editSeries" class="btn btn-primary">
 								Edit ${series.name} Info
 							</a>
 						</p>

@@ -7,7 +7,7 @@ public interface GenericDao {
 	void upsert(Object entity);
 	void save(Object entity);
 	void saveOrUpdate(Object entity);
-	void deleteLine(Object entity);
+	void deleteRow(Object entity);
 	void insertMultipleLines(List<Object> entities);
 	
 }

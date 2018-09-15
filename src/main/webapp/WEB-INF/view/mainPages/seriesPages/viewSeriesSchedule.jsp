@@ -1,9 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page import="gr.pr.date_releases.hibernatetools.SeriesEpisodesTools" %>
-<%@ page import="java.sql.Date" %>
-<%@ page import="java.util.Calendar" %>
-<%@ page import="java.util.Locale" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -18,27 +14,10 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
-		<jsp:useBean id="SeriesEpisodesTools" class="gr.pr.date_releases.hibernatetools.SeriesEpisodesTools"/>
-		<jsp:useBean id="SeriesTools" class="gr.pr.date_releases.hibernatetools.SeriesTools"/>
-		<%
-
-			String seriesIdString = (String) request.getParameter("seriesId");
-			int seriesId = -1;
-			if (seriesIdString != null) {
-				seriesId = Integer.valueOf(seriesIdString);
-			}
-			else if (seriesIdString.equals("0")){
-				seriesId = 0;
-			}
-			Calendar now = Calendar.getInstance(Locale.US);
-			now.add(Calendar.DATE,-1);/*Because US series displayed at the night of that day,
-													   *I sub one day from now for released label
-													   * */
-		%>
 		<c:choose>
-			<c:when test="${SeriesEpisodesTools.getSeriesEpisodesRowsCountBySeriesId(param.seriesId) == 0}">
+			<c:when test="${series.size() == 0}">
 				<div class="text-center">
-					<h4>There were no entries for ${SeriesTools.getSeriesNameBySeriesId(param.seriesId)}</h4>
+					<h4>There are no episodes coming</h4>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -52,56 +31,42 @@
 						<th class="text-center" width="300">Notes</th>
 						<th class="text-center" width="50">Delete</th>
 					</tr>
-					<c:forEach var="seriesLine" items="<%=SeriesEpisodesTools.getSeriesEpisodeBySeriesId(seriesId)%>">
+					<c:forEach var="seriesEpisodeLine" items="${seriesEpisodes}">
 						<tr>
 							<td class="text-center">
-								<a href="seriesInfo?seriesId=${seriesLine.seriesBySeriesId.seriesId}">
-									${seriesLine.seriesBySeriesId.name}
+								<a href="${pageContext.request.contextPath}/series/${seriesEpisodeLine.series.name}">
+									${seriesEpisodeLine.series.name}
 								</a>
 							</td>
-							<td class="text-center">${seriesLine.releaseDay()}</td>
-							<td class="text-center">${seriesLine.viewDay()}</td>
+							<td class="text-center">${seriesEpisodeLine.releaseDay()}</td>
+							<td class="text-center">${seriesEpisodeLine.viewDay()}</td>
 							<td class="text-center">
-								<c:choose>
-									<c:when test="${seriesLine.episode == -1}">
-										<c:choose>
-											<c:when test="${seriesLine.season < 9}">
-												Season 0${seriesLine.season}
-											</c:when>
-											<c:otherwise>
-												Season ${seriesLine.season}
-											</c:otherwise>
-										</c:choose>
-									</c:when>
-									<c:otherwise>
-										${seriesLine.seasonEpisode()}
-									</c:otherwise>
-								</c:choose>
+								${seriesEpisodeLine.getEpisodeToString()}
 							</td>
 							<td class="text-center">
-								<c:set var="now" value="<%=new Date(now.getTimeInMillis())%>"/>
 								<c:choose>
-									<c:when test="${seriesLine.releaseDate == null}">
+									<c:when test="${seriesEpisodeLine.releaseDate == null}">
 										TBA
 									</c:when>
-									<c:when test="${seriesLine.releaseDate < now}">
+									<c:when test="${seriesEpisodeLine.releaseDate < now}">
 										Released
 									</c:when>
 									<c:otherwise>
-										<fmt:formatDate value="${seriesLine.releaseDate}" pattern="dd/MM/yyyy"/>
+										<fmt:formatDate value="${seriesEpisodeLine.releaseDate}" pattern="dd/MM/yyyy"/>
 									</c:otherwise>
 								</c:choose>
 							</td>
 							<td class="text-center" width="300">
-								${seriesLine.notes}
+								${seriesEpisodeLine.notes}
 							</td>
 							<td class="text-center" width="50">
-								<a href="/editSeriesDate?seriesEpisodeId=${seriesLine.seriesEpisodesId}">
+								<a href="/editSeriesEpisodeDate?seriesEpisodeId=${seriesEpisodeLine.id}">
 									<abbr title="Edit This Row">
 										<span class="glyphicon glyphicon-edit editSeriesEpisodeRowbtn"></span>
 									</abbr>
 								</a>
-								<a href="/DeleteSeresEpisodeRowServlet?seriesEpisodeId=${seriesLine.seriesEpisodesId}&seriesId=${param.seriesId}">
+								<a href="/deleteSeriesEpisodeDate/${seriesEpisodeLine.series.name}?
+										s=${seriesEpisodeLine.season}&e=${seriesEpisodeLine.episode}">
 									<abbr title="Delete this Row">
 										<span class="glyphicon glyphicon-remove deleteSeriesEpisodeBtn"></span>
 									</abbr>

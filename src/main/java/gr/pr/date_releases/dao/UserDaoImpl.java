@@ -1,6 +1,5 @@
 package gr.pr.date_releases.dao;
 
-import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

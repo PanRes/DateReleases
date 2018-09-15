@@ -10,9 +10,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:useBean id="UserFavoriteSeriesTools" class="gr.pr.date_releases.hibernatetools.UserFarvoriteSeriesTools"/>
 <c:set var="i" value="0" scope="page"/>
-<c:forEach var="series" items="<%=SeriesTools.getAllSeries()%>">
+<c:forEach var="series" items="allSeries">
 	<c:set var="n" value="${i%3}"/>
 	<c:if test="${n==0}">
 		</div>

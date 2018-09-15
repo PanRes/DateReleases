@@ -2,12 +2,16 @@ package gr.pr.date_releases.service;
 
 import gr.pr.date_releases.dao.GenericDao;
 import gr.pr.date_releases.dao.SeriesDao;
+import gr.pr.date_releases.dao.SeriesEpisodesDao;
+import gr.pr.date_releases.dao.UserDao;
 import gr.pr.date_releases.entity.SeriesEntity;
+import gr.pr.date_releases.entity.SeriesEpisodesEntity;
+import gr.pr.date_releases.entity.UserEntity;
 import gr.pr.date_releases.utils.GenericUtils;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,9 +22,15 @@ import java.util.List;
 @Service
 @PropertySource("classpath:fileUrls.properties")
 public class SeriesServiceImpl implements SeriesService {
-
+	
 	@Autowired
 	private SeriesDao seriesDao;
+	
+	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
+	private SeriesEpisodesDao seriesEpisodesDao;
 	
 	@Autowired
 	private GenericDao genericDao;
@@ -58,4 +68,38 @@ public class SeriesServiceImpl implements SeriesService {
 		return "";
 	}
 	
+	@Override
+	@Transactional
+	public void addSeriesToUserFavorites(String seriesName) {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		UserEntity user = userDao.getUserByUserName(userName);
+		
+		SeriesEntity series = seriesDao.getSeriesByName(seriesName);
+		
+		series.addUser(user);
+	}
+	
+	@Override
+	@Transactional
+	public void removeSeriesToUserFavorites(String seriesName) {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		UserEntity user = userDao.getUserByUserName(userName);
+		
+		SeriesEntity series = seriesDao.getSeriesByName(seriesName);
+		
+		series.removeUserFavorite(user);
+	}
+	
+	@Override
+	@Transactional
+	public List<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName) {
+		if (seriesName.equals("allSeries")) {
+			return seriesEpisodesDao.getAllSeriesEpisodes();
+		}
+		else {
+			return seriesEpisodesDao.getSeriesEpisodesBySeries(getSeriesBySeriesName(seriesName));
+		}
+	}
 }

@@ -2,7 +2,6 @@ package gr.pr.date_releases.service;
 
 import gr.pr.date_releases.dao.UserDao;
 import gr.pr.date_releases.entity.RolesEntity;
-import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;

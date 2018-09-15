@@ -35,11 +35,12 @@ public class SeriesDaoImpl implements SeriesDao {
 	public SeriesEntity getSeriesByName(String name) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		TypedQuery query = session
+		TypedQuery<SeriesEntity> query = session
 				.createNamedQuery("Series.findSeriesByName",SeriesEntity.class)
 				.setParameter("name", name);
-		
-		return (SeriesEntity) query.getResultList().get(0);
+
+		//TODO : fix in case no series was found
+		return query.getResultList().get(0);
 	}
 	
 	@Override

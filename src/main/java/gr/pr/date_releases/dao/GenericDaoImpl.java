@@ -41,7 +41,7 @@ public class GenericDaoImpl implements GenericDao {
 	}
 	
 	@Override
-	public void deleteLine(Object entity) {
+	public void deleteRow(Object entity) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		session.delete(entity);

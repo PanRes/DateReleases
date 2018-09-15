@@ -1,5 +1,7 @@
 package gr.pr.date_releases.entity;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -128,6 +130,13 @@ public class SeriesEntity {
 	//TODO : check if entry is removed from user_series_favorite table
 	public void removeUserFavorite(UserEntity user) {
 		usersFavorite.remove(user);
+	}
+	
+	public boolean hasUser() {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		return usersFavorite.stream()
+				.map(user -> user.getUserName().equals(userName))
+				.count() > 0;
 	}
 
 	//TODO : create methods for seriesEpisodes

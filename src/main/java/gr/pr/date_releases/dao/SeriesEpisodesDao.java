@@ -7,7 +7,12 @@ import java.util.List;
 
 public interface SeriesEpisodesDao {
 	
+	List<SeriesEpisodesEntity> getAllSeriesEpisodes();
+	
 	List<SeriesEpisodesEntity> getSeriesEpisodesBySeries(SeriesEntity series);
+	
+	SeriesEpisodesEntity getSeriesEpisodeById(int id);
+	
 	int getCountOfEpisodesBySeries(SeriesEntity series);
 	String updateSeriesEpisodesNotes(int id, String addNotes);
 	
