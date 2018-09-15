@@ -50,7 +50,7 @@ public class UserEntity {
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "user_id"),

@@ -41,7 +41,7 @@ public class SeriesEpisodesEntity {
 	@Column(name = "notes", length = 45)
 	private String notes;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "series_id")
 	private SeriesEntity series;
 	

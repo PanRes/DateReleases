@@ -39,7 +39,7 @@ public class SeriesEntity {
 	@Column(name = "channel")
 	private String channel;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "user_series_favorites",
 			joinColumns = @JoinColumn(name = "series_id"),
@@ -47,7 +47,7 @@ public class SeriesEntity {
 	)
 	private List<UserEntity> usersFavorite;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "series", orphanRemoval = true)
+	@OneToMany(mappedBy = "series", orphanRemoval = true)
 	private List<SeriesEpisodesEntity> seriesEpisodes;
 	
 	public SeriesEntity() {
