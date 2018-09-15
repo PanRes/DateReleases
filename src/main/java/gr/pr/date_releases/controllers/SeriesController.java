@@ -74,13 +74,11 @@ public class SeriesController {
 		return "mainPages/seriesPages/addSeriesDate";
 	}
 	
-	@RequestMapping("/editSeriesDate/{seriesName}/{seriesEpisode}")
-	public String editSeriesDate(@PathVariable("seriesName") String name,
-								 @PathVariable("seriesEpisode") String seriesEpisodeString, Model model) {
+	@RequestMapping("/editSeriesEpisodeDate")
+	public String editSeriesDate(@RequestParam("seriesEpisodeId") int id,
+								 Model model, HttpServletRequest request) {
 		
-/*
-		SeriesEpisodesEntity =
-*/
+		
 		
 		return "";
 	}
