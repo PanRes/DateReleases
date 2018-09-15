@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,7 +23,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private GenericDao genericDao;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
+	@Transactional
 	public boolean hasUserFavoriteSeries(SeriesEntity series) {
 		return series.getUsersFavorite().stream()
 				.filter(user -> user.getUserName().equals(getLoggedInUser()))
@@ -27,6 +35,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Transactional
 	public UserEntity getLoggedInUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userName = null;
@@ -37,8 +46,10 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Transactional
 	public boolean createUser(UserEntity user) {
 		try {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			genericDao.save(user);
 			return true;
 		} catch (Exception e) {
@@ -46,5 +57,10 @@ public class UserServiceImpl implements UserService {
 			System.out.println("User already exists");
 			return false;
 		}
+	}
+	
+	@Transactional
+	public List<UserEntity> getAllUsers() {
+		return userDao.getAllUsers();
 	}
 }

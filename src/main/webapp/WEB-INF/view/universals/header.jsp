@@ -21,10 +21,6 @@
 <fmt:setBundle basename="language"/>
 <header>
 
-	pageURI: ${pageURI}<br>
-	seriesName: ${param.seriesName} <br>
-	pageContext: ${pageContext.request.contextPath}<br>
-
 	<div class="row">
 
 		<div class="col-lg-8 col-lg-offset-2 h1 text-center">
@@ -78,7 +74,8 @@
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="${allSeries}">
-									<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, '/editSeries') ? 'active' : ''}">
+									<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, series.name) and
+											fn:contains(pageURI, '/editSeries') ? 'active' : ''}">
 										<a href="${pageContext.request.contextPath}/series/${series.name}/editSeries">Edit ${series.name}</a>
 									</li>
 								</c:forEach>
