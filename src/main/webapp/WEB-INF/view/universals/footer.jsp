@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 </article>
 <footer id="footer">
+	<hr style="width: 100%">
 	<div class="text-center footer pull-bottom">
 		<h4>
 			<div class="row">

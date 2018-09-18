@@ -54,6 +54,14 @@
 						</c:choose>
 					</div>
 					<div class="col-lg-8">
+						<c:if test="episodeSaved">
+							<c:if test="${param.error != null}">
+								<div class="alert alert-success text-center">
+									Episode saved successfully
+								</div>
+							</c:if>
+
+						</c:if>
 						<p>
 							<strong>First Aired:</strong>
 							<fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>

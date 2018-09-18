@@ -65,8 +65,7 @@
 										<span class="glyphicon glyphicon-edit editSeriesEpisodeRowbtn"></span>
 									</abbr>
 								</a>
-								<a href="/deleteSeriesEpisodeDate/${seriesEpisodeLine.series.name}?
-										s=${seriesEpisodeLine.season}&e=${seriesEpisodeLine.episode}">
+								<a href="${pageContext.request.contextPath}/series/deleteSeriesEpisodeDate?seriesEpisodeId=${seriesEpisodeLine.id}">
 									<abbr title="Delete this Row">
 										<span class="glyphicon glyphicon-remove deleteSeriesEpisodeBtn"></span>
 									</abbr>

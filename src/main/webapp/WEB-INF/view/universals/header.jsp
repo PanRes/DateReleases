@@ -65,7 +65,7 @@
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="${allSeries}">
 									<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, series.name) and
-											fn:contains(pageURI, '/editSeries') ? 'active' : ''}">
+											fn:endsWith(pageURI, '/editSeries') ? 'active' : ''}">
 										<a href="${pageContext.request.contextPath}/series/${series.name}/editSeries">Edit ${series.name}</a>
 									</li>
 								</c:forEach>

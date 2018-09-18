@@ -121,7 +121,7 @@ public class SeriesEpisodesEntity {
 	public String getEpisodeToString(){
 		String seasonEpisode = null;
 
-		if (episode == -1) {
+		if (episode != -1) {
 			if(season < 9){
 				seasonEpisode = "S0" + season;
 			}

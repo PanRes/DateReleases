@@ -1,12 +1,9 @@
 package gr.pr.date_releases.controllers;
 
-import gr.pr.date_releases.dao.GenericDao;
 import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.SeriesEpisodesEntity;
-import gr.pr.date_releases.entity.UserEntity;
 import gr.pr.date_releases.service.SeriesEpisodeService;
 import gr.pr.date_releases.service.SeriesService;
-import gr.pr.date_releases.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,19 +19,13 @@ import java.util.Locale;
 @Controller
 @RequestMapping("/series")
 public class SeriesController {
-	
+
 	@Autowired
 	private SeriesService seriesService;
 	
 	@Autowired
 	private SeriesEpisodeService seriesEpisodeService;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private GenericDao genericDao;
-	
+
 	@RequestMapping
 	public String seeAllSeries(Model model) {
 
@@ -63,24 +54,23 @@ public class SeriesController {
 		return "mainPages/seriesPages/addEditSeries";
 	}
 	
-	@RequestMapping("{seriesName}/addSeriesEpisodeDate")
-	public String addSeriesDate(@PathVariable("seriesName") String seriesName, Model model) {
+	@RequestMapping("/addSeriesEpisodeDate")
+	public String addSeriesDate(Model model) {
+
+		//TODO : have the possibility to add episode for specific series
+		SeriesEpisodesEntity seriesEpisode = new SeriesEpisodesEntity();
+		model.addAttribute("seriesEpisode", seriesEpisode);
 		
-		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
-		SeriesEpisodesEntity seriesEpisodes = new SeriesEpisodesEntity();
-		model.addAttribute("series", series);
-		model.addAttribute("seriesEpisodes", seriesEpisodes);
-		
-		return "mainPages/seriesPages/addSeriesDate";
+		return "mainPages/seriesPages/addEditSeriesEpisodeDate";
 	}
 	
 	@RequestMapping("/editSeriesEpisodeDate")
-	public String editSeriesDate(@RequestParam("seriesEpisodeId") int id,
-								 Model model, HttpServletRequest request) {
+	public String editSeriesDate(@RequestParam("seriesEpisodeId") int id, Model model) {
 		
+		SeriesEpisodesEntity seriesEpisode = seriesEpisodeService.getSeriesEpisodeById(id);
+		model.addAttribute("seriesEpisode", seriesEpisode);
 		
-		
-		return "";
+		return "mainPages/seriesPages/addEditSeriesEpisodeDate";
 	}
 	
 	
@@ -89,7 +79,7 @@ public class SeriesController {
 	public String deleteSeriesEpisodeDate(@RequestParam("seriesEpisodeId") int id,
 								 HttpServletRequest request) {
 		
-		genericDao.deleteRow(seriesEpisodeService.getSeriesEpisodeById(id));
+		seriesEpisodeService.deleteSeriesEpisodeDate(id);
 		
 		//TODO : edit url
 		return "redirect:" + request.getHeader("Referer");
@@ -98,7 +88,7 @@ public class SeriesController {
 	
 
 	@RequestMapping(value = {"/schedule"})
-	public String viewSeriesSchedule(@RequestParam("seriesName") String seriesName, Model model) {
+	public String viewSeriesSchedule(@RequestParam("series") String seriesName, Model model) {
 		
 		List<SeriesEpisodesEntity> seriesEpisodes = seriesService.getSeriesEpisodes(seriesName);
 		
@@ -116,12 +106,18 @@ public class SeriesController {
 	}
 
 	@RequestMapping("/{seriesName}")
-	public String seriesInfo(@PathVariable("seriesName") String seriesName, Model model) {
+	public String seriesInfo(@PathVariable("seriesName") String seriesName,
+							 @RequestParam(name = "episodeSaved", required = false) String episodeSaved,
+							 Model model) {
 		
 		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
 		model.addAttribute("series", series);
-		model.addAttribute("infoPage", true);
-		
+		model.addAttribute("seriesInfo", true);
+
+		if  (episodeSaved != null) {
+			model.addAttribute("episodeSaved", true);
+		}
+
 		return "mainPages/seriesPages/seriesInfo";
 	}
 	
@@ -149,9 +145,13 @@ public class SeriesController {
 	}
 	
 	@PostMapping("/saveOrUpdateSeriesEpisode")
-	public String saveOrUpdateSeriesEpisode(@ModelAttribute("seriesEpisode") SeriesEpisodesEntity seriesEpisode, Model model) {
-		
-		return "";
+	public String saveOrUpdateSeriesEpisode(@ModelAttribute("seriesEpisode") SeriesEpisodesEntity seriesEpisode,
+											@RequestParam("editSeriesEpisode") boolean editSeriesEpisode) {
+
+		seriesEpisode.setSeries(seriesService.getSeriesBySeriesName(seriesEpisode.getSeries().getName()));
+		seriesEpisodeService.saveOrUpdateSeriesEpisode(seriesEpisode, editSeriesEpisode);
+
+		return "/series/" + seriesEpisode.getSeries().getName() + "?episodeSaved";
 	}
 	
 	@GetMapping("/addSeriesToUserFavorites")

@@ -105,28 +105,40 @@
 				</div>
 			</div>
 			<div class="row">
-				<form:form action="${pageContext.request.contextPath}/series/saveOrUpdateSeriesEpisode" method="post" modelAttribute="seriesEpisode">
+				<form:form action="${pageContext.request.contextPath}/series/saveOrUpdateSeriesEpisode?editSeriesEpisode=${fn:contains(pageURI,'/editSeriesEpisodeDate')}"
+						method="post" modelAttribute="seriesEpisode">
+
+<%--
 					<input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
+--%>
 					<div class="form-group col-lg-3">
-						<select name="seriesId" class="form-control text-center" required="required">
-							<c:forEach var="series" items="${allSeries}">
-								<option value="${series.seriesId}">${series.name}</option>
-							</c:forEach>
-						</select>
+						<c:choose>
+							<c:when test="${fn:contains(pageURI,'/editSeriesEpisodeDate')}">
+								<input type="text" value="${seriesEpisode.series.name}" disabled/>
+							</c:when>
+							<c:otherwise>
+								<%--TODO : Show error message if episode exists or ask for update--%>
+								<form:select name="seriesId" required="required" path="series"
+											 class="form-control text-center ${fn:contains(pageURI,'/editSeriesEpisodeDate') ? 'disabled' : ''}">
+									<c:forEach var="series" items="${allSeries}">
+										<form:option value="${series.name}">${series.name}</form:option>
+									</c:forEach>
+								</form:select>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="form-group col-lg-1">
-						<input type="number" class="form-control text-center" min="1" name="season" id="season"
-							   required="required">
+						<form:input type="number" min="1" name="season" id="season" required="required" path="season" class="form-control text-center"/>
 					</div>
 					<div class="form-group col-lg-1">
-						<input type="number" class="form-control text-center" min="0" name="episode" id="episode"
-							   required="required">
+						<form:input type="number" class="form-control text-center" min="0" name="episode" id="episode"
+								required="required" path="episode"/>
 					</div>
 					<div class="form-group col-lg-2">
-						<input type="date" class="date form-control text-center" name="date" id="date">
+						<form:input type="date" class="date form-control text-center" name="date" id="date" path="releaseDate"/>
 					</div>
 					<div class="form-group col-lg-4">
-						<input type="text" class="form-control text-center" name="notes">
+						<form:input type="text" class="form-control text-center" name="notes" path="notes"/>
 					</div>
 					<div class="form-group col-lg-1">
 						<input type="submit" id=addSingleEpisodeBtn" value="Submit Date"

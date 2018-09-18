@@ -12,27 +12,21 @@ public class GenericDaoImpl implements GenericDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	@Override
-	public void upsert(Object entity) {
-		Session session = sessionFactory.getCurrentSession();
-		
-		//FIXME : fill correct exception when entry does not exists
-		try {
-			session.update(entity);
-		}
-		catch (Exception e) {
-			session.save(entity);
-		}
-	}
-	
+
 	@Override
 	public void save(Object entity) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		session.save(entity);
 	}
-	
+
+	@Override
+	public void update(Object entity) {
+		Session session = sessionFactory.getCurrentSession();
+
+		session.update(entity);
+	}
+
 	@Override
 	public void saveOrUpdate(Object entity) {
 		Session session = sessionFactory.getCurrentSession();
