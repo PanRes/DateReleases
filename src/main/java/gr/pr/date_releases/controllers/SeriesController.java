@@ -50,7 +50,7 @@ public class SeriesController {
 		
 		model.addAttribute("series", series);
 		
-		return "mainPages/seriesPages/addSeries";
+		return "mainPages/seriesPages/addEditSeries";
 	}
 	
 	@RequestMapping("/{seriesName}/editSeries")
@@ -60,7 +60,7 @@ public class SeriesController {
 		
 		model.addAttribute("series", series);
 		
-		return "mainPages/seriesPages/addSeries";
+		return "mainPages/seriesPages/addEditSeries";
 	}
 	
 	@RequestMapping("{seriesName}/addSeriesEpisodeDate")
@@ -128,11 +128,13 @@ public class SeriesController {
 	//TODO : check if parameters are returned with post request
 	@PostMapping(value = "/saverOrUpdateSeries", consumes = {"multipart/form-data"})
 	public String saveOrUpdateSeries(@ModelAttribute("series") SeriesEntity series, Model model,
-			@RequestParam("imgUrl") MultipartFile multipart) {
+			@RequestParam(name = "imgUrl", required = false) MultipartFile multipart) {
 		
-		//TODO : check if upload fails
-		String imgUrl = seriesService.uploadImgUrl(multipart, series.getName());
-		series.setImageUrl(imgUrl);
+		if (multipart != null) {
+			//TODO : check if upload fails
+			String imgUrl = seriesService.uploadImgUrl(multipart, series.getName());
+			series.setImageUrl(imgUrl);
+		}
 		
 		//TODO : show success or fail message in Series info when redirect
 		try {
@@ -143,7 +145,7 @@ public class SeriesController {
 			model.addAttribute("success",false);
 		}
 		
-		return "/" + series.getName();
+		return "/series/" + series.getName();
 	}
 	
 	@PostMapping("/saveOrUpdateSeriesEpisode")

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: pressos
@@ -55,7 +56,7 @@
 					<div class="row form-group">
 						<div class="text-center col-lg-4 col-lg-offset-4">
 							<a href="${pageContext.request.contextPath}/signUp">
-								<fmt:message key="login.href.signUp"/>
+								<spring:message code="login.href.signUp"/>
 							</a>
 						</div>
 					</div>

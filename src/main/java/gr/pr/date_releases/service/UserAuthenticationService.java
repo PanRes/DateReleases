@@ -24,7 +24,7 @@ public class UserAuthenticationService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserEntity user = userDao.getUserByUserName(username);
 		
-		UserBuilder userBuilder = null;
+		UserBuilder userBuilder;
 		
 		if (user != null) {
 			userBuilder = User.withUsername(username);

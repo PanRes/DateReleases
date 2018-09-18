@@ -1,34 +1,21 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: pressos
-  Date: 6/10/2017
-  Time: 10:52 πμ
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <%@include file="inclusions.jsp"%>
 
 <c:set var="pageURI" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-<fmt:requestEncoding value="UTF-8"/>
-<fmt:setLocale value="${sessionScope.language == null ? 'el' : sessionScope.language}"/>
-<fmt:setBundle basename="language"/>
 <header>
 
 	<div class="row">
 
 		<div class="col-lg-8 col-lg-offset-2 h1 text-center">
-			<fmt:message key="header.mainTitle" />
+			<spring:message code="header.mainTitle" />
 		</div>
-		   <%-- <div class="col-lg-2 form-group">
-
-			</div>--%>
 	</div>
 
 	<nav class="navbar navbar-inverse">
@@ -37,6 +24,7 @@
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/">Date Releases</a>
 			</div>
 			<ul class="nav navbar-nav">
+				<%--BEST : invert colors when active--%>
 				<li class="dropdown ${fn:contains(pageURI,'/series') ? 'active' : ''}">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Series <b class="caret"></b></a>
 					<ul class="dropdown-menu multi-level">
@@ -83,10 +71,10 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="${fn:contains(pageURI, 'series/addSeriesEpisodeDate') ? 'active' : ''}">
+						<li class="${fn:endsWith(pageURI, 'series/addSeriesEpisodeDate') ? 'active' : ''}">
 							<a href="${pageContext.request.contextPath}/series/addSeriesEpisodeDate">Add Episode Date</a>
 						</li>
-						<li class="${fn:contains(pageURI, 'series/addSeries') ? 'active' : ''}">
+						<li class="${fn:endsWith(pageURI, 'series/addSeries') ? 'active' : ''}">
 							<a href="${pageContext.request.contextPath}/series/addSeries">Add Series</a>
 						</li>
 					</ul>
@@ -94,19 +82,24 @@
 			</ul>
 			<%--TODO : add spring localization--%>
 			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" action="/LanguageServlet" method="post">
-					<select class="selectpicker btn-black" data-width="fit" id="language" name="language"
-							onchange="submit()">
-						<option  value="el" ${language == 'el' ? 'selected' : ''}
-								 data-content='<span class="flag-icon flag-icon-gr"></span> Ελληνικά'>
-							Ελληνικά
-						</option>
-						<option value="en" ${language == 'en' ? 'selected' : ''}
-								data-content='<span class="flag-icon flag-icon-gb"></span> English'>
-							English
-						</option>
-					</select>
-				</form>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<spring:message code="header.language.select"/><b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu multi-level">
+						<li class="${locale == 'el' ? 'active' : ''}">
+							<a class="dropdown-item" href="?lang=el">
+								<spring:message code="header.lang.greek"/>
+							</a>
+						</li>
+						<li class="${locale == 'en' ? 'active' : ''}">
+							<a class="dropdown-item" href="?lang=en">
+								<spring:message code="header.lang.english"/>
+							</a>
+						</li>
+					</ul>
+				</li>
+
 				<security:authorize access="isAuthenticated()" >
 					<li class="dropdown">
 						<a href="#" class="data-toggle" data-toggle="dropdown">
@@ -144,5 +137,6 @@
 		</div>
 	</nav>
 </header>
+<%--INFO : article is closed in each jsp--%>
 <article id="content">
 

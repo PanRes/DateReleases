@@ -36,8 +36,6 @@
 			<form:form action="${pageContext.request.contextPath}/series/saverOrUpdateSeries"
 					method="post" modelAttribute="series" enctype="multipart/form-data">
 
-				<form:hidden path="id"/>
-
 				<div class="row">
 					<div class="col-lg-3">
 						<h5>Series Name:</h5>

@@ -13,18 +13,17 @@
 	<body>
 
 		<%@include file="universals/header.jsp"%>
-		<jsp:useBean id="user" class="gr.pr.date_releases.entity.UserEntity"/>
 		<c:set var="user" value='<%=session.getAttribute("user")%>'/>
 		<div class="container text-center">
 			<c:choose>
 				<c:when test="${user != null}">
 					<div class="row">
-						<p><h2><fmt:message key="welcome.page.title"/> </h2></p>
+						<p><h2><spring:message code="welcome.page.title"/> </h2></p>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="row">
-						<p><h2><fmt:message key="welcome.page.title"/></h2></p>
+						<p><h2><spring:message code="welcome.page.title"/></h2></p>
 					</div>
 				</c:otherwise>
 			</c:choose>
