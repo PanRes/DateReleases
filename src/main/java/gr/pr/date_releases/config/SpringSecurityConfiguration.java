@@ -24,7 +24,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		//FIXME : authenticate with hibernate
+		auth.inMemoryAuthentication().withUser("PR").password("test123");
 	}
 	
 	@Override

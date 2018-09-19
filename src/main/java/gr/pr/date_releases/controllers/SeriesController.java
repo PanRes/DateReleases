@@ -144,13 +144,13 @@ public class SeriesController {
 		return "/series/" + series.getName();
 	}
 	
-	@PostMapping("/saveOrUpdateSeriesEpisode")
+	@RequestMapping("/saveOrUpdateSeriesEpisode")
 	public String saveOrUpdateSeriesEpisode(@ModelAttribute("seriesEpisode") SeriesEpisodesEntity seriesEpisode,
 											@RequestParam("editSeriesEpisode") boolean editSeriesEpisode) {
 
 		seriesEpisode.setSeries(seriesService.getSeriesBySeriesName(seriesEpisode.getSeries().getName()));
 		seriesEpisodeService.saveOrUpdateSeriesEpisode(seriesEpisode, editSeriesEpisode);
-
+		
 		return "/series/" + seriesEpisode.getSeries().getName() + "?episodeSaved";
 	}
 	

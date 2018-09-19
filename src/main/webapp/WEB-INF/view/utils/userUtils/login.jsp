@@ -38,7 +38,7 @@
 						<div class="input-group text-center col-lg-4 col-lg-offset-4">
 							<span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
 							<input type="text" name="username" class="form-control" required
-								   placeholder="UserName or Email"/>
+									placeholder="UserName or Email"/>
 						</div>
 					</div>
 					<div class="row form-group">
