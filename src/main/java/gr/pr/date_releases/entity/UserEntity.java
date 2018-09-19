@@ -198,8 +198,12 @@ public class UserEntity {
 	}
 	
 	//TODO : check if entry is removed from user_series_favorite table
-	public void removeFavortieSeries(SeriesEntity series) {
+	public void removeFavoriteSeries(SeriesEntity series) {
 		favoriteSeries.remove(series);
+	}
+	
+	public boolean hasFavoriteSeries(SeriesEntity series) {
+		return favoriteSeries.contains(series);
 	}
 	
 	@Override

@@ -71,12 +71,12 @@ public class SeriesServiceImpl implements SeriesService {
 	
 	@Override
 	@Transactional
-	public void addSeriesToUserFavorites(String seriesName) {
+	public void addSeriesToUserFavorites(int seriesId) {
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		UserEntity user = userDao.getUserByUserName(userName);
 		
-		SeriesEntity series = seriesDao.getSeriesByName(seriesName);
+		SeriesEntity series = seriesDao.getSeriesById(seriesId);
 		
 		series.addUser(user);
 	}

@@ -23,7 +23,7 @@
 				<security:authorize access="isAuthenticated()">
 					<c:choose>
 						<c:when test="${series.hasUser()}">
-							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?series=${series.name}" class="favoritesBtn">
+							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?seriesId=${series.id}" class="favoritesBtn">
 								<abbr title="Remove from favorites">
 									<i class="glyphicon glyphicon-heart"></i>
 								</abbr>
@@ -48,7 +48,7 @@
 							</c:when>
 							<c:otherwise>
 								<%--TODO : put img url in a init param--%>
-								<img src="${pageContext.request.contextPath}/contentFiles/imgs/series/not-found.png"
+								<img src="${pageContext.request.contextPath}${seriesImgsDir}/not-found.png"
 									 class="thumbnail text-center" style="height: auto;" width="300"/>
 							</c:otherwise>
 						</c:choose>

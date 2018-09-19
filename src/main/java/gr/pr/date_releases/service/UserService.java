@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
 	
 	boolean hasUserFavoriteSeries(SeriesEntity series);
-	UserEntity getLoggedInUser();
+	UserEntity getLoggedInUserName();
 	boolean createUser(UserEntity user);
 	List<UserEntity> getAllUsers();
 }

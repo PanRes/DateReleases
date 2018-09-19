@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 @ControllerAdvice
-public class GlobalControllerAdvice {
+public class SeriesControllerAdvice {
 
 	@Autowired
 	private SeriesService seriesService;
@@ -23,6 +23,5 @@ public class GlobalControllerAdvice {
 	@ModelAttribute("locale")
 	public String getLanguage() {
 		return String.valueOf(LocaleContextHolder.getLocale());
-		
 	}
 }

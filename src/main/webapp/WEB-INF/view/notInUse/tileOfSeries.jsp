@@ -15,7 +15,7 @@
 				<img src='<%=request.getParameter("imageUrl")%>' width="200" height="200" class="img-thumbnail"/>
 			</c:when>
 			<c:otherwise>
-				<img src="${initParam['seriesImgs']}/not-found.png" width="200" height="200" class="img-thumbnail"/>
+				<img src="${pageContext.request.contextPath}${seriesImgsDir}/not-found.png" width="200" height="200" class="img-thumbnail"/>
 			</c:otherwise>
 		</c:choose>
 	</p>

@@ -124,7 +124,7 @@ public class SeriesController {
 	//TODO : check if parameters are returned with post request
 	@PostMapping(value = "/saverOrUpdateSeries", consumes = {"multipart/form-data"})
 	public String saveOrUpdateSeries(@ModelAttribute("series") SeriesEntity series, Model model,
-			@RequestParam(name = "imgUrl", required = false) MultipartFile multipart) {
+									 @RequestParam(name = "imgUrl", required = false) MultipartFile multipart) {
 		
 		if (multipart != null) {
 			//TODO : check if upload fails
@@ -155,11 +155,11 @@ public class SeriesController {
 	}
 	
 	@GetMapping("/addSeriesToUserFavorites")
-	public String addSeriesToUserFavorites(@RequestParam("seriesName") String seriesName) {
+	public String addSeriesToUserFavorites(@RequestParam("seriesId") int id, HttpServletRequest request) {
 		
-		seriesService.addSeriesToUserFavorites(seriesName);
+		seriesService.addSeriesToUserFavorites(id);
 		
-		return "/" + seriesName;
+		return "redirect:" + request.getHeader("Referer");
 	}
 	
 	@GetMapping("/removeSeriesToUserFavorites")

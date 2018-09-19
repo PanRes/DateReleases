@@ -12,7 +12,7 @@ public interface SeriesService {
 	SeriesEntity getSeriesBySeriesName(String name);
 	void saveOrUpdateSeries(SeriesEntity series);
 	String uploadImgUrl(MultipartFile multipartFile, String seriesName);
-	void addSeriesToUserFavorites(String seriesName);
+	void addSeriesToUserFavorites(int seriesId);
 	void removeSeriesToUserFavorites(String seriesName);
 	List<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName);
 }

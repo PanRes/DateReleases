@@ -30,13 +30,13 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public boolean hasUserFavoriteSeries(SeriesEntity series) {
 		return series.getUsersFavorite().stream()
-				.filter(user -> user.getUserName().equals(getLoggedInUser()))
+				.filter(user -> user.getUserName().equals(getLoggedInUserName()))
 				.count() > 0;
 	}
 	
 	@Override
 	@Transactional
-	public UserEntity getLoggedInUser() {
+	public UserEntity getLoggedInUserName() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userName = null;
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {

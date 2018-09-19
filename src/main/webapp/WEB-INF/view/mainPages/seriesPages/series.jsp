@@ -15,8 +15,8 @@
 	<%@include file="/WEB-INF/view/universals/header.jsp"%>
 	<div class="row text-center">
 		<p>
-			<a href="/viewSeriesSchedule" class="btn btn-default text-center">
-				Schedule for all Series
+			<a href="/series/schedule?series=allSeries" class="btn btn-default text-center">
+				<spring:message code="series.all.schedule.view"/>
 			</a>
 		</p>
 
