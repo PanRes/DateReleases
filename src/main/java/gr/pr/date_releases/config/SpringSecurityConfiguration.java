@@ -41,6 +41,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 				.logout().permitAll()
 				.and()
-				.exceptionHandling().accessDeniedPage("/error/403");
+				.exceptionHandling().accessDeniedPage("/error/403")
+				.and()
+				//TODO PHASE 4: configure it in pages
+				.csrf().disable();
 	}
 }

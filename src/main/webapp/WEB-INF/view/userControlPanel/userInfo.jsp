@@ -18,10 +18,10 @@
 				<div class="col-lg-3 text-center">
 				<c:choose>
 					<c:when test="${user.userImgUrl == null}">
-						<img src="${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
+						<img src="${pageContext.request.contextPath}${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
 					</c:when>
 					<c:otherwise>
-						<img src="${user.userImgUrl}" class="thumbnail center-block">
+						<img src="${pageContext.request.contextPath}${user.userImgUrl}" class="thumbnail center-block">
 					</c:otherwise>
 				</c:choose>
 			</div>

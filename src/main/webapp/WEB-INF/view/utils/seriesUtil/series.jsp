@@ -37,7 +37,7 @@
 			<p>
 				<c:choose>
 					<c:when test="${not empty series.imageUrl}">
-						<img src="${series.imageUrl}" style="height: auto;" width="200" class="img-thumbnail">
+						<img src="${pageContext.request.contextPath}${series.imageUrl}" style="height: auto;" width="200" class="img-thumbnail">
 					</c:when>
 					<c:otherwise>
 						<%--FIXME : reduce width--%>

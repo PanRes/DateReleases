@@ -38,10 +38,10 @@
 					<div class="row text-center">
 						<c:choose>
 							<c:when test="${user.userImgUrl == null}">
-								<img id="profileImg" src="${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
+								<img id="profileImg" src="${pageContext.request.contextPath}${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
 							</c:when>
 							<c:otherwise>
-								<img id="profileImg" src="${user.userImgUrl}" class="thumbnail center-block">
+								<img id="profileImg" src="${pageContext.request.contextPath}${user.userImgUrl}" class="thumbnail center-block">
 							</c:otherwise>
 						</c:choose>
 					</div>
