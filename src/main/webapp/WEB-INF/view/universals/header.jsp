@@ -103,31 +103,30 @@
 				<security:authorize access="isAuthenticated()" >
 					<li class="dropdown">
 						<a href="#" class="data-toggle" data-toggle="dropdown">
-							<i class="fa fa-user fa-fw"></i> Welcome ${user.userName}<span class="caret"></span>
+							<i class="fa fa-user fa-fw"></i>
+							<spring:message code="header.user.welcome"/><security:authentication property='principal.username'/>
+							<span class="caret"></span>
 						</a>
-						<%--FIXME : correct urls for user--%>
 						<ul class="dropdown-menu scrollable-menu">
-							<li class="${servletPath == '/userInfo' || servletPath == '/WEB-INF/view/userControlPanel/userInfo.jsp' ?
-									'active' : ''}">
-								<a href="${pageContext.request.contextPath}/userInfo">User Info</a>
+							<li class="${userInfo ? 'active' : ''}">
+								<a href="${pageContext.request.contextPath}/user/<security:authentication property='principal.username'/>">
+									<spring:message code="header.user.info"/>
+								</a>
 							</li>
-							<li class="${servletPath == '/editUserInfo' ||
-									servletPath == '/WEB-INF/view/userControlPanel/editUserInfo.jsp' ? 'active' : ''}">
-								<a href="${pageContext.request.contextPath}/editUserInfo">Edit User Info</a>
+							<li class="${editUserInfo ? 'active' : ''}">
+								<a href="${pageContext.request.contextPath}/user/<security:authentication property='principal.username'/>/editInfo">
+									<spring:message code="header.user.edit"/>
+								</a>
 							</li>
-							<li class="${servletPath == '/changeUserPassword' ||
-									servletPath == '/WEB-INF/view/userControlPanel/changeUserPassword.jsp' ? 'active' : ''}">
-								<a href="${pageContext.request.contextPath}/changeUserPassword">Change Password</a>
+							<li class="${changeUserPassword ? 'active' : ''}">
+								<a href="${pageContext.request.contextPath}/user/<security:authentication property='principal.username'/>/changePassword">
+									<spring:message code="header.user.password"/>
+								</a>
 							</li>
 							<li class="divider"></li>
 							<li>
-								<form:form method="post" action="${pageContext.request.contextPath}/logout">
-									<%--FIXME : fix view of logout button--%>
-									<input type="submit" class="btn btn-primary" value="Logout"><i class="fa fa-sign-out"></i>
-								</form:form>
-
-								<a href="/WEB-INF/view/utils/userUtils/logout.jsp">
-									Log out? <i class="fa fa-sign-out"></i>
+								<a href="${pageContext.request.contextPath}/logout">
+									<spring:message code="header.user.logout"/><i class="fa fa-sign-out"></i>
 								</a>
 							</li>
 						</ul>

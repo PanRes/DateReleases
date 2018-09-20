@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(schema = "sql7256210", name = "users")
 @NamedQueries({
 		@NamedQuery(name = "User.findAll", query = "FROM UserEntity u"),
-		@NamedQuery(name = "User.findUserByUserName", query = "FROM UserEntity u WHERE u.userName = :userName")
+		@NamedQuery(name = "User.findUserByUserNameOrEmail", query = "FROM UserEntity u WHERE u.userName = :userName OR u.email = :userName")
 })
 public class UserEntity {
 

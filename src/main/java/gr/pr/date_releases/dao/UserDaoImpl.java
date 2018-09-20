@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 		Session session = sessionFactory.getCurrentSession();
 		
 		TypedQuery<UserEntity> query = session
-				.createNamedQuery("User.findUserByUserName", UserEntity.class)
+				.createNamedQuery("User.findUserByUserNameOrEmail", UserEntity.class)
 				.setParameter("userName", userName);
 		
 		UserEntity user = new UserEntity();

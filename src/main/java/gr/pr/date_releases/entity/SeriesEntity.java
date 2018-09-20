@@ -39,7 +39,7 @@ public class SeriesEntity {
 	@Column(name = "channel")
 	private String channel;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "user_series_favorites",
 			joinColumns = @JoinColumn(name = "series_id"),
