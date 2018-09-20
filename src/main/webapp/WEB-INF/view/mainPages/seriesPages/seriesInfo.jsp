@@ -23,15 +23,15 @@
 				<security:authorize access="isAuthenticated()">
 					<c:choose>
 						<c:when test="${series.hasUser()}">
-							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?seriesId=${series.id}" class="favoritesBtn">
-								<abbr title="Remove from favorites">
+							<a href="${pageContext.request.contextPath}/series/removeSeriesToUserFavorites?seriesId=${series.id}" class="favoritesBtn">
+								<abbr title="<spring:message code='favorites.remove'/>">
 									<i class="glyphicon glyphicon-heart"></i>
 								</abbr>
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href="${pageContext.request.contextPath}/series/removeSeriesToUserFavorites?series=${series.name}" class="favoritesBtn">
-								<abbr title="Add to Favorites">
+							<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?seriesId=${series.id}" class="favoritesBtn">
+								<abbr title="<spring:message code='favorites.add'/> ">
 									<i class="glyphicon glyphicon-heart-empty"></i>
 								</abbr>
 							</a>

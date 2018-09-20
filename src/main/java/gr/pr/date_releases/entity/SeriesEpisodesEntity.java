@@ -12,11 +12,13 @@ import java.util.Locale;
 })
 @NamedQueries({
 		@NamedQuery(name = "SeriesEpisodes.findAll",
-				query = "FROM SeriesEpisodesEntity se ORDER BY se.releaseDate"),
+				query = "FROM SeriesEpisodesEntity se ORDER BY se.season, se.episode"),
 		@NamedQuery(name = "SeriesEpisodes.findEpisodesBySeries",
-				query = "FROM SeriesEpisodesEntity se where se.series = :series ORDER BY se.releaseDate"),
+				query = "FROM SeriesEpisodesEntity se where se.series = :series ORDER BY se.season, se.episode"),
 		@NamedQuery(name = "SeriesEpisode.findSeriesEpisodesBySeriesName",
-				query = "FROM SeriesEpisodesEntity se WHERE se.series.name = :seriesName ORDER BY se.releaseDate")
+				query = "FROM SeriesEpisodesEntity se WHERE se.series.name = :seriesName ORDER BY se.season, se.episode"),
+		@NamedQuery(name = "SeriesEpisode.findSeriesEpisodesInSeries",
+				query = "FROM SeriesEpisodesEntity se WHERE se.series IN (:series) ORDER BY se.season, se.episode")
 })
 public class SeriesEpisodesEntity {
 	

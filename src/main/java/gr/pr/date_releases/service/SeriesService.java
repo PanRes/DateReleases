@@ -5,6 +5,7 @@ import gr.pr.date_releases.entity.SeriesEpisodesEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
 
 public interface SeriesService {
 	
@@ -13,6 +14,6 @@ public interface SeriesService {
 	void saveOrUpdateSeries(SeriesEntity series);
 	String uploadImgUrl(MultipartFile multipartFile, String seriesName);
 	void addSeriesToUserFavorites(int seriesId);
-	void removeSeriesToUserFavorites(String seriesName);
-	List<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName);
+	void removeSeriesToUserFavorites(int seriesId);
+	Set<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName);
 }

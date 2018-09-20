@@ -83,19 +83,19 @@ public class SeriesServiceImpl implements SeriesService {
 	
 	@Override
 	@Transactional
-	public void removeSeriesToUserFavorites(String seriesName) {
+	public void removeSeriesToUserFavorites(int seriesId) {
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 		
 		UserEntity user = userDao.getUserByUserName(userName);
 		
-		SeriesEntity series = seriesDao.getSeriesByName(seriesName);
+		SeriesEntity series = seriesDao.getSeriesById(seriesId);
 		
 		series.removeUserFavorite(user);
 	}
 	
 	@Override
 	@Transactional
-	public List<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName) {
+	public Set<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName) {
 		if (seriesName.equals("allSeries")) {
 			return seriesEpisodesDao.getAllSeriesEpisodes();
 		}

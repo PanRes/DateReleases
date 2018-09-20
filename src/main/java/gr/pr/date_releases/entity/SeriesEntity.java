@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "series", schema = "sql7256210")
@@ -48,7 +49,7 @@ public class SeriesEntity {
 	private List<UserEntity> usersFavorite;
 	
 	@OneToMany(mappedBy = "series", orphanRemoval = true)
-	private List<SeriesEpisodesEntity> seriesEpisodes;
+	private Set<SeriesEpisodesEntity> seriesEpisodes;
 	
 	public SeriesEntity() {
 	}
@@ -127,6 +128,10 @@ public class SeriesEntity {
 		this.usersFavorite.addAll(users);
 	}
 	
+	public void addEpisode(SeriesEpisodesEntity seriesEpisode) {
+		this.seriesEpisodes.add(seriesEpisode);
+	}
+	
 	//TODO : check if entry is removed from user_series_favorite table
 	public void removeUserFavorite(UserEntity user) {
 		usersFavorite.remove(user);
@@ -141,11 +146,11 @@ public class SeriesEntity {
 
 	//TODO : create methods for seriesEpisodes
 
-	public List<SeriesEpisodesEntity> getSeriesEpisodes() {
+	public Set<SeriesEpisodesEntity> getSeriesEpisodes() {
 		return seriesEpisodes;
 	}
 
-	public void setSeriesEpisodes(List<SeriesEpisodesEntity> seriesEpisodes) {
+	public void setSeriesEpisodes(Set<SeriesEpisodesEntity> seriesEpisodes) {
 		this.seriesEpisodes = seriesEpisodes;
 	}
 
