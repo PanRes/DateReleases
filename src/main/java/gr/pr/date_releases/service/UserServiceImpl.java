@@ -59,8 +59,25 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	@Override
 	@Transactional
 	public List<UserEntity> getAllUsers() {
 		return userDao.getAllUsers();
+	}
+	
+	@Override
+	@Transactional
+	public UserEntity getLoggedInUser() {
+		try {
+			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+			
+			UserEntity user = userDao.getUserByUserName(userName);
+			
+			return user;
+		} catch (Exception e) {
+			System.out.println("Logged in User was not found");
+		}
+		
+		return null;
 	}
 }

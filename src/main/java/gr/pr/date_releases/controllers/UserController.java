@@ -6,32 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/userPanel")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/{userName}")
-	public String userInfo(@PathVariable("userName") String userName, Model model) {
+	@RequestMapping
+	public String userInfo(Model model) {
+		
+		UserEntity user = userService.getLoggedInUser();
+		
+		model.addAttribute("user",user);
 		model.addAttribute("userInfo", true);
 		
 		return "userControlPanel/userInfo";
 	}
 	
-	@RequestMapping("/{userName}/changePassword")
-	public String changePassword(@PathVariable("userName") String userName, Model model) {
+	@RequestMapping("/changePassword")
+	public String changePassword(Model model) {
 		model.addAttribute("changeUserPassword", true);
 		
 		return "userControlPanel/changeUserPassword";
 	}
 	
-	@RequestMapping("/{userName}/editInfo")
-	public String editUserInfo(@PathVariable("userName") String userName, Model model) {
+	@RequestMapping("/editInfo")
+	public String editUserInfo(Model model) {
 		model.addAttribute("editUserInfo", true);
 		
 		return "userControlPanel/editUserInfo";

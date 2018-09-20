@@ -1,52 +1,35 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: pressos
-  Date: 3/11/2017
-  Time: 11:53 πμ
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <html lang="${sessionScope.language}">
 	<head>
-		<title>Welcome</title>
+		<title><spring:message code="home.head.title"/></title>
 	</head>
 	<body>
 
 		<%@include file="universals/header.jsp"%>
 		<c:set var="user" value='<%=session.getAttribute("user")%>'/>
 		<div class="container text-center">
-			<c:choose>
-				<c:when test="${user != null}">
-					<div class="row">
-						<p><h2><spring:message code="welcome.page.title"/> </h2></p>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="row">
-						<p><h2><spring:message code="welcome.page.title"/></h2></p>
-					</div>
-				</c:otherwise>
-			</c:choose>
 			<div class="row">
-				<p>
-					In this site you can find the release dates for many series,
-					add new series and dates and add to your favorites.
-				</p>
+				<p><h2><spring:message code="home.body.title"/></h2></p>
 			</div>
-			<c:if test="${user == null}">
+			<div class="row">
+				<p><spring:message code="home.body.banner"/></p>
+			</div>
+			<security:authorize access="!isAuthenticated()">
 				<div class="row">
 					<p>
 						<a href="login" class="btn btn-success">
 							<i class="fa fa-sign-in"></i>
-							Log In
+							<spring:message code="login"/>
 						</a>
 						<a href="/signUp" class="btn btn-primary">
 							<i class="fa fa-user-plus"></i>
-							Sign Up
+							<spring:message code="signUp"/>
 						</a>
 					</p>
 				</div>
-			</c:if>
+			</security:authorize>
 		</div>
 		<%@include file="universals/footer.jsp"%>
 	</body>

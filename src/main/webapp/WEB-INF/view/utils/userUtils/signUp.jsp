@@ -44,7 +44,7 @@
 					</div>
 				</c:when>
 			</c:choose>
-			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/user/createUser"
+			<form:form class="form-horizontal" action="${pageContext.request.contextPath}/userPanel/createUser"
 						modelAttribute="user" name="loginForm" method="post">
 				<div class="text-center">
 					<div class="row form-group">

@@ -12,16 +12,14 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
-		<jsp:useBean id="user" class="gr.pr.date_releases.models.UsersModel"/>
-		<c:set var="user" value='<%=session.getAttribute("user")%>'/>
 		<div class="container">
 			<div class="col-lg-3 text-center">
 				<c:choose>
-					<c:when test="${user.imageUrl == null}">
-						<img src="${initParam['userProfileImgs']}/defaultUserImage.png" class="thumbnail center-block">
+					<c:when test="${user.userImgUrl == null}">
+						<img src="${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
 					</c:when>
 					<c:otherwise>
-						<img src="${user.imageUrl}" class="thumbnail center-block">
+						<img src="${user.userImgUrl}" class="thumbnail center-block">
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -29,7 +27,7 @@
 				<div class="row col-lg-12">
 					<p>
 						<div class="col-lg-4">
-							<strong>User Name:</strong>
+							<strong><spring:message code="user.info.userName"/>:</strong>
 						</div>
 						<div class="col-lg-8">
 							${user.userName}
@@ -39,7 +37,7 @@
 				<div class="row col-lg-12">
 					<p>
 						<div class="col-lg-4">
-							<strong>Email:</strong>
+							<strong><spring:message code="user.info.email"/>:</strong>
 						</div>
 						<div class="col-lg-8">
 							${user.email}
@@ -49,7 +47,7 @@
 				<div class="row col-lg-12">
 					<p>
 						<div class="col-lg-4">
-							<strong>First Name:</strong>
+							<strong><spring:message code="user.info.firstName"/>:</strong>
 						</div>
 						<div class="col-lg-8">
 							${user.firstName}
@@ -59,7 +57,7 @@
 				<div class="row col-lg-12">
 				   <p>
 						<div class="col-lg-4">
-							<strong>Middle Name:</strong>
+							<strong><spring:message code="user.info.middleName"/>:</strong>
 						</div>
 						<div class="col-lg-8">
 							${user.middleName}
@@ -69,7 +67,7 @@
 				<div class="row col-lg-12">
 					<p>
 						<div class="col-lg-4">
-							<strong>Last Name:</strong>
+							<strong><spring:message code="user.info.lastName"/>:</strong>
 						</div>
 						<div class="col-lg-8">
 							${user.lastName}
@@ -77,8 +75,8 @@
 					</p>
 				</div>
 				<div class="row col-lg-offset-4">
-					<a href="/editUserInfo" class="btn btn-primary">
-						<i class="fa fa-pencil-square-o"></i> Edit Profile Info
+					<a href="${pageContext.request.contextPath}/userPanel/editInfo" class="btn btn-primary">
+						<i class="fa fa-pencil-square-o"></i> <spring:message code="header.user.edit"/>
 					</a>
 				</div>
 			</div>

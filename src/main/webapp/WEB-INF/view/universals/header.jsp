@@ -109,17 +109,17 @@
 						</a>
 						<ul class="dropdown-menu scrollable-menu">
 							<li class="${userInfo ? 'active' : ''}">
-								<a href="${pageContext.request.contextPath}/user/<security:authentication property='principal.username'/>">
+								<a href="${pageContext.request.contextPath}/userPanel">
 									<spring:message code="header.user.info"/>
 								</a>
 							</li>
 							<li class="${editUserInfo ? 'active' : ''}">
-								<a href="${pageContext.request.contextPath}/user/<security:authentication property='principal.username'/>/editInfo">
+								<a href="${pageContext.request.contextPath}/userPanel/editInfo">
 									<spring:message code="header.user.edit"/>
 								</a>
 							</li>
 							<li class="${changeUserPassword ? 'active' : ''}">
-								<a href="${pageContext.request.contextPath}/user/<security:authentication property='principal.username'/>/changePassword">
+								<a href="${pageContext.request.contextPath}/userPanel/changePassword">
 									<spring:message code="header.user.password"/>
 								</a>
 							</li>

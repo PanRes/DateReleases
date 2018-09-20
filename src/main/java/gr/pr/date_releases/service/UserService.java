@@ -11,4 +11,5 @@ public interface UserService {
 	UserEntity getLoggedInUserName();
 	boolean createUser(UserEntity user);
 	List<UserEntity> getAllUsers();
+	UserEntity getLoggedInUser();
 }

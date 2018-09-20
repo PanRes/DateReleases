@@ -14,7 +14,12 @@ public class GenericControllerAdvice {
 	private Environment environment;
 	
 	@ModelAttribute("seriesImgsDir")
-	public String getSeresImagesDir() {
+	public String getSeriesImagesDir() {
 		return environment.getProperty("series.img.url");
+	}
+	
+	@ModelAttribute("userImgsDir")
+	public String getUserImagesDir() {
+		return environment.getProperty("users.img.url");
 	}
 }
