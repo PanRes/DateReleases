@@ -26,18 +26,33 @@ public class UserController {
 		return "userControlPanel/userInfo";
 	}
 	
+	@RequestMapping("/editInfo")
+	public String editUserInfo(Model model) {
+		UserEntity user = userService.getLoggedInUser();
+		
+		model.addAttribute("user",user);
+		model.addAttribute("editUserInfo", true);
+		
+		return "userControlPanel/editUserInfo";
+	}
+	
+	@RequestMapping("updateUser")
+	public String updateUser(@ModelAttribute("user") UserEntity user) {
+		
+		try {
+			userService.updateUser(user);
+		} catch (Exception e) {
+			return "redirect:/userPanel/editInfo?" + e.getMessage();
+		}
+		
+		return "redirect:/userPanel?successEdit";
+	}
+	
 	@RequestMapping("/changePassword")
 	public String changePassword(Model model) {
 		model.addAttribute("changeUserPassword", true);
 		
 		return "userControlPanel/changeUserPassword";
-	}
-	
-	@RequestMapping("/editInfo")
-	public String editUserInfo(Model model) {
-		model.addAttribute("editUserInfo", true);
-		
-		return "userControlPanel/editUserInfo";
 	}
 	
 	//BEST : move to admin controller

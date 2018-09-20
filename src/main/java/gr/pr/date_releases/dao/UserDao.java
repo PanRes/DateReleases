@@ -9,5 +9,6 @@ public interface UserDao {
 	
 	List<UserEntity> getAllUsers();
 	UserEntity getUserByUserName(String userName);
-	
+	UserEntity getUserByUserNameOrEmail(String userName);
+	UserEntity getUserByEmail(String userName);
 }

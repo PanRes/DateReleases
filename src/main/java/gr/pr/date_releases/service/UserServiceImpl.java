@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
 			userName = authentication.getName();
 		}
-		return userDao.getUserByUserName(userName);
+		return userDao.getUserByUserNameOrEmail(userName);
 	}
 	
 	@Override
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 			
-			UserEntity user = userDao.getUserByUserName(userName);
+			UserEntity user = userDao.getUserByUserNameOrEmail(userName);
 			
 			return user;
 		} catch (Exception e) {
@@ -79,5 +79,26 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	@Transactional
+	public boolean updateUser(UserEntity user) throws Exception {
+		if (userDao.getUserByUserName(user.getUserName()) != null) {
+			throw new Exception("duplicateUserName");
+		}
+		else if (userDao.getUserByEmail(user.getEmail()) != null) {
+			throw new Exception("duplicateEmail");
+		}
+		
+		try {
+			genericDao.update(user);
+		}
+		catch (Exception e) {
+			throw new Exception("userUpdateFail");
+		}
+		
+		return true;
+		
 	}
 }

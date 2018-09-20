@@ -22,7 +22,7 @@ public class UserAuthenticationService implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserEntity user = userDao.getUserByUserName(username);
+		UserEntity user = userDao.getUserByUserNameOrEmail(username);
 		
 		UserBuilder userBuilder;
 		

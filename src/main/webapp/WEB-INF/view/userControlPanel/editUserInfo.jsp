@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: pressos
-  Date: 1/11/2017
-  Time: 4:37 μμ
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 	<head>
@@ -12,32 +6,27 @@
 	</head>
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
-		<jsp:useBean id="user" class="gr.pr.date_releases.models.UsersModel"/>
-		<c:set var="user" value='<%=session.getAttribute("user")%>'/>
-		<form method="post" enctype="multipart/form-data" action="/EditUserInfoServlet">
+		<form:form method="post" action="${pageContext.request.contextPath}/userPanel/updateUser" modelAttribute="user">
 			<div class="container">
 				<div class="row">
 					<c:choose>
-						<c:when test="${param.success == 'success'}">
-							<div class="alert alert-success text-center">
-								<strong>Successfully</strong> changed user profile
-							</div>
-						</c:when>
-						<c:when test="${param.success == 'duplicateUserName'}">
+						<%--TEST : if messages works and partially bold--%>
+						<c:when test="${param.duplicateUserName != null}">
 							<div class="alert alert-danger text-center">
-								<strong>Duplicate UserName!</strong> The userName is already in use, Please try again.
+								<spring:message code="user.edit.duplcateUserName"/>
 							</div>
 						</c:when>
-						<c:when test="${param.success == 'duplicateEmail'}">
+						<c:when test="${param.duplicateEmail != null}">
 							<div class="alert alert-danger text-center">
-								<strong>Duplicate Email!</strong> This email is in use by another user, Please try again.
+								<spring:message code="user.edit.duplicateEmail"/>
 							</div>
 						</c:when>
-						<c:when test="${param.success == 'fail'}">
+						<c:when test="${param.userUpdateFail != null}">
 							<div class="alert alert-danger text-center">
-								<strong>Generic Error!</strong> Please try again.
+								<spring:message code="user.edit.error"/>
 							</div>
 						</c:when>
+						<%--TODO : edit image upload--%>
 						<c:when test="${param.success == 'imgRemoved'}">
 							<div class="alert alert-success text-center">
 								<strong>Image Successfully Removed!</strong>
@@ -48,27 +37,31 @@
 				<div class="col-lg-3 row">
 					<div class="row text-center">
 						<c:choose>
-							<c:when test="${user.imageUrl == null}">
-								<img id="profileImg" src="${initParam['userProfileImgs']}/defaultUserImage.png" class="thumbnail center-block">
+							<c:when test="${user.userImgUrl == null}">
+								<img id="profileImg" src="${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
 							</c:when>
 							<c:otherwise>
-								<img id="profileImg" src="${user.imageUrl}" class="thumbnail center-block">
+								<img id="profileImg" src="${user.userImgUrl}" class="thumbnail center-block">
 							</c:otherwise>
 						</c:choose>
 					</div>
+					<%--FIXME : fix image upload--%>
 					<div class="row text-center">
-					   <p>
+						<p>
 							<label class="btn btn-default">
-								<span class="fa fa-file-image-o"></span> Browse Profile Image
+								<span class="fa fa-file-image-o"></span>
+								<spring:message code="user.edit.findImage"/>
 								<input type="file" id="uploadProfileImage" name="uploadProfileImage"
-									   class="labelBtn" accept="image/*">
+										class="labelBtn" accept="image/*">
 							</label>
-					   </p>
+						</p>
 					</div>
+					<%--FIXME : fix image remove--%>
 					<div class="row text-center">
 						<p>
 							<label class="btn btn-danger">
-								<span class="fa fa-times"></span> Remove Picture
+								<span class="fa fa-times"></span>
+								<spring:message code="user.edit.removeImage"/>
 								<input type="submit" name="submitBtn" value="Remove Picture" class="labelBtn"/>
 							</label>
 						</p>
@@ -79,50 +72,50 @@
 					<div class="row col-lg-12">
 						<p>
 							<div class="col-lg-4">
-								<strong>User Name:</strong>
+								<strong><spring:message code="user.info.userName"/>:</strong>
 							</div>
 							<div class="col-lg-8 form-group ">
-								<input type="text" class="form-control" name="userName" value="${user.userName}" required>
+								<form:input type="text" class="form-control" name="userName" required="true" path="userName"/>
 							</div>
 						</p>
 					</div>
 					<div class="row col-lg-12">
 						<p>
 							<div class="col-lg-4">
-								<strong>Email:</strong>
+								<strong><spring:message code="user.info.email"/>:</strong>
 							</div>
 							<div class="col-lg-8 form-group">
-								<input type="email" class="form-control" name="email" value="${user.email}" required>
+								<form:input type="email" class="form-control" name="email" required="true" path="email"/>
 							</div>
 						</p>
 					</div>
 					<div class="row col-lg-12">
 						<p>
 							<div class="col-lg-4">
-								<strong>First Name:</strong>
+								<strong><spring:message code="user.info.firstName"/>:</strong>
 							</div>
 							<div class="col-lg-8 form-group">
-								<input type="text" name="firstName" class="form-control" value="${user.firstName}">
+								<form:input type="text" name="firstName" class="form-control" path="firstName"/>
 							</div>
 						</p>
 					</div>
 					<div class="row col-lg-12">
 						<p>
 							<div class="col-lg-4">
-								<strong>Middle Name:</strong>
+								<strong><spring:message code="user.info.middleName"/>:</strong>
 							</div>
 							<div class="col-lg-8 form-group">
-								<input type="text" name="middleName" class="form-control" value="${user.middleName}"/>
+								<form:input type="text" name="middleName" class="form-control" path="middleName"/>
 							</div>
 						</p>
 					</div>
 					<div class="row col-lg-12">
 						<p>
 							<div class="col-lg-4">
-								<strong>Last Name:</strong>
+								<strong><spring:message code="user.info.lastName"/>:</strong>
 							</div>
 							<div class="col-lg-8 form-group">
-								<input type="text" name="lastName" class="form-control" value="${user.lastName}">
+								<form:input type="text" name="lastName" class="form-control" path="lastName"/>
 							</div>
 						</p>
 					</div>
@@ -131,7 +124,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+		</form:form>
 		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

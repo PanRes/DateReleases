@@ -74,7 +74,7 @@ public class SeriesServiceImpl implements SeriesService {
 	public void addSeriesToUserFavorites(int seriesId) {
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		UserEntity user = userDao.getUserByUserName(userName);
+		UserEntity user = userDao.getUserByUserNameOrEmail(userName);
 		
 		SeriesEntity series = seriesDao.getSeriesById(seriesId);
 		
@@ -86,7 +86,7 @@ public class SeriesServiceImpl implements SeriesService {
 	public void removeSeriesToUserFavorites(int seriesId) {
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 		
-		UserEntity user = userDao.getUserByUserName(userName);
+		UserEntity user = userDao.getUserByUserNameOrEmail(userName);
 		
 		SeriesEntity series = seriesDao.getSeriesById(seriesId);
 		
@@ -102,7 +102,7 @@ public class SeriesServiceImpl implements SeriesService {
 		else if (seriesName.equals("favorites")) {
 			String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 
-			UserEntity user = userDao.getUserByUserName(userName);
+			UserEntity user = userDao.getUserByUserNameOrEmail(userName);
 
 			Set<SeriesEntity> series = user.getFavoriteSeries();
 

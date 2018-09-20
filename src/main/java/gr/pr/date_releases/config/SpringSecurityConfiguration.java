@@ -29,8 +29,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//TODO : edit access denied for pages
 		http.authorizeRequests()
-				.antMatchers("user/**").authenticated()
+				.anyRequest().permitAll()
 				.antMatchers("/**").permitAll()
 				.and()
 				.formLogin()

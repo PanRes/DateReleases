@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: pressos
-  Date: 30/10/2017
-  Time: 1:40 μμ
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 	<head>
@@ -13,7 +6,16 @@
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<div class="container">
-			<div class="col-lg-3 text-center">
+			<c:if test="${param.success != null}">
+				<div class="row">
+					<div class="alert alert-success text-center">
+						<%--TEST : if it works and partially bold--%>
+						<spring:message code="user.info.successUpdate"/>
+					</div>
+				</div>
+			</c:if>
+			<div class="row">
+				<div class="col-lg-3 text-center">
 				<c:choose>
 					<c:when test="${user.userImgUrl == null}">
 						<img src="${userImgsDir}/defaultUserImage.png" class="thumbnail center-block">
@@ -81,6 +83,7 @@
 				</div>
 			</div>
 		</div>
+			</div>
 		<%@include file="/WEB-INF/view/universals/footer.jsp"%>
 	</body>
 </html>

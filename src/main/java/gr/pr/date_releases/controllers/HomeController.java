@@ -18,7 +18,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String mainMenu() {
 		
-		return "welcomePage";
+		return "homePage";
 	}
 
 	@RequestMapping("/login")
