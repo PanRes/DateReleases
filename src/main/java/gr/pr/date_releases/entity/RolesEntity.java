@@ -5,6 +5,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "roles", schema = "sql7256210")
+@NamedQueries({
+		@NamedQuery(name = "Role.findAll", query = "FROM RolesEntity"),
+		@NamedQuery(name= "Role.findByName", query = "FROM RolesEntity r where r.roleName = :roleName")
+})
 public class RolesEntity {
 
 	@Id

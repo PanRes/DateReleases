@@ -23,7 +23,7 @@
 							<i class="fa fa-sign-in"></i>
 							<spring:message code="login"/>
 						</a>
-						<a href="/signUp" class="btn btn-primary">
+						<a href="signUp" class="btn btn-primary">
 							<i class="fa fa-user-plus"></i>
 							<spring:message code="signUp"/>
 						</a>
