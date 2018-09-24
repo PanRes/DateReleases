@@ -5,7 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "series", schema = "sql7256210")
@@ -49,7 +48,7 @@ public class SeriesEntity {
 	private List<UserEntity> usersFavorite;
 	
 	@OneToMany(mappedBy = "series", orphanRemoval = true)
-	private Set<SeriesEpisodesEntity> seriesEpisodes;
+	private List<SeriesEpisodesEntity> seriesEpisodes;
 	
 	public SeriesEntity() {
 	}
@@ -146,11 +145,11 @@ public class SeriesEntity {
 
 	//TODO : create methods for seriesEpisodes
 
-	public Set<SeriesEpisodesEntity> getSeriesEpisodes() {
+	public List<SeriesEpisodesEntity> getSeriesEpisodes() {
 		return seriesEpisodes;
 	}
 
-	public void setSeriesEpisodes(Set<SeriesEpisodesEntity> seriesEpisodes) {
+	public void setSeriesEpisodes(List<SeriesEpisodesEntity> seriesEpisodes) {
 		this.seriesEpisodes = seriesEpisodes;
 	}
 

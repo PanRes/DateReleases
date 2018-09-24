@@ -43,7 +43,7 @@ public class SeriesEpisodesEntity {
 	@Column(name = "notes", length = 45)
 	private String notes;
 	
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "series_id")
 	private SeriesEntity series;
 	

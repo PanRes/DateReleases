@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/series")
@@ -90,7 +90,7 @@ public class SeriesController {
 	@RequestMapping(value = {"/schedule"})
 	public String viewSeriesSchedule(@RequestParam("series") String seriesName, Model model) {
 		
-		Set<SeriesEpisodesEntity> seriesEpisodes = seriesService.getSeriesEpisodes(seriesName);
+		List<SeriesEpisodesEntity> seriesEpisodes = seriesService.getSeriesEpisodes(seriesName);
 		
 		
 		Calendar now = Calendar.getInstance(Locale.US);

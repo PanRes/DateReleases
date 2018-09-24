@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public class RolesDaoImpl implements RolesDao {
@@ -17,13 +16,13 @@ public class RolesDaoImpl implements RolesDao {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public Set<RolesEntity> getAllRole() {
+	public List<RolesEntity> getAllRoles() {
 		Session session = sessionFactory.getCurrentSession();
 
 		TypedQuery<RolesEntity> query = session.createNamedQuery("Role.findAll", RolesEntity.class);
 
 		//TODO : add exception control
-		return new HashSet<>(query.getResultList());
+		return query.getResultList();
 	}
 
 	@Override
