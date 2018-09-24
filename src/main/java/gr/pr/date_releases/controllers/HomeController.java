@@ -43,7 +43,6 @@ public class HomeController {
 		if (auth != null){
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		//FIXME : redirect without showing request params
 		return "redirect:/";
 	}
 }
