@@ -1,11 +1,11 @@
 package gr.pr.date_releases.service;
 
-import gr.pr.date_releases.enums.Roles;
 import gr.pr.date_releases.dao.GenericDao;
 import gr.pr.date_releases.dao.RolesDao;
 import gr.pr.date_releases.dao.UserDao;
 import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.UserEntity;
+import gr.pr.date_releases.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

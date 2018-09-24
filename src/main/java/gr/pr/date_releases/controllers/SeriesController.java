@@ -44,7 +44,7 @@ public class SeriesController {
 		return "mainPages/seriesPages/addEditSeries";
 	}
 	
-	@RequestMapping("/{seriesName}/editSeries")
+	@RequestMapping("/edit/{seriesName}")
 	public String editSeries(@PathVariable("seriesName") String seriesName, Model model) {
 		
 		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
@@ -105,7 +105,7 @@ public class SeriesController {
 		return "mainPages/seriesPages/viewSeriesSchedule";
 	}
 
-	@RequestMapping("/{seriesName}")
+	@RequestMapping("/info/{seriesName}")
 	public String seriesInfo(@PathVariable("seriesName") String seriesName,
 							 @RequestParam(name = "episodeSaved", required = false) String episodeSaved,
 							 Model model) {
@@ -125,7 +125,7 @@ public class SeriesController {
 	@PostMapping(value = "/saverOrUpdateSeries", consumes = {"multipart/form-data"})
 	public String saveOrUpdateSeries(@ModelAttribute("series") SeriesEntity series, Model model,
 									 @RequestParam(name = "imgUrl", required = false) MultipartFile multipart) {
-		
+
 		if (multipart != null) {
 			//TODO : check if upload fails
 			String imgUrl = seriesService.uploadImgUrl(multipart, series.getName());
@@ -141,17 +141,19 @@ public class SeriesController {
 			model.addAttribute("success",false);
 		}
 		
-		return "/series/" + series.getName();
+		return "redirect:/series/info/" + series.getName();
 	}
 	
 	@RequestMapping("/saveOrUpdateSeriesEpisode")
 	public String saveOrUpdateSeriesEpisode(@ModelAttribute("seriesEpisode") SeriesEpisodesEntity seriesEpisode,
-											@RequestParam("editSeriesEpisode") boolean editSeriesEpisode) {
+											@RequestParam("editSeriesEpisode") boolean editSeriesEpisode,
+											Model model) {
 
 		seriesEpisode.setSeries(seriesService.getSeriesBySeriesName(seriesEpisode.getSeries().getName()));
 		seriesEpisodeService.saveOrUpdateSeriesEpisode(seriesEpisode, editSeriesEpisode);
-		
-		return "/series/" + seriesEpisode.getSeries().getName() + "?episodeSaved";
+		model.addAttribute("episodeSaved", true);
+
+		return "redirect:/series/info/" + seriesEpisode.getSeries().getName();
 	}
 	
 	@GetMapping("/addSeriesToUserFavorites")
