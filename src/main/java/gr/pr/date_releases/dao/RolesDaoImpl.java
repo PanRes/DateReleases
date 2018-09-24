@@ -27,11 +27,11 @@ public class RolesDaoImpl implements RolesDao {
 	}
 
 	@Override
-	public RolesEntity getRoleByName(String rolenname) {
+	public RolesEntity getRoleByName(String roleName) {
 		Session session = sessionFactory.getCurrentSession();
 
 		TypedQuery<RolesEntity> query = session.createNamedQuery("Role.findByName", RolesEntity.class)
-				.setParameter("roleName", rolenname);
+				.setParameter("roleName", roleName);
 
 		//TODO : add exception control
 		return query.getSingleResult();
