@@ -179,6 +179,8 @@ public class SeriesEntity {
 			return false;
 		if (getImageUrl() != null ? !getImageUrl().equals(that.getImageUrl()) : that.getImageUrl() != null)
 			return false;
+		if (getSeriesType() != null ? !getSeriesType().equals(that.getSeriesType()) : that.getSeriesType() != null)
+			return false;
 		return getChannel() != null ? getChannel().equals(that.getChannel()) : that.getChannel() == null;
 	}
 
@@ -189,6 +191,7 @@ public class SeriesEntity {
 		result = 31 * result + (getDateStarted() != null ? getDateStarted().hashCode() : 0);
 		result = 31 * result + (isEnded() ? 1 : 0);
 		result = 31 * result + (getImageUrl() != null ? getImageUrl().hashCode() : 0);
+		result = 31 * result + (getSeriesType() != null ? getSeriesType().hashCode() : 0);
 		result = 31 * result + (getChannel() != null ? getChannel().hashCode() : 0);
 		return result;
 	}
