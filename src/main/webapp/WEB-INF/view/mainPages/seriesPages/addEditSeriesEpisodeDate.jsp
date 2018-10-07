@@ -108,9 +108,6 @@
 				<form:form action="${pageContext.request.contextPath}/series/saveOrUpdateSeriesEpisode?editSeriesEpisode=${fn:contains(pageURI,'/editSeriesEpisodeDate')}"
 						method="post" modelAttribute="seriesEpisode">
 
-<%--
-					<input type="hidden" class="form-control" value="frmAddDateManually" name="formName">
---%>
 					<div class="form-group col-lg-3">
 						<c:choose>
 							<c:when test="${fn:contains(pageURI,'/editSeriesEpisodeDate')}">

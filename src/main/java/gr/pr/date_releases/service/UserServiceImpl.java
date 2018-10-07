@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional
-	public boolean updateUser(UserEntity user) throws Exception {
+	public void updateUser(UserEntity user) throws Exception {
 		if (userDao.getUserByUserName(user.getUserName()) != null) {
 			throw new Exception("duplicateUserName");
 		}
@@ -104,8 +104,6 @@ public class UserServiceImpl implements UserService {
 		catch (Exception e) {
 			throw new Exception("userUpdateFail");
 		}
-		
-		return true;
-		
+
 	}
 }

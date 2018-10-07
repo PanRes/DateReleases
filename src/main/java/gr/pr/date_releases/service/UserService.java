@@ -12,5 +12,5 @@ public interface UserService {
 	boolean createUser(UserEntity user);
 	List<UserEntity> getAllUsers();
 	UserEntity getLoggedInUser();
-	boolean updateUser(UserEntity user) throws Exception;
+	void updateUser(UserEntity user) throws Exception;
 }
