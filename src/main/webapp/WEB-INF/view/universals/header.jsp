@@ -36,7 +36,7 @@
 							<ul class="dropdown-menu scrollable-menu" role="menu">
 								<c:forEach var="series" items="${allSeries}">
 									<li class="${fn:contains(pageURI, series.name) && seriesInfo ? 'active' : ''}">
-										<a href="${pageContext.request.contextPath}/series/${series.name}">${series.name}</a>
+										<a href="${pageContext.request.contextPath}/series/info/${series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>
@@ -60,13 +60,12 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="dropdown-submenu ${fn:contains(pageURI, 'editSeries') ? 'active' : ''}">
+						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/edit') ? 'active' : ''}">
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="${allSeries}">
-									<li class="${fn:contains(pageURI, 'series/') and fn:contains(pageURI, series.name) and
-											fn:endsWith(pageURI, '/editSeries') ? 'active' : ''}">
-										<a href="${pageContext.request.contextPath}/series/${series.name}/editSeries">Edit ${series.name}</a>
+									<li class="${fn:contains(pageURI, 'series/edit') ? 'active' : ''}">
+										<a href="${pageContext.request.contextPath}/series/edit/${series.name}">Edit ${series.name}</a>
 									</li>
 								</c:forEach>
 							</ul>

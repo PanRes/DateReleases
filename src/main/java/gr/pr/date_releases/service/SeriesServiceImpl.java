@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @PropertySource("classpath:fileUrls.properties")
@@ -95,7 +94,7 @@ public class SeriesServiceImpl implements SeriesService {
 	
 	@Override
 	@Transactional
-	public Set<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName) {
+	public List<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName) {
 		if (seriesName.equals("allSeries")) {
 			return seriesEpisodesDao.getAllSeriesEpisodes();
 		}
@@ -104,7 +103,7 @@ public class SeriesServiceImpl implements SeriesService {
 
 			UserEntity user = userDao.getUserByUserNameOrEmail(userName);
 
-			Set<SeriesEntity> series = user.getFavoriteSeries();
+			List<SeriesEntity> series = user.getFavoriteSeries();
 
 			return seriesEpisodesDao.getSeriesEpisodesUserFavorites(series);
 		}

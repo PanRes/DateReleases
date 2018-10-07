@@ -1,10 +1,15 @@
 package gr.pr.date_releases.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "roles", schema = "sql7256210")
+@NamedQueries({
+		@NamedQuery(name = "Role.findAll", query = "FROM RolesEntity"),
+		@NamedQuery(name= "Role.findByName", query = "FROM RolesEntity r where r.roleName = :roleName")
+})
 public class RolesEntity {
 
 	@Id
@@ -22,7 +27,7 @@ public class RolesEntity {
 			joinColumns = @JoinColumn(name = "role_id"),
 			inverseJoinColumns = @JoinColumn(name = "user_id")
 	)
-	private Set<UserEntity> users;
+	private List<UserEntity> users;
 	
 	public RolesEntity() {
 	}
@@ -47,19 +52,26 @@ public class RolesEntity {
 		this.roleName = roleName;
 	}
 	
-	public Set<UserEntity> getUsers() {
+	public List<UserEntity> getUsers() {
 		return users;
 	}
 	
-	public void setUsers(Set<UserEntity> users) {
+	public void setUsers(List<UserEntity> users) {
 		this.users = users;
 	}
 	
 	public void addUser(UserEntity user) {
+		
+		if (users == null) {
+			users = new ArrayList<>();
+		}
 		this.users.add(user);
 	}
 	
-	public void addUsers(Set<UserEntity> users) {
+	public void addUsers(List<UserEntity> users) {
+		if (users == null) {
+			users = new ArrayList<>();
+		}
 		this.users.addAll(users);
 	}
 	

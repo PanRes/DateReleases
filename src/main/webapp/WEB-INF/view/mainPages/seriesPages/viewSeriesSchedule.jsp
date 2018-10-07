@@ -27,7 +27,7 @@
 					<c:forEach var="seriesEpisodeLine" items="${seriesEpisodes}">
 						<tr>
 							<td class="text-center">
-								<a href="${pageContext.request.contextPath}/series/${seriesEpisodeLine.series.name}">
+								<a href="${pageContext.request.contextPath}/series/info/${seriesEpisodeLine.series.name}">
 									${seriesEpisodeLine.series.name}
 								</a>
 							</td>

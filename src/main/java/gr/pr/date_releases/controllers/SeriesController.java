@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/series")
@@ -44,7 +44,7 @@ public class SeriesController {
 		return "mainPages/seriesPages/addEditSeries";
 	}
 	
-	@RequestMapping("/{seriesName}/editSeries")
+	@RequestMapping("/edit/{seriesName}")
 	public String editSeries(@PathVariable("seriesName") String seriesName, Model model) {
 		
 		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
@@ -90,7 +90,7 @@ public class SeriesController {
 	@RequestMapping(value = {"/schedule"})
 	public String viewSeriesSchedule(@RequestParam("series") String seriesName, Model model) {
 		
-		Set<SeriesEpisodesEntity> seriesEpisodes = seriesService.getSeriesEpisodes(seriesName);
+		List<SeriesEpisodesEntity> seriesEpisodes = seriesService.getSeriesEpisodes(seriesName);
 		
 		
 		Calendar now = Calendar.getInstance(Locale.US);
@@ -105,7 +105,7 @@ public class SeriesController {
 		return "mainPages/seriesPages/viewSeriesSchedule";
 	}
 
-	@RequestMapping("/{seriesName}")
+	@RequestMapping("/info/{seriesName}")
 	public String seriesInfo(@PathVariable("seriesName") String seriesName,
 							 @RequestParam(name = "episodeSaved", required = false) String episodeSaved,
 							 Model model) {
@@ -125,7 +125,7 @@ public class SeriesController {
 	@PostMapping(value = "/saverOrUpdateSeries", consumes = {"multipart/form-data"})
 	public String saveOrUpdateSeries(@ModelAttribute("series") SeriesEntity series, Model model,
 									 @RequestParam(name = "imgUrl", required = false) MultipartFile multipart) {
-		
+
 		if (multipart != null) {
 			//TODO : check if upload fails
 			String imgUrl = seriesService.uploadImgUrl(multipart, series.getName());
@@ -141,17 +141,19 @@ public class SeriesController {
 			model.addAttribute("success",false);
 		}
 		
-		return "/series/" + series.getName();
+		return "redirect:/series/info/" + series.getName();
 	}
 	
 	@RequestMapping("/saveOrUpdateSeriesEpisode")
 	public String saveOrUpdateSeriesEpisode(@ModelAttribute("seriesEpisode") SeriesEpisodesEntity seriesEpisode,
-											@RequestParam("editSeriesEpisode") boolean editSeriesEpisode) {
+											@RequestParam("editSeriesEpisode") boolean editSeriesEpisode,
+											Model model) {
 
 		seriesEpisode.setSeries(seriesService.getSeriesBySeriesName(seriesEpisode.getSeries().getName()));
 		seriesEpisodeService.saveOrUpdateSeriesEpisode(seriesEpisode, editSeriesEpisode);
-		
-		return "/series/" + seriesEpisode.getSeries().getName() + "?episodeSaved";
+		model.addAttribute("episodeSaved", true);
+
+		return "redirect:/series/info/" + seriesEpisode.getSeries().getName();
 	}
 	
 	@GetMapping("/addSeriesToUserFavorites")

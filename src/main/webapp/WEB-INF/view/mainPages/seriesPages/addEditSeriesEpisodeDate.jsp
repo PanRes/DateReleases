@@ -114,12 +114,12 @@
 					<div class="form-group col-lg-3">
 						<c:choose>
 							<c:when test="${fn:contains(pageURI,'/editSeriesEpisodeDate')}">
-								<input type="text" value="${seriesEpisode.series.name}" disabled/>
+								<input type="text" value="${seriesEpisode.series.name}" class="form-control text-center" disabled/>
 							</c:when>
 							<c:otherwise>
 								<%--TODO : Show error message if episode exists or ask for update--%>
 								<form:select name="seriesId" required="required" path="series"
-											 class="form-control text-center ${fn:contains(pageURI,'/editSeriesEpisodeDate') ? 'disabled' : ''}">
+											 class="form-control text-center">
 									<c:forEach var="series" items="${allSeries}">
 										<form:option value="${series.name}">${series.name}</form:option>
 									</c:forEach>
@@ -130,6 +130,7 @@
 					<div class="form-group col-lg-1">
 						<form:input type="number" min="1" name="season" id="season" required="required" path="season" class="form-control text-center"/>
 					</div>
+					<%--TODO : put min -1 and info message that means whole season--%>
 					<div class="form-group col-lg-1">
 						<form:input type="number" class="form-control text-center" min="0" name="episode" id="episode"
 								required="required" path="episode"/>

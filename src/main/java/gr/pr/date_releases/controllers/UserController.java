@@ -58,7 +58,8 @@ public class UserController {
 	//BEST : move to admin controller
 	@RequestMapping("/createUser")
 	public String createUser(@ModelAttribute("user")UserEntity user) {
-		
+
+		//TODO : handle if fail
 		userService.createUser(user);
 		
 		return "redirect:/";

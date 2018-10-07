@@ -2,7 +2,8 @@ package gr.pr.date_releases.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(schema = "sql7256210", name = "users")
@@ -52,13 +53,13 @@ public class UserEntity {
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "user_role",
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 	)
-	private Set<RolesEntity> roles;
+	private List<RolesEntity> roles;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
@@ -66,7 +67,7 @@ public class UserEntity {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "series_id")
 	)
-	private Set<SeriesEntity> favoriteSeries;
+	private List<SeriesEntity> favoriteSeries;
 
 	public UserEntity() {
 	}
@@ -162,19 +163,31 @@ public class UserEntity {
 		this.enabled = enabled;
 	}
 	
-	public Set<RolesEntity> getRoles() {
+	public List<RolesEntity> getRoles() {
 		return roles;
 	}
 	
-	public void setRoles(Set<RolesEntity> roles) {
+	public void setRoles(List<RolesEntity> roles) {
 		this.roles = roles;
 	}
 	
 	public void addRole(RolesEntity role) {
+		if (this.roles == null) {
+			roles = new ArrayList<>();
+		}
 		this.roles.add(role);
 	}
+	public void addRole(String roleName) {
+		if (this.roles == null) {
+			roles = new ArrayList<>();
+		}
+		this.roles.add(new RolesEntity(roleName));
+	}
 	
-	public void addRoles(Set<RolesEntity> roles) {
+	public void addRoles(List<RolesEntity> roles) {
+		if (this.roles == null) {
+			roles = new ArrayList<>();
+		}
 		this.roles.addAll(roles);
 	}
 	
@@ -183,19 +196,25 @@ public class UserEntity {
 		this.roles.remove(role);
 	}
 	
-	public Set<SeriesEntity> getFavoriteSeries() {
+	public List<SeriesEntity> getFavoriteSeries() {
 		return favoriteSeries;
 	}
 	
-	public void setFavoriteSeries(Set<SeriesEntity> favoriteSeries) {
+	public void setFavoriteSeries(List<SeriesEntity> favoriteSeries) {
 		this.favoriteSeries = favoriteSeries;
 	}
 	
 	public void addSeries(SeriesEntity series) {
+		if (this.favoriteSeries == null) {
+			this.favoriteSeries = new ArrayList<>();
+		}
 		this.favoriteSeries.add(series);
 	}
 	
-	public void addSeries(Set<SeriesEntity> series) {
+	public void addSeries(List<SeriesEntity> series) {
+		if (this.favoriteSeries == null) {
+			this.favoriteSeries = new ArrayList<>();
+		}
 		this.favoriteSeries.addAll(series);
 	}
 	

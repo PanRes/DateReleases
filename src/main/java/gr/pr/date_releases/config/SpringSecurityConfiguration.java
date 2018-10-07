@@ -26,7 +26,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//TODO : edit access denied for pages
@@ -39,7 +39,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 						.loginProcessingUrl("/authenticateTheUser")
 						.permitAll()
 				.and()
-				.logout().permitAll()
+				.logout().permitAll().logoutSuccessUrl("/")
 				.and()
 				.exceptionHandling().accessDeniedPage("/error/403")
 				.and()

@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Repository
 public class SeriesEpisodesDaoImpl implements SeriesEpisodesDao {
@@ -18,27 +17,27 @@ public class SeriesEpisodesDaoImpl implements SeriesEpisodesDao {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public Set<SeriesEpisodesEntity> getAllSeriesEpisodes() {
+	public List<SeriesEpisodesEntity> getAllSeriesEpisodes() {
 		Session session = sessionFactory.getCurrentSession();
 		
 		TypedQuery<SeriesEpisodesEntity> query = session.createNamedQuery("SeriesEpisodes.findAll");
 		
-		return new HashSet<>(query.getResultList());
+		return query.getResultList();
 	}
 	
 	@Override
-	public Set<SeriesEpisodesEntity> getSeriesEpisodesBySeries(SeriesEntity series) {
+	public List<SeriesEpisodesEntity> getSeriesEpisodesBySeries(SeriesEntity series) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		TypedQuery<SeriesEpisodesEntity> query = session
 				.createNamedQuery("SeriesEpisodes.findEpisodesBySeries", SeriesEpisodesEntity.class)
 				.setParameter("series",series);
 		
-		return new HashSet<>(query.getResultList());
+		return query.getResultList();
 	}
 
 	@Override
-	public Set<SeriesEpisodesEntity> getSeriesEpisodesUserFavorites(Set<SeriesEntity> series) {
+	public List<SeriesEpisodesEntity> getSeriesEpisodesUserFavorites(List<SeriesEntity> series) {
 		
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -46,7 +45,7 @@ public class SeriesEpisodesDaoImpl implements SeriesEpisodesDao {
 				.createNamedQuery("SeriesEpisode.findSeriesEpisodesInSeries", SeriesEpisodesEntity.class)
 				.setParameter("series",series);
 		
-		return new HashSet<>(query.getResultList());
+		return query.getResultList();
 	}
 
 	@Override

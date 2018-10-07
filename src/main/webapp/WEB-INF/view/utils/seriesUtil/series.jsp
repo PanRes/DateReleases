@@ -63,14 +63,14 @@
 				</a>
 			</p>
 			<p>
-				<a href="${pageContext.request.contextPath}/series/${series.name}" class="btn btn-info">
+				<a href="${pageContext.request.contextPath}/series/info/${series.name}" class="btn btn-info">
 					<spring:message code="series.info.view">
 						<spring:argument value="${series.name}"/>
 					</spring:message>
 				</a>
 			</p>
 			<p>
-				<a href="${pageContext.request.contextPath}/series/${series.name}/editSeries" class="btn btn-primary">
+				<a href="${pageContext.request.contextPath}/series/edit/${series.name}" class="btn btn-primary">
 					<spring:message code="series.edit">
 						<spring:argument value="${series.name}"/>
 					</spring:message>

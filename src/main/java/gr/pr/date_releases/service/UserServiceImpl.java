@@ -1,9 +1,11 @@
 package gr.pr.date_releases.service;
 
 import gr.pr.date_releases.dao.GenericDao;
+import gr.pr.date_releases.dao.RolesDao;
 import gr.pr.date_releases.dao.UserDao;
 import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.UserEntity;
+import gr.pr.date_releases.enums.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,10 +24,13 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private GenericDao genericDao;
-	
+
+	@Autowired
+	private RolesDao rolesDao;
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Override
 	@Transactional
 	public boolean hasUserFavoriteSeries(SeriesEntity series) {
@@ -50,6 +55,8 @@ public class UserServiceImpl implements UserService {
 	public boolean createUser(UserEntity user) {
 		try {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.addRole(rolesDao.getRoleByName(Roles.USER.toString()));
+			//TODO : different message for duplicate email or username
 			genericDao.save(user);
 			return true;
 		} catch (Exception e) {
