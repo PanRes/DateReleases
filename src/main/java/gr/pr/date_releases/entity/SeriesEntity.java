@@ -35,10 +35,14 @@ public class SeriesEntity {
 	@Basic
 	@Column(name = "img_url")
 	private String imageUrl;
-	
-	@Basic
-	@Column(name = "channel")
-	private String channel;
+
+	@ManyToOne
+	@JoinColumn(name = "series_type_id")
+	private SeriesType seriesType;
+
+	@ManyToOne
+	@JoinColumn(name = "channel_id")
+	private SeriesTVChannel channel;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -103,15 +107,23 @@ public class SeriesEntity {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
-	public String getChannel() {
+
+	public SeriesType getSeriesType() {
+		return seriesType;
+	}
+
+	public void setSeriesType(SeriesType seriesType) {
+		this.seriesType = seriesType;
+	}
+
+	public SeriesTVChannel getChannel() {
 		return channel;
 	}
 
-	public void setChannel(String channel) {
+	public void setChannel(SeriesTVChannel channel) {
 		this.channel = channel;
 	}
-	
+
 	public List<UserEntity> getUsersFavorite() {
 		return usersFavorite;
 	}
@@ -158,9 +170,9 @@ public class SeriesEntity {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		
+
 		SeriesEntity that = (SeriesEntity) o;
-		
+
 		if (getId() != that.getId()) return false;
 		if (isEnded() != that.isEnded()) return false;
 		if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
@@ -170,7 +182,7 @@ public class SeriesEntity {
 			return false;
 		return getChannel() != null ? getChannel().equals(that.getChannel()) : that.getChannel() == null;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = getId();
