@@ -94,10 +94,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void updateUser(UserEntity user) throws Exception {
-		if (userDao.getUserByUserNameOtherThan(user.getUserName(), user.getId()) == null) {
+		if (userDao.getUserByUserNameOtherThan(user.getUserName(), user.getId()) != null) {
 			throw new DuplicateUserNameException();
 		}
-		else if (userDao.getUserByEmailOtherThan(user.getEmail(), user.getId()) == null) {
+		else if (userDao.getUserByEmailOtherThan(user.getEmail(), user.getId()) != null) {
 			throw new DuplicateEmailException();
 		}
 		
