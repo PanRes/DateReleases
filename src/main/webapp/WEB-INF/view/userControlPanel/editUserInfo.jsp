@@ -10,7 +10,6 @@
 			<div class="container">
 				<div class="row">
 					<c:choose>
-						<%--TEST : if messages works and partially bold--%>
 						<c:when test="${param.duplicateUserName != null}">
 							<div class="alert alert-danger text-center">
 								<spring:message code="user.edit.duplcateUserName"/>

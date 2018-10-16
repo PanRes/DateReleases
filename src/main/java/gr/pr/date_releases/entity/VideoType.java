@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "series_type", schema = "sql7256210")
-public class SeriesType {
+@Table(name = "video_type", schema = "sql7256210")
+public class VideoType {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,17 +13,17 @@ public class SeriesType {
 	private int id;
 
 	@Basic
-	@Column(name = "sereis_type", nullable = false, unique = true)
-	private String seriesType;
+	@Column(name = "video_type", nullable = false, unique = true)
+	private String videoType;
 
-	@OneToMany(mappedBy = "seriesType")
+	@OneToMany(mappedBy = "videoType")
 	private List<SeriesEntity> series;
 
-	public SeriesType() {
+	public VideoType() {
 	}
 
-	public SeriesType(String seriesType) {
-		this.seriesType = seriesType;
+	public VideoType(String videoType) {
+		this.videoType = videoType;
 	}
 
 	public int getId() {
@@ -34,12 +34,12 @@ public class SeriesType {
 		this.id = id;
 	}
 
-	public String getSeriesType() {
-		return seriesType;
+	public String getVideoType() {
+		return videoType;
 	}
 
-	public void setSeriesType(String seriesType) {
-		this.seriesType = seriesType;
+	public void setVideoType(String seriesType) {
+		this.videoType = seriesType;
 	}
 
 	public List<SeriesEntity> getSeries() {
@@ -55,16 +55,16 @@ public class SeriesType {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		SeriesType that = (SeriesType) o;
+		VideoType that = (VideoType) o;
 
 		if (getId() != that.getId()) return false;
-		return getSeriesType() != null ? getSeriesType().equals(that.getSeriesType()) : that.getSeriesType() == null;
+		return getVideoType() != null ? getVideoType().equals(that.getVideoType()) : that.getVideoType() == null;
 	}
 
 	@Override
 	public int hashCode() {
 		int result = getId();
-		result = 31 * result + (getSeriesType() != null ? getSeriesType().hashCode() : 0);
+		result = 31 * result + (getVideoType() != null ? getVideoType().hashCode() : 0);
 		return result;
 	}
 }
