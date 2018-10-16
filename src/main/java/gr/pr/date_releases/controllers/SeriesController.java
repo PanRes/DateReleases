@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
+@SessionAttributes({"series","seriesEpisode"})
 @RequestMapping("/series")
 public class SeriesController {
 
@@ -121,8 +122,7 @@ public class SeriesController {
 		return "mainPages/seriesPages/seriesInfo";
 	}
 	
-	//TODO : check if parameters are returned with post request
-	@PostMapping(value = "/saverOrUpdateSeries", consumes = {"multipart/form-data"})
+	@RequestMapping(value = "/saveOrUpdateSeries", consumes = {"multipart/form-data"})
 	public String saveOrUpdateSeries(@ModelAttribute("series") SeriesEntity series, Model model,
 									 @RequestParam(name = "imgUrl", required = false) MultipartFile multipart) {
 
