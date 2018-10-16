@@ -45,43 +45,40 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public UserEntity getUserByUserName(String userName) {
+	public UserEntity getUserByUserNameOtherThan(String userName, int userId) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		TypedQuery<UserEntity> query = session
-				.createNamedQuery("User.findUserByUserName", UserEntity.class)
-				.setParameter("userName", userName);
+				.createNamedQuery("User.findUserByUserNameOtherThan", UserEntity.class)
+				.setParameter("userName", userName)
+				.setParameter("id", userId);
 		
-		UserEntity user = new UserEntity();
+		UserEntity user;
 		try {
 			user = query.getResultList().get(0);
+			return user;
 		}
 		catch (Exception e) {
-			System.out.println("User with user name: " + userName + ", was not found");
+			return null;
 		}
-		
-		return user;
-		
 	}
 	
 	@Override
-	public UserEntity getUserByEmail(String email) {
+	public UserEntity getUserByEmailOtherThan(String email, int userId) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		TypedQuery<UserEntity> query = session
-				.createNamedQuery("User.findUserByEmail", UserEntity.class)
-				.setParameter("email", email);
+				.createNamedQuery("User.findUserByEmailOtherThan", UserEntity.class)
+				.setParameter("email", email)
+				.setParameter("id", userId);
 		
-		UserEntity user = new UserEntity();
+		UserEntity user;
 		try {
 			user = query.getResultList().get(0);
+			return user;
 		}
 		catch (Exception e) {
-			System.out.println("User with email: " + email + ", was not found");
+			return null;
 		}
-		
-		return user;
-		
 	}
-	
 }

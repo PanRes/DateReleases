@@ -9,8 +9,8 @@ import java.util.List;
 @Table(schema = "sql7256210", name = "users")
 @NamedQueries({
 		@NamedQuery(name = "User.findAll", query = "FROM UserEntity u"),
-		@NamedQuery(name = "User.findUserByUserName", query = "FROM UserEntity u WHERE u.userName = :userName"),
-		@NamedQuery(name = "User.findUserByEmail", query = "FROM UserEntity u WHERE u.email = :email"),
+		@NamedQuery(name = "User.findUserByUserNameOtherThan", query = "FROM UserEntity u WHERE u.userName = :userName AND u.id <> :id"),
+		@NamedQuery(name = "User.findUserByEmailOtherThan", query = "FROM UserEntity u WHERE u.email = :email AND u.id <> :id"),
 		@NamedQuery(name = "User.findUserByUserNameOrEmail", query = "FROM UserEntity u WHERE u.userName = :userName OR u.email = :userName")
 })
 public class UserEntity {

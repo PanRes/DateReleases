@@ -6,7 +6,7 @@
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<div class="container">
-			<c:if test="${param.success != null}">
+			<c:if test="${param.successEdit != null}">
 				<div class="row">
 					<div class="alert alert-success text-center">
 						<%--TEST : if it works and partially bold--%>
