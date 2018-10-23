@@ -11,12 +11,11 @@
 <c:set var="pageURI" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <header>
 
-	<div class="row">
 
-		<div class="col-lg-8 col-lg-offset-2 h1 text-center">
-			<spring:message code="header.mainTitle" />
-		</div>
+	<div class="h1 text-center site-header">
+		<spring:message code="header.mainTitle" />
 	</div>
+
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
