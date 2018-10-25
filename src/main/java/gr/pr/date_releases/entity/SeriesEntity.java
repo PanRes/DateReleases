@@ -9,8 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "series", schema = "sql7256210")
 @NamedQueries({
-		@NamedQuery(name = "Series.findAll", query = "FROM SeriesEntity s"),
-		@NamedQuery(name = "Series.findSeriesByName", query = "FROM SeriesEntity s where s.name = :name")
+		@NamedQuery(name = "Series.findAll", query = "FROM SeriesEntity s ORDER BY name"),
+		@NamedQuery(name = "Series.findSeriesByName", query = "FROM SeriesEntity s WHERE s.name LIKE :name")
 })
 public class SeriesEntity {
 

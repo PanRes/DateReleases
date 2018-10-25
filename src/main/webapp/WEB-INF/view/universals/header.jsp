@@ -12,7 +12,7 @@
 <header>
 
 
-	<div class="h1 text-center site-header">
+	<div class="h1 text-center">
 		<spring:message code="header.mainTitle" />
 	</div>
 
@@ -59,7 +59,7 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/edit') ? 'active' : ''}">
+						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/edit/') ? 'active' : ''}">
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="${allSeries}">

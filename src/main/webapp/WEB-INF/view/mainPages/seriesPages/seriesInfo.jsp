@@ -1,12 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: pressos
-  Date: 16/10/2017
-  Time: 5:24 μμ
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
@@ -70,7 +63,10 @@
 								<fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>
 							</p>
 							<p>
-								<strong>Channel:</strong> ${series.channel}
+								<strong>Channel:</strong> ${series.channel.name}
+							</p>
+							<p>
+								<strong>Type:</strong> ${series.videoType.videoType}
 							</p>
 							<p>
 								<c:choose>

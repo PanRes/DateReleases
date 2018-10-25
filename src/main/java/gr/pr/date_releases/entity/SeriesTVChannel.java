@@ -5,6 +5,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "series_tv_channel", schema = "sql7256210")
+@NamedQueries({
+	@NamedQuery(name = "SeriesTvChannel.findAll", query = "FROM SeriesTVChannel ch")
+})
 public class SeriesTVChannel {
 
 	@Id

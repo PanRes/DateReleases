@@ -5,7 +5,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "video_type", schema = "sql7256210")
-public class VideoType {
+@NamedQueries({
+	@NamedQuery(name = "VideoType.findAll", query = "FROM VideoType v ORDER BY id")
+})
+public class VideoType implements Comparable<VideoType> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,5 +69,18 @@ public class VideoType {
 		int result = getId();
 		result = 31 * result + (getVideoType() != null ? getVideoType().hashCode() : 0);
 		return result;
+	}
+	
+	@Override
+	public int compareTo(VideoType o) {
+		if (this.getId() < o.getId()){
+			return -1;
+		}
+		else if (this.getId() > this.getId()) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 }
