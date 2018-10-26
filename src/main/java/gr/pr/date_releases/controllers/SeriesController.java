@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@SessionAttributes({"series","seriesEpisode"})
+@SessionAttributes({"series", "seriesEpisode"})
 @RequestMapping("/series")
 public class SeriesController {
 
 	@Autowired
 	private SeriesService seriesService;
-	
+
 	@Autowired
 	private SeriesEpisodeService seriesEpisodeService;
 
@@ -45,10 +45,10 @@ public class SeriesController {
 
 		return "mainPages/seriesPages/series";
 	}
-	
+
 	@RequestMapping("/addSeries")
 	public String addSeries(Model model) {
-		
+
 		SeriesEntity series = new SeriesEntity();
 		List<SeriesTVChannel> channels = channelService.getAllChannels();
 		List<VideoType> videoTypes = videoTypeService.getAllVideoTypes();
@@ -59,10 +59,10 @@ public class SeriesController {
 
 		return "mainPages/seriesPages/addEditSeries";
 	}
-	
+
 	@RequestMapping("/edit/{seriesName}")
 	public String editSeries(@PathVariable("seriesName") String seriesName, Model model) {
-		
+
 		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
 		List<SeriesTVChannel> channels = channelService.getAllChannels();
 		List<VideoType> videoTypes = videoTypeService.getAllVideoTypes();
@@ -73,55 +73,53 @@ public class SeriesController {
 
 		return "mainPages/seriesPages/addEditSeries";
 	}
-	
+
 	@RequestMapping("/addSeriesEpisodeDate")
 	public String addSeriesDate(Model model) {
 
 		//TODO : have the possibility to add episode for specific series
 		SeriesEpisodesEntity seriesEpisode = new SeriesEpisodesEntity();
 		model.addAttribute("seriesEpisode", seriesEpisode);
-		
+
 		return "mainPages/seriesPages/addEditSeriesEpisodeDate";
 	}
-	
+
 	@RequestMapping("/editSeriesEpisodeDate")
 	public String editSeriesDate(@RequestParam("seriesEpisodeId") int id, Model model) {
-		
+
 		SeriesEpisodesEntity seriesEpisode = seriesEpisodeService.getSeriesEpisodeById(id);
 		model.addAttribute("seriesEpisode", seriesEpisode);
-		
+
 		return "mainPages/seriesPages/addEditSeriesEpisodeDate";
 	}
-	
-	
-	
+
+
 	@RequestMapping("/deleteSeriesEpisodeDate")
 	public String deleteSeriesEpisodeDate(@RequestParam("seriesEpisodeId") int id,
-								 HttpServletRequest request) {
-		
+										  HttpServletRequest request) {
+
 		seriesEpisodeService.deleteSeriesEpisodeDate(id);
-		
+
 		//TODO : edit url
 		return "redirect:" + request.getHeader("Referer");
 	}
-	
-	
+
 
 	@RequestMapping(value = {"/schedule"})
 	public String viewSeriesSchedule(@RequestParam("series") String seriesName, Model model) {
-		
+
 		List<SeriesEpisodesEntity> seriesEpisodes = seriesService.getSeriesEpisodes(seriesName);
-		
-		
+
+
 		Calendar now = Calendar.getInstance(Locale.US);
-		now.add(Calendar.DATE,-1);
+		now.add(Calendar.DATE, -1);
 		/*Because US series displayed at the night of that day,
 		 *I sub one day from now for released label
 		 * */
-		
+
 		model.addAttribute("seriesEpisodes", seriesEpisodes);
 		model.addAttribute("now", new Date(now.getTimeInMillis()));
-		
+
 		return "mainPages/seriesPages/viewSeriesSchedule";
 	}
 
@@ -129,12 +127,12 @@ public class SeriesController {
 	public String seriesInfo(@PathVariable("seriesName") String seriesName,
 							 @RequestParam(name = "episodeSaved", required = false) String episodeSaved,
 							 Model model) {
-		
+
 		SeriesEntity series = seriesService.getSeriesBySeriesName(seriesName);
 		model.addAttribute("series", series);
 		model.addAttribute("seriesInfo", true);
 
-		if  (episodeSaved != null) {
+		if (episodeSaved != null) {
 			model.addAttribute("episodeSaved", true);
 		}
 
@@ -186,21 +184,21 @@ public class SeriesController {
 
 		return "redirect:/series/info/" + seriesEpisode.getSeries().getName();
 	}
-	
+
 	@GetMapping("/addSeriesToUserFavorites")
 	public String addSeriesToUserFavorites(@RequestParam("seriesId") int seriesId, HttpServletRequest request) {
-		
+
 		seriesService.addSeriesToUserFavorites(seriesId);
-		
+
 		return "redirect:" + request.getHeader("Referer");
 	}
-	
+
 	@GetMapping("/removeSeriesToUserFavorites")
 	public String removeSeriesToUserFavorites(@RequestParam("seriesId") int seriesId, HttpServletRequest request) {
-		
+
 		seriesService.removeSeriesToUserFavorites(seriesId);
-		
+
 		return "redirect:" + request.getHeader("Referer");
 	}
-	
+
 }
