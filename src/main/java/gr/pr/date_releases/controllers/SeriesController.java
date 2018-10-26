@@ -143,13 +143,17 @@ public class SeriesController {
 	public String saveOrUpdateSeries(@ModelAttribute("series") SeriesEntity series, Model model,
 									 @RequestParam("tvChannel") int tvChannelId,
 									 @RequestParam("videoType") int videoTypeId,
+									 @RequestParam(name = "newChannel", required = false) String newChannel,
 									 HttpServletRequest request) {
 
 		String error = "";
 
 		try {
-			if (tvChannelId != 0) {
+			if (tvChannelId > 0) {
 				series.setChannel(channelService.getChannelById(tvChannelId));
+			}
+			else if (tvChannelId == -1) {
+				series.setChannel(channelService.createChannel(newChannel));
 			}
 			series.setVideoType(videoTypeService.getVideoTypeById(videoTypeId));
 			seriesService.saveOrUpdateSeries(series);

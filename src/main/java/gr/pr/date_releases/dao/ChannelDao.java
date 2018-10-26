@@ -8,4 +8,5 @@ public interface ChannelDao {
 	
 	List<SeriesTVChannel> getAllChannels();
 	SeriesTVChannel getChannelById(int channelId);
+	SeriesTVChannel getChannelByName(String channelName);
 }

@@ -46,15 +46,21 @@
 			<div class="col-lg-3">
 				<strong><spring:message code="series.addEdit.channel"/></strong>
 			</div>
-			<div class="col-lg-09 form-group">
-				<select class="form-control" name="tvChannel">
-					<option value="0" > -- Select Channel --</option>
+			<div class="col-lg-06 form-group">
+				<%--BEST : put onChnage function on js file and make it universal--%>
+				<select class="form-control" name="tvChannel"
+						onchange="if (this.value=='-1'){this.form['newChannel'].style.display='inline'}else {this.form['newChannel'].style.display='none'};">
+					<option value="0" ><spring:message code="series.addEdit.channelDropdown"/> </option>
 					<c:forEach items="${channels}" var="channel">
 						<option value="${channel.id}" ${series.channel.name == channel.name ? 'selected' : ''} >
 								${channel.name}
 						</option>
 					</c:forEach>
+					<option value="-1"><spring:message code="series.addEdit.newChannel"/> </option>
 				</select>
+			</div>
+			<div class="col-lg-3 form-group">
+				<input type="text" class="form-control" name="newChannel" id="newChannel" style="display: none">
 			</div>
 		</div>
 		<div class="col-lg-12">
@@ -72,7 +78,8 @@
 			</div>
 		</div>
 		<div class="row text-center">
-			<input type="submit" value="Submit Profile Changes" name="submitBtn" class="btn btn-Success btn-lg"/>
+			<input type="submit" value="<spring:message code="series.addEdit.button"/>" name="submitBtn"
+				   class="btn btn-Success btn-lg"/>
 		</div>
 	</div>
 </form:form>

@@ -32,4 +32,15 @@ public class ChannelDaoImpl implements ChannelDao {
 		
 		return session.get(SeriesTVChannel.class, channelId);
 	}
+
+	@Override
+	public SeriesTVChannel getChannelByName(String channelName) {
+		Session session = sessionFactory.getCurrentSession();
+
+		TypedQuery<SeriesTVChannel> query = session
+				.createNamedQuery("SeriesTvChannel.findByName", SeriesTVChannel.class)
+				.setParameter("name", channelName);
+
+		return query.getResultList().get(0);
+	}
 }

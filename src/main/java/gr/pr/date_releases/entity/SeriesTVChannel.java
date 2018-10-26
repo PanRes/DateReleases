@@ -6,7 +6,8 @@ import java.util.List;
 @Entity
 @Table(name = "series_tv_channel", schema = "sql7256210")
 @NamedQueries({
-	@NamedQuery(name = "SeriesTvChannel.findAll", query = "FROM SeriesTVChannel ch")
+	@NamedQuery(name = "SeriesTvChannel.findAll", query = "FROM SeriesTVChannel ch"),
+	@NamedQuery(name = "SeriesTvChannel.findByName", query = "FROM SeriesTVChannel ch WHERE name = :name")
 })
 public class SeriesTVChannel {
 
