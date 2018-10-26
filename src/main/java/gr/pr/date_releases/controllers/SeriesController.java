@@ -12,7 +12,6 @@ import org.hibernate.AssertionFailure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -183,7 +182,7 @@ public class SeriesController {
 
 		//FIXME : handle when episode already exists and try to add it
 		seriesEpisode.setSeries(seriesService.getSeriesBySeriesName(seriesEpisode.getSeries().getName()));
-		seriesEpisodeService.saveOrUpdateSeriesEpisode(seriesEpisode, editSeriesEpisode);
+		seriesEpisodeService.saveOrUpdateSeriesEpisode(seriesEpisode);
 		model.addAttribute("episodeSaved", true);
 
 		return "redirect:/series/info/" + seriesEpisode.getSeries().getName();

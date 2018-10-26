@@ -183,3 +183,31 @@ $( document ).ready(function() {
 $(function(){
 	$('.selectpicker').selectpicker();
 });
+
+function checkNewChannel(formId, dateFieldId) {
+	var desiredOption = $("#newChannel")[0];
+	var channels = $('#channelDropdown')[0].options;
+	var channelExists = false;
+	if (desiredOption.style.display == 'inline' && desiredOption.value != '') {
+		for (var i=0;i<channels.length;i++) {
+			if (channels[i].outerText.trim() == desiredOption.value.trim()) {
+				desiredOption.style.display = 'none';
+				channels[i].selected = true;
+				channelExists = true;
+				break;
+			}
+		}
+	}
+	if (channelExists) {
+		alert('Channel already exists');
+		return;
+	}
+	else {
+		submitFormWithDate(formId, dateFieldId);
+	}
+}
+
+function submitFormWithDate(formId, dateFieldId) {
+	document.getElementById(dateFieldId).value = "1900-01-01";
+	document.getElementById(formId).submit();
+}

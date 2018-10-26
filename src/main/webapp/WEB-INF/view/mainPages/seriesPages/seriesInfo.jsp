@@ -60,13 +60,28 @@
 						<div class="col-lg-8">
 							<p>
 								<strong>First Aired:</strong>
-								<fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>
+								<c:choose>
+									<c:when test="${series.dateStarted != null}">
+										<fmt:formatDate value="${series.dateStarted}" pattern="dd/MM/yyyy"/>
+									</c:when>
+									<c:otherwise>
+										<spring:message code="general.notProvided"/>
+									</c:otherwise>
+								</c:choose>
 							</p>
 							<p>
-								<strong>Channel:</strong> ${series.channel.name}
+								<strong>Channel:</strong>
+								<c:choose>
+									<c:when test="${series.channel.name != null}">
+										${series.channel.name}
+									</c:when>
+									<c:otherwise>
+										<spring:message code="general.notProvided"/>
+									</c:otherwise>
+								</c:choose>
 							</p>
 							<p>
-								<strong>Type:</strong> ${locale == 'el' && videoType.typeEl != null ? videoType.typeEl : videoType.typeEn}
+								<strong>Type:</strong> ${locale == 'el' && series.videoType.typeEl != null ? series.videoType.typeEl : series.videoType.typeEn}
 							</p>
 							<p>
 								<c:choose>

@@ -7,7 +7,8 @@
 <body>
 <%@include file="/WEB-INF/view/universals/header.jsp"%>
 
-<form:form method="post" modelAttribute="series" action="${pageContext.request.contextPath}/series/saveOrUpdateSeries">
+<form:form method="post" modelAttribute="series"  id="addEditForm"
+		   action="${pageContext.request.contextPath}/series/saveOrUpdateSeries">
 	<div class="container">
 
 		<div class="row">
@@ -39,7 +40,7 @@
 				<strong><spring:message code="series.addEdit.dateStarted"/></strong>
 			</div>
 			<div class="col-lg-09 form-group">
-				<input type="date" name="dateStarted" class="form-control" value="${series.dateStarted}"/>
+				<form:input path="dateStarted" type="date" name="dateStarted" id="dateStarted" class="form-control"/>
 			</div>
 		</div>
 		<div class="col-lg-12">
@@ -48,7 +49,7 @@
 			</div>
 			<div class="col-lg-06 form-group">
 				<%--BEST : put onChnage function on js file and make it universal--%>
-				<select class="form-control" name="tvChannel"
+				<select class="form-control" name="tvChannel" id="channelDropdown"
 						onchange="if (this.value=='-1'){this.form['newChannel'].style.display='inline'}else {this.form['newChannel'].style.display='none'};">
 					<option value="0" ><spring:message code="series.addEdit.channelDropdown"/> </option>
 					<c:forEach items="${channels}" var="channel">
@@ -67,8 +68,8 @@
 			<div class="col-lg-3">
 				<strong><spring:message code="series.addEdit.videoType"/></strong>
 			</div>
-			<div class="col-lg-09 form-group">
-				<select class="form-control" name="videoType">
+			<div class="col-lg-06 form-group">
+				<select class="form-control" name="videoType" >
 					<c:forEach items="${videoTypes}" var="videoType">
 						<option value="${videoType.id}" ${series.videoType.id == videoType.id ? 'selected' : ''} >
 								${locale == 'el' && videoType.typeEl != null ? videoType.typeEl : videoType.typeEn}
@@ -78,8 +79,9 @@
 			</div>
 		</div>
 		<div class="row text-center">
-			<input type="submit" value="<spring:message code="series.addEdit.button"/>" name="submitBtn"
-				   class="btn btn-Success btn-lg"/>
+			<button class="btn btn-Success btn-lg" onclick="checkNewChannel('addEditForm', 'dateStarted')">
+				<spring:message code="series.addEdit.button"/>
+			</button>
 		</div>
 	</div>
 </form:form>

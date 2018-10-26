@@ -34,7 +34,7 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Info</a>
 							<ul class="dropdown-menu scrollable-menu" role="menu">
 								<c:forEach var="series" items="${allSeries}">
-									<li class="${fn:contains(fn:replace(pageURI,'%20',' '), series.name)&& seriesInfo ? 'active' : ''}">
+									<li class="${fn:endsWith(fn:replace(pageURI,'%20',' '), series.name)&& seriesInfo ? 'active' : ''}">
 										<a href="${pageContext.request.contextPath}/series/info/${series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
@@ -63,7 +63,7 @@
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="${allSeries}">
-									<li class="${fn:contains(pageURI, 'series/edit') && fn:contains(fn:replace(pageURI,'%20',' '), series.name) ? 'active' : ''}">
+									<li class="${fn:contains(pageURI, 'series/edit') && fn:endsWith(fn:replace(pageURI,'%20',' '), series.name) ? 'active' : ''}">
 										<a href="${pageContext.request.contextPath}/series/edit/${series.name}">Edit ${series.name}</a>
 									</li>
 								</c:forEach>

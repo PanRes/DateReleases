@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @Repository
 public class SeriesEpisodeServiceImpl implements SeriesEpisodeService {
@@ -31,12 +36,19 @@ public class SeriesEpisodeServiceImpl implements SeriesEpisodeService {
 
 	@Override
 	@Transactional
-	public void saveOrUpdateSeriesEpisode(SeriesEpisodesEntity seriesEpisodes, boolean editSeriesEpisode) {
-		if (editSeriesEpisode) {
-			genericDao.update(seriesEpisodes);
+	public void saveOrUpdateSeriesEpisode(SeriesEpisodesEntity seriesEpisode){
+		DateFormat format = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH);
+		Date date = null;
+		try {
+			date = format.parse("1900-01-01");
 		}
-		else {
-			genericDao.save(seriesEpisodes);
+		catch (ParseException e) {
+			e.printStackTrace();
 		}
+		if (date != null && date.equals(seriesEpisode.getReleaseDate())) {
+			seriesEpisode.setReleaseDate(null);
+		}
+
+		genericDao.saveOrUpdate(seriesEpisode);
 	}
 }
