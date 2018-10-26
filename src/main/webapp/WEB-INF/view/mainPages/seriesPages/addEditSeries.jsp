@@ -64,8 +64,8 @@
 			<div class="col-lg-09 form-group">
 				<select class="form-control" name="videoType">
 					<c:forEach items="${videoTypes}" var="videoType">
-						<option value="${videoType.id}" ${series.videoType.videoType == videoType.videoType ? 'selected' : ''} >
-								${videoType.videoType}
+						<option value="${videoType.id}" ${series.videoType.id == videoType.id ? 'selected' : ''} >
+								${locale == 'el' && videoType.typeEl != null ? videoType.typeEl : videoType.typeEn}
 						</option>
 					</c:forEach>
 				</select>

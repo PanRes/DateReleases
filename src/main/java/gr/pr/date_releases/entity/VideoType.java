@@ -16,8 +16,12 @@ public class VideoType implements Comparable<VideoType> {
 	private int id;
 
 	@Basic
-	@Column(name = "video_type", nullable = false, unique = true)
-	private String videoType;
+	@Column(name = "type_en", nullable = false, unique = true)
+	private String typeEn;
+
+	@Basic
+	@Column(name = "type_el", nullable = false, unique = true)
+	private String typeEl;
 
 	@OneToMany(mappedBy = "videoType")
 	private List<SeriesEntity> series;
@@ -25,8 +29,13 @@ public class VideoType implements Comparable<VideoType> {
 	public VideoType() {
 	}
 
-	public VideoType(String videoType) {
-		this.videoType = videoType;
+	public VideoType(String typeEn) {
+		this.typeEn = typeEn;
+	}
+
+	public VideoType(String typeEn, String typeEl) {
+		this.typeEn = typeEn;
+		this.typeEl = typeEl;
 	}
 
 	public int getId() {
@@ -37,12 +46,20 @@ public class VideoType implements Comparable<VideoType> {
 		this.id = id;
 	}
 
-	public String getVideoType() {
-		return videoType;
+	public String getTypeEn() {
+		return typeEn;
 	}
 
-	public void setVideoType(String seriesType) {
-		this.videoType = seriesType;
+	public void setTypeEl(String typeEl) {
+		this.typeEl = typeEl;
+	}
+
+	public String getTypeEl() {
+		return typeEl;
+	}
+
+	public void setTypeEn(String seriesType) {
+		this.typeEn = seriesType;
 	}
 
 	public List<SeriesEntity> getSeries() {
@@ -55,22 +72,36 @@ public class VideoType implements Comparable<VideoType> {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 
-		VideoType that = (VideoType) o;
+		VideoType videoType = (VideoType) o;
 
-		if (getId() != that.getId()) return false;
-		return getVideoType() != null ? getVideoType().equals(that.getVideoType()) : that.getVideoType() == null;
+		if (getId() != videoType.getId()) {
+			return false;
+		}
+		if (getTypeEn() != null ? !getTypeEn().equals(videoType.getTypeEn()) : videoType.getTypeEn() != null) {
+			return false;
+		}
+		if (getTypeEl() != null ? !getTypeEl().equals(videoType.getTypeEl()) : videoType.getTypeEl() != null) {
+			return false;
+		}
+		return getSeries() != null ? getSeries().equals(videoType.getSeries()) : videoType.getSeries() == null;
 	}
 
 	@Override
 	public int hashCode() {
 		int result = getId();
-		result = 31 * result + (getVideoType() != null ? getVideoType().hashCode() : 0);
+		result = 31 * result + (getTypeEn() != null ? getTypeEn().hashCode() : 0);
+		result = 31 * result + (getTypeEl() != null ? getTypeEl().hashCode() : 0);
+		result = 31 * result + (getSeries() != null ? getSeries().hashCode() : 0);
 		return result;
 	}
-	
+
 	@Override
 	public int compareTo(VideoType o) {
 		if (this.getId() < o.getId()){

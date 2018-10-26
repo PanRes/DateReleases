@@ -66,7 +66,7 @@
 								<strong>Channel:</strong> ${series.channel.name}
 							</p>
 							<p>
-								<strong>Type:</strong> ${series.videoType.videoType}
+								<strong>Type:</strong> ${locale == 'el' && videoType.typeEl != null ? videoType.typeEl : videoType.typeEn}
 							</p>
 							<p>
 								<c:choose>
