@@ -9,8 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "series", schema = "sql7256210")
 @NamedQueries({
-		@NamedQuery(name = "Series.findAll", query = "FROM SeriesEntity s"),
-		@NamedQuery(name = "Series.findSeriesByName", query = "FROM SeriesEntity s where s.name = :name")
+		@NamedQuery(name = "Series.findAll", query = "FROM SeriesEntity s ORDER BY name"),
+		@NamedQuery(name = "Series.findSeriesByName", query = "FROM SeriesEntity s WHERE s.name LIKE :name")
 })
 public class SeriesEntity {
 
@@ -36,8 +36,8 @@ public class SeriesEntity {
 	private String imageUrl;
 
 	@ManyToOne
-	@JoinColumn(name = "series_type_id")
-	private SeriesType seriesType;
+	@JoinColumn(name = "video_type_id")
+	private VideoType videoType;
 
 	@ManyToOne
 	@JoinColumn(name = "channel_id")
@@ -107,12 +107,12 @@ public class SeriesEntity {
 		this.imageUrl = imageUrl;
 	}
 
-	public SeriesType getSeriesType() {
-		return seriesType;
+	public VideoType getVideoType() {
+		return videoType;
 	}
 
-	public void setSeriesType(SeriesType seriesType) {
-		this.seriesType = seriesType;
+	public void setVideoType(VideoType videoType) {
+		this.videoType = videoType;
 	}
 
 	public SeriesTVChannel getChannel() {
@@ -179,7 +179,7 @@ public class SeriesEntity {
 			return false;
 		if (getImageUrl() != null ? !getImageUrl().equals(that.getImageUrl()) : that.getImageUrl() != null)
 			return false;
-		if (getSeriesType() != null ? !getSeriesType().equals(that.getSeriesType()) : that.getSeriesType() != null)
+		if (getVideoType() != null ? !getVideoType().equals(that.getVideoType()) : that.getVideoType() != null)
 			return false;
 		return getChannel() != null ? getChannel().equals(that.getChannel()) : that.getChannel() == null;
 	}
@@ -191,7 +191,7 @@ public class SeriesEntity {
 		result = 31 * result + (getDateStarted() != null ? getDateStarted().hashCode() : 0);
 		result = 31 * result + (isEnded() ? 1 : 0);
 		result = 31 * result + (getImageUrl() != null ? getImageUrl().hashCode() : 0);
-		result = 31 * result + (getSeriesType() != null ? getSeriesType().hashCode() : 0);
+		result = 31 * result + (getVideoType() != null ? getVideoType().hashCode() : 0);
 		result = 31 * result + (getChannel() != null ? getChannel().hashCode() : 0);
 		return result;
 	}

@@ -1,14 +1,18 @@
 package gr.pr.date_releases.controllers;
 
 import gr.pr.date_releases.entity.UserEntity;
+import gr.pr.date_releases.exceptions.DuplicateEmailException;
+import gr.pr.date_releases.exceptions.DuplicateUserNameException;
 import gr.pr.date_releases.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("user")
 @RequestMapping("/userPanel")
 public class UserController {
 	
@@ -41,8 +45,16 @@ public class UserController {
 		
 		try {
 			userService.updateUser(user);
-		} catch (Exception e) {
-			return "redirect:/userPanel/editInfo?" + e.getMessage();
+		}
+		catch (DuplicateEmailException e) {
+			return "redirect:/userPanel/editInfo?duplicateEmail";
+		}
+		catch (DuplicateUserNameException e) {
+			return "redirect:/userPanel/editInfo?duplicateUserName";
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/userPanel/editInfo?userUpdateFail";
 		}
 		
 		return "redirect:/userPanel?successEdit";

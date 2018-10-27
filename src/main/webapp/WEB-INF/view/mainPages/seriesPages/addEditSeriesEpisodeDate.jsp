@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: PR
-  Date: 09-Oct-17
-  Time: 9:52 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 	<head>
@@ -24,7 +17,7 @@
 					$("#addSingleEpisodeBtn").prop("disabled",false);
 				}
 			});*/
-			$("#season").change(function() {
+			/*$("#season").change(function() {
 				if(($("#season").val().length > 0) && ($("#episode").val().length > 0) && ($("#date").val().length > 0)){
 					$("#addSingleEpisodeBtn").removeClass("disabled");
 					$("#addSingleEpisodeBtn").prop("disabled",false);
@@ -44,7 +37,7 @@
 					$("#addSingleEpisodeBtn").removeClass("disabled");
 					$("#addSingleEpisodeBtn").prop("disabled",false);
 				}
-			});
+			});*/
 		</script>
 	</head>
 	<body>
@@ -97,16 +90,16 @@
 				<div class="col-lg-2">
 					<h4>Date</h4>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<h4>Notes</h4>
 				</div>
-				<div class="col-lg-1">
+				<div class="col-lg-2">
 					<h4>Submit</h4>
 				</div>
 			</div>
 			<div class="row">
-				<form:form action="${pageContext.request.contextPath}/series/saveOrUpdateSeriesEpisode?editSeriesEpisode=${fn:contains(pageURI,'/editSeriesEpisodeDate')}"
-						method="post" modelAttribute="seriesEpisode">
+				<form:form method="post" modelAttribute="seriesEpisode" id="addEditEpisodeForm"
+						action="${pageContext.request.contextPath}/series/saveOrUpdateSeriesEpisode?editSeriesEpisode=${fn:contains(pageURI,'/editSeriesEpisodeDate')}">
 
 					<div class="form-group col-lg-3">
 						<c:choose>
@@ -133,14 +126,16 @@
 								required="required" path="episode"/>
 					</div>
 					<div class="form-group col-lg-2">
-						<form:input type="date" class="date form-control text-center" name="date" id="date" path="releaseDate"/>
+						<c:set var="releaseDateValue" value="${seriesEpisode.releaseDate != null ? seriesEpisode.releaseDate : null}"/>
+						<form:input type="date" class="date form-control text-center" name="date" id="releaseDate" path="releaseDate"/>
 					</div>
-					<div class="form-group col-lg-4">
+					<div class="form-group col-lg-3">
 						<form:input type="text" class="form-control text-center" name="notes" path="notes"/>
 					</div>
-					<div class="form-group col-lg-1">
-						<input type="submit" id=addSingleEpisodeBtn" value="Submit Date"
-							   class="btn btn-success">
+					<div class="form-group col-lg-2">
+						<button class="btn btn-Success btn-lg" onclick="submitFormWithDate('addEditEpisodeForm', 'releaseDate')">
+							<spring:message code="series.schedule.addEdit.submit"/>
+						</button>
 					</div>
 				</form:form>
 			</div>

@@ -6,6 +6,6 @@ public interface SeriesEpisodeService {
 	
 	SeriesEpisodesEntity getSeriesEpisodeById(int id);
 	void deleteSeriesEpisodeDate(int seriesEpisodeEntityId);
-	void saveOrUpdateSeriesEpisode(SeriesEpisodesEntity seriesEpisodes, boolean editSeriesEpisode);
+	void saveOrUpdateSeriesEpisode(SeriesEpisodesEntity seriesEpisodes);
 
 }

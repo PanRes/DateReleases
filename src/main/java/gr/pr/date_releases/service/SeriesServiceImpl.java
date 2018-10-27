@@ -17,12 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @PropertySource("classpath:fileUrls.properties")
 public class SeriesServiceImpl implements SeriesService {
-	
+
 	@Autowired
 	private SeriesDao seriesDao;
 	
@@ -53,6 +58,17 @@ public class SeriesServiceImpl implements SeriesService {
 	@Override
 	@Transactional
 	public void saveOrUpdateSeries(SeriesEntity series) {
+		DateFormat format = new SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH);
+		Date date = null;
+		try {
+			date = format.parse("1900-01-01");
+		}
+		catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (date != null && date.equals(series.getDateStarted())) {
+			series.setDateStarted(null);
+		}
 		genericDao.saveOrUpdate(series);
 	}
 	

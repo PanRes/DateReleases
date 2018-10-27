@@ -8,7 +8,7 @@
 	<body>
 		<%@include file="/WEB-INF/view/universals/header.jsp"%>
 		<c:choose>
-			<c:when test="${series.size() == 0}">
+			<c:when test="${seriesEpisodes.size() == 0}">
 				<div class="text-center">
 					<h4><spring:message code="series.schedule.noEpisodes"/></h4>
 				</div>

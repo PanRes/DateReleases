@@ -11,12 +11,11 @@
 <c:set var="pageURI" value="${requestScope['javax.servlet.forward.request_uri']}"/>
 <header>
 
-	<div class="row">
 
-		<div class="col-lg-8 col-lg-offset-2 h1 text-center">
-			<spring:message code="header.mainTitle" />
-		</div>
+	<div class="h1 text-center">
+		<spring:message code="header.mainTitle" />
 	</div>
+
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -35,7 +34,7 @@
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Series Info</a>
 							<ul class="dropdown-menu scrollable-menu" role="menu">
 								<c:forEach var="series" items="${allSeries}">
-									<li class="${fn:contains(pageURI, series.name) && seriesInfo ? 'active' : ''}">
+									<li class="${fn:endsWith(fn:replace(pageURI,'%20',' '), series.name)&& seriesInfo ? 'active' : ''}">
 										<a href="${pageContext.request.contextPath}/series/info/${series.name}">${series.name}</a>
 									</li>
 								</c:forEach>
@@ -60,11 +59,11 @@
 								</c:forEach>
 							</ul>
 						</li>
-						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/edit') ? 'active' : ''}">
+						<li class="dropdown-submenu ${fn:contains(pageURI, 'series/edit/') ? 'active' : ''}">
 							<a href="#" class="dta-toggle" data-toggle="dropdown">Edit Series</a>
 							<ul class="dropdown-menu scrollable-menu">
 								<c:forEach var="series" items="${allSeries}">
-									<li class="${fn:contains(pageURI, 'series/edit') ? 'active' : ''}">
+									<li class="${fn:contains(pageURI, 'series/edit') && fn:endsWith(fn:replace(pageURI,'%20',' '), series.name) ? 'active' : ''}">
 										<a href="${pageContext.request.contextPath}/series/edit/${series.name}">Edit ${series.name}</a>
 									</li>
 								</c:forEach>

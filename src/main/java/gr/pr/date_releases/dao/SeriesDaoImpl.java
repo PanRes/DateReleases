@@ -37,7 +37,7 @@ public class SeriesDaoImpl implements SeriesDao {
 		
 		TypedQuery<SeriesEntity> query = session
 				.createNamedQuery("Series.findSeriesByName",SeriesEntity.class)
-				.setParameter("name", name);
+				.setParameter("name", "%" + name + "%");
 
 		//TODO : fix in case no series was found
 		return query.getResultList().get(0);

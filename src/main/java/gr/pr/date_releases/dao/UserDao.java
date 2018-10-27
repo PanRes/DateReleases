@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserDao {
 	
 	List<UserEntity> getAllUsers();
-	UserEntity getUserByUserName(String userName);
+	UserEntity getUserByUserNameOtherThan(String userName, int userId);
+	UserEntity getUserByEmailOtherThan(String userName, int userId);
 	UserEntity getUserByUserNameOrEmail(String userName);
-	UserEntity getUserByEmail(String userName);
 }

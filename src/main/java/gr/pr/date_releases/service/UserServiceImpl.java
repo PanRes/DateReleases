@@ -6,6 +6,8 @@ import gr.pr.date_releases.dao.UserDao;
 import gr.pr.date_releases.entity.SeriesEntity;
 import gr.pr.date_releases.entity.UserEntity;
 import gr.pr.date_releases.enums.Roles;
+import gr.pr.date_releases.exceptions.DuplicateEmailException;
+import gr.pr.date_releases.exceptions.DuplicateUserNameException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -56,6 +58,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.addRole(rolesDao.getRoleByName(Roles.USER.toString()));
+			user.setEnabled(true);
 			//TODO : different message for duplicate email or username
 			genericDao.save(user);
 			return true;
@@ -91,19 +94,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void updateUser(UserEntity user) throws Exception {
-		if (userDao.getUserByUserName(user.getUserName()) != null) {
-			throw new Exception("duplicateUserName");
+		if (userDao.getUserByUserNameOtherThan(user.getUserName(), user.getId()) != null) {
+			throw new DuplicateUserNameException();
 		}
-		else if (userDao.getUserByEmail(user.getEmail()) != null) {
-			throw new Exception("duplicateEmail");
+		else if (userDao.getUserByEmailOtherThan(user.getEmail(), user.getId()) != null) {
+			throw new DuplicateEmailException();
 		}
 		
 		try {
 			genericDao.update(user);
 		}
 		catch (Exception e) {
-			throw new Exception("userUpdateFail");
+			throw new Exception();
 		}
-
 	}
 }
