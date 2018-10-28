@@ -204,4 +204,10 @@ public class SeriesController {
 		return "redirect:" + request.getHeader("Referer");
 	}
 
+	@GetMapping("deleteSeries")
+	public String deleteSeries(@RequestParam("seriesId") int seriesId) {
+		seriesService.deleteSeries(seriesId);
+
+		return "redirect:/series";
+	}
 }

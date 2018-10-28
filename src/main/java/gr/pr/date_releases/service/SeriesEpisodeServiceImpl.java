@@ -31,7 +31,7 @@ public class SeriesEpisodeServiceImpl implements SeriesEpisodeService {
 	@Override
 	@Transactional
 	public void deleteSeriesEpisodeDate(int seriesEpisodeEntityId) {
-		genericDao.deleteRow(seriesEpisodesDao.getSeriesEpisodeById(seriesEpisodeEntityId));
+		genericDao.delete(seriesEpisodesDao.getSeriesEpisodeById(seriesEpisodeEntityId));
 	}
 
 	@Override

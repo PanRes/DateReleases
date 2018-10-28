@@ -127,4 +127,12 @@ public class SeriesServiceImpl implements SeriesService {
 			return seriesEpisodesDao.getSeriesEpisodesBySeries(getSeriesBySeriesName(seriesName));
 		}
 	}
+
+	@Override
+	@Transactional
+	public void deleteSeries(int seriesId) {
+		SeriesEntity seriesToDelete = seriesDao.getSeriesById(seriesId);
+
+		genericDao.delete(seriesToDelete);
+	}
 }

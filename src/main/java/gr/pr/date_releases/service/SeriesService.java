@@ -15,4 +15,5 @@ public interface SeriesService {
 	void addSeriesToUserFavorites(int seriesId);
 	void removeSeriesToUserFavorites(int seriesId);
 	List<SeriesEpisodesEntity> getSeriesEpisodes(String seriesName);
+	void deleteSeries(int seriesId);
 }
