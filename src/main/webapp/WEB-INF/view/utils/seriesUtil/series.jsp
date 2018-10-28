@@ -22,8 +22,8 @@
 								<i class="glyphicon glyphicon-heart"></i>
 							</abbr>
 						</a>
-						</c:when>
-						<c:otherwise>
+					</c:when>
+					<c:otherwise>
 						<a href="${pageContext.request.contextPath}/series/addSeriesToUserFavorites?seriesId=${series.id}" class="favoritesBtn">
 							<abbr title="<spring:message code='favorites.add'/> ">
 								<i class="glyphicon glyphicon-heart-empty"></i>
@@ -31,6 +31,17 @@
 						</a>
 					</c:otherwise>
 				</c:choose>
+			</security:authorize>
+			<security:authorize access="hasRole('ADMIN')">
+				<c:set var="textForJs">
+					<spring:message code="series.info.deleteSeriesQuestion" javaScriptEscape="true" arguments="${series.name}"/>
+				</c:set>
+				<a href="${pageContext.request.contextPath}/series/deleteSeries?seriesId=${series.id}"
+				   onclick="return confirm('${textForJs}')">
+					<abbr title="<spring:message code='series.info.deleteSeries'/>">
+						<i class="glyphicon glyphicon-trash"></i>
+					</abbr>
+				</a>
 			</security:authorize>
 		</div>
 		<div class="col-md-11">
