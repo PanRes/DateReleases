@@ -208,6 +208,8 @@ function checkNewChannel(formId, dateFieldId) {
 }
 
 function submitFormWithDate(formId, dateFieldId) {
-	document.getElementById(dateFieldId).value = "1900-01-01";
+	if (document.getElementById(dateFieldId).value == '' || document.getElementById(dateFieldId).value == null) {
+		document.getElementById(dateFieldId).value = "1900-01-01";
+	}
 	document.getElementById(formId).submit();
 }
