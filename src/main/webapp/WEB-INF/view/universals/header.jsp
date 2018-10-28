@@ -98,8 +98,8 @@
 					</ul>
 				</li>
 
-				<security:authorize access="isAuthenticated()" >
-					<li class="dropdown">
+				<li class="dropdown">
+					<security:authorize access="isAuthenticated()" >
 						<a href="#" class="data-toggle" data-toggle="dropdown">
 							<i class="fa fa-user fa-fw"></i>
 							<spring:message code="header.user.welcome"/><security:authentication property='principal.username'/>
@@ -128,8 +128,30 @@
 								</a>
 							</li>
 						</ul>
-					</li>
-				</security:authorize>
+					</security:authorize>
+					<c:if test="${pageURI != pageContext.request.contextPath.concat('/')}">
+						<security:authorize access="!isAuthenticated()">
+							<a href="#" class="data-toggle" data-toggle="dropdown">
+								<spring:message code="header.user.connect"/>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu scrollable-menu">
+								<li >
+									<a href="${pageContext.request.contextPath}/login">
+										<i class="fa fa-sign-in"></i>
+										<spring:message code="login"/>
+									</a>
+								</li>
+								<li>
+									<a href="${pageContext.request.contextPath}/signUp">
+										<i class="fa fa-user-plus"></i>
+										<spring:message code="signUp"/>
+									</a>
+								</li>
+							</ul>
+						</security:authorize>
+					</c:if>
+				</li>
 			</ul>
 		</div>
 	</nav>
